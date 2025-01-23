@@ -17,13 +17,19 @@ public class Conexion {
             + ";TrustServerCertificate=True;";
     
     //Metodos
-    public Connection establecerConexion() {
+    public void establecerConexion() {
         try {
             this.conexion = DriverManager.getConnection(cadena);
-            return this.conexion;
         } catch(SQLException e){
             System.out.println("Error de conexion: " + e.toString());
-            return null;
+        }
+    }
+    
+    public void cerrarConexion() throws SQLException {
+        if (this.conexion != null) {
+            if (!this.conexion.isClosed()) {
+                this.conexion.close();
+            }
         }
     }
     
