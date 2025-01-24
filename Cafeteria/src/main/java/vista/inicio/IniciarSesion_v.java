@@ -6,8 +6,13 @@ public class IniciarSesion_v extends javax.swing.JFrame {
 
     public IniciarSesion_v() {
         initComponents();
+        initStyles();
     }
-
+    
+    private void initStyles() {
+        this.jBiniciarSesion.putClientProperty("JButton.buttonType", "roundRect");
+    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -21,15 +26,15 @@ public class IniciarSesion_v extends javax.swing.JFrame {
         barra = new javax.swing.JLabel();
         inicioSesion = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        interfaz = new javax.swing.JPanel();
+        fondoTitulo = new javax.swing.JPanel();
+        titulo = new javax.swing.JLabel();
+        contrasenia = new javax.swing.JLabel();
+        jCBservidores = new javax.swing.JComboBox<>();
+        servidor = new javax.swing.JLabel();
+        jPFcontrasenia = new javax.swing.JPasswordField();
+        jBiniciarSesion = new javax.swing.JButton();
+        jBsalir = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,104 +56,106 @@ public class IniciarSesion_v extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.jpg"))); // NOI18N
         background.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 96, 50));
 
-        jPanel1.setBackground(new java.awt.Color(215, 195, 205));
+        interfaz.setBackground(new java.awt.Color(215, 195, 205));
 
-        jPanel2.setBackground(new java.awt.Color(34, 20, 10));
+        fondoTitulo.setBackground(new java.awt.Color(34, 20, 10));
 
-        jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("GESTOR DE COFFEE Y GELATO GANCINO");
+        titulo.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        titulo.setForeground(new java.awt.Color(255, 255, 255));
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("GESTOR DE COFFEE Y GELATO GANCINO");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        javax.swing.GroupLayout fondoTituloLayout = new javax.swing.GroupLayout(fondoTitulo);
+        fondoTitulo.setLayout(fondoTituloLayout);
+        fondoTituloLayout.setHorizontalGroup(
+            fondoTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        fondoTituloLayout.setVerticalGroup(
+            fondoTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoTituloLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Contraseña:");
+        contrasenia.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        contrasenia.setForeground(new java.awt.Color(0, 0, 0));
+        contrasenia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        contrasenia.setText("Contraseña:");
 
-        jComboBox1.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "El Puyo", "Quito" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCBservidores.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jCBservidores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "El Puyo", "Quito" }));
+        jCBservidores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jCBservidoresActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Servidor:");
+        servidor.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        servidor.setForeground(new java.awt.Color(0, 0, 0));
+        servidor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        servidor.setText("Servidor:");
 
-        jPasswordField1.setText("jPasswordField1");
+        jPFcontrasenia.setText("jPasswordField1");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Iniciar Sesion");
+        jBiniciarSesion.setBackground(new java.awt.Color(0, 0, 0));
+        jBiniciarSesion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBiniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        jBiniciarSesion.setText("Iniciar Sesion");
+        jBiniciarSesion.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jButton2.setBackground(new java.awt.Color(255, 102, 102));
-        jButton2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Salir");
+        jBsalir.setBackground(new java.awt.Color(255, 102, 102));
+        jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setForeground(new java.awt.Color(255, 255, 255));
+        jBsalir.setText("Salir");
+        jBsalir.setBorder(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout interfazLayout = new javax.swing.GroupLayout(interfaz);
+        interfaz.setLayout(interfazLayout);
+        interfazLayout.setHorizontalGroup(
+            interfazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, interfazLayout.createSequentialGroup()
+                .addGroup(interfazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPFcontrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jCBservidores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(84, 84, 84))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(interfazLayout.createSequentialGroup()
+                .addGroup(interfazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fondoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(interfazLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(interfazLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(interfazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBiniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(interfazLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(servidor, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        interfazLayout.setVerticalGroup(
+            interfazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(interfazLayout.createSequentialGroup()
+                .addComponent(fondoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(servidor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCBservidores, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPFcontrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBiniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 49, Short.MAX_VALUE))
         );
 
-        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 400, 440));
+        background.add(interfaz, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 400, 440));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
         background.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, -1));
@@ -168,9 +175,9 @@ public class IniciarSesion_v extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jCBservidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBservidoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jCBservidoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,17 +195,17 @@ public class IniciarSesion_v extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JLabel barra;
+    private javax.swing.JLabel contrasenia;
     private javax.swing.JLabel fondo;
+    private javax.swing.JPanel fondoTitulo;
     private javax.swing.JLabel inicioSesion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPanel interfaz;
+    private javax.swing.JButton jBiniciarSesion;
+    private javax.swing.JButton jBsalir;
+    private javax.swing.JComboBox<String> jCBservidores;
+    private javax.swing.JPasswordField jPFcontrasenia;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel servidor;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }
