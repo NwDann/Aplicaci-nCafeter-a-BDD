@@ -1,13 +1,13 @@
-package controlador.inicio;
+package db;
 
-import controlador.inicio.Conexion;
+import db.DataBase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public abstract class CRUD {
     // Atributos
-    protected Conexion conexion;
+    protected DataBase conexion;
     protected String consulta;
     protected Statement comando;
     protected ResultSet resultado;

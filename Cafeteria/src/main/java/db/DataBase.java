@@ -1,23 +1,23 @@
-package controlador.inicio;
+package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexion {
+public class DataBase {
     // Atributos
-    private Connection conexion = null;
-    private String bd = "ElPuyoDB";
-    private String ip = "localhost";
-    private String cadena = "jdbc:sqlserver://" + ip + "1433"
-            + ";database=" + bd
+    protected Connection conexion = null;
+    //private String bd = "ElPuyoDB";
+    //private String ip = "localhost";
+    
+    //Metodos
+    public void establecerConexion(String ip, String db) {
+        String cadena = "jdbc:sqlserver://" + ip + "1433"
+            + ";database=" + db
             + ";user=sa"
             + ";password=P@ssw0rd"
             + ";loginTimeout=15"
             + ";TrustServerCertificate=True;";
-    
-    //Metodos
-    public void establecerConexion() {
         try {
             this.conexion = DriverManager.getConnection(cadena);
         } catch(SQLException e){
