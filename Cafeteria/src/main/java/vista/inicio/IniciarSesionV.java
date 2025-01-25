@@ -2,15 +2,16 @@ package vista.inicio;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 
-public class IniciarSesion_v extends javax.swing.JFrame {
+public class IniciarSesionV extends javax.swing.JFrame {
 
-    public IniciarSesion_v() {
+    public IniciarSesionV() {
         initComponents();
         initStyles();
     }
     
     private void initStyles() {
         this.jBiniciarSesion.putClientProperty("JButton.buttonType", "roundRect");
+        this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
     }
  
     /**
@@ -99,17 +100,20 @@ public class IniciarSesion_v extends javax.swing.JFrame {
 
         jPFcontrasenia.setText("jPasswordField1");
 
-        jBiniciarSesion.setBackground(new java.awt.Color(0, 0, 0));
+        jBiniciarSesion.setBackground(new java.awt.Color(33, 18, 18));
         jBiniciarSesion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBiniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jBiniciarSesion.setText("Iniciar Sesion");
-        jBiniciarSesion.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jBiniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBiniciarSesionActionPerformed(evt);
+            }
+        });
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBsalir.setForeground(new java.awt.Color(255, 255, 255));
         jBsalir.setText("Salir");
-        jBsalir.setBorder(null);
 
         javax.swing.GroupLayout interfazLayout = new javax.swing.GroupLayout(interfaz);
         interfaz.setLayout(interfazLayout);
@@ -127,13 +131,13 @@ public class IniciarSesion_v extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(interfazLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(servidor, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(interfazLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addGroup(interfazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBiniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(interfazLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(servidor, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jBiniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         interfazLayout.setVerticalGroup(
@@ -146,16 +150,16 @@ public class IniciarSesion_v extends javax.swing.JFrame {
                 .addComponent(jCBservidores, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPFcontrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(26, 26, 26)
                 .addComponent(jBiniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 49, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        background.add(interfaz, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 400, 440));
+        background.add(interfaz, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 400, 420));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu.jpg"))); // NOI18N
         background.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, -1));
@@ -179,6 +183,10 @@ public class IniciarSesion_v extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBservidoresActionPerformed
 
+    private void jBiniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBiniciarSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBiniciarSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,7 +195,7 @@ public class IniciarSesion_v extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IniciarSesion_v().setVisible(true);
+                new IniciarSesionV().setVisible(true);
             }
         });
     }

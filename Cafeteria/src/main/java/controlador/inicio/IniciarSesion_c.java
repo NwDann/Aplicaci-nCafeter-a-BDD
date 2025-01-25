@@ -1,12 +1,11 @@
 package controlador.inicio;
 
-import modelo.inicio.Conexion;
-import vista.inicio.IniciarSesion_v;
+import vista.inicio.IniciarSesionV;
 
 public class IniciarSesion_c {
     // Atributos
     private Conexion modelo;
-    private IniciarSesion_v vista;
+    private IniciarSesionV vista;
     
     // Constructores
     

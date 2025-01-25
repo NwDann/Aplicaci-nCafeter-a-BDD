@@ -1,6 +1,6 @@
-package modelo.operacion;
+package controlador.inicio;
 
-import modelo.inicio.Conexion;
+import controlador.inicio.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
