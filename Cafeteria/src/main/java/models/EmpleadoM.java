@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-/**
- *
- * @author DyS
- */
 public class EmpleadoM {
     // Atributos
     private int id_empleado;
     private String nombre;
     private String cedula;
     private String telefono;
-    private Date fecha_contrato;
+    private LocalDate fecha_contrato;
     private int id_sucursal;
     private String cargo;
     
@@ -37,7 +29,7 @@ public class EmpleadoM {
         return telefono;
     }
 
-    public Date getFecha_contrato() {
+    public LocalDate getFecha_contrato() {
         return fecha_contrato;
     }
 
@@ -65,7 +57,7 @@ public class EmpleadoM {
         this.telefono = telefono;
     }
 
-    public void setFecha_contrato(Date fecha_contrato) {
+    public void setFecha_contrato(LocalDate fecha_contrato) {
         this.fecha_contrato = fecha_contrato;
     }
 

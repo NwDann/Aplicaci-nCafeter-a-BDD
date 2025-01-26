@@ -4,7 +4,7 @@
  */
 package models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -16,7 +16,7 @@ public class ClienteM {
     private String nombre;
     private String correo;
     private String telefono;
-    private Date fecha_registro;
+    private LocalDate fecha_registro;
     
     // Metodos
     public int getId_cliente() {
@@ -35,7 +35,7 @@ public class ClienteM {
         return telefono;
     }
 
-    public Date getFecha_registro() {
+    public LocalDate getFecha_registro() {
         return fecha_registro;
     }
 
@@ -55,7 +55,7 @@ public class ClienteM {
         this.telefono = telefono;
     }
 
-    public void setFecha_registro(Date fecha_registro) {
+    public void setFecha_registro(LocalDate fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
     
