@@ -76,7 +76,7 @@ public class MenuV extends javax.swing.JFrame {
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jBsalir.setForeground(new java.awt.Color(0, 0, 0));
+        jBsalir.setForeground(new java.awt.Color(255, 255, 255));
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +86,7 @@ public class MenuV extends javax.swing.JFrame {
 
         jBcerrarSesion.setBackground(new java.awt.Color(255, 102, 102));
         jBcerrarSesion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jBcerrarSesion.setForeground(new java.awt.Color(0, 0, 0));
+        jBcerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jBcerrarSesion.setText("Cerrar Sesion");
         jBcerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,11 +118,15 @@ public class MenuV extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        jLempleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Empleados.png"))); // NOI18N
+
         jBempleado.setBackground(new java.awt.Color(33, 18, 18));
         jBempleado.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBempleado.setForeground(new java.awt.Color(255, 255, 255));
         jBempleado.setText("Empleado");
         jBempleado.setBorder(null);
+
+        jLcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clientes.png"))); // NOI18N
 
         jBcliente.setBackground(new java.awt.Color(33, 18, 18));
         jBcliente.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -130,11 +134,15 @@ public class MenuV extends javax.swing.JFrame {
         jBcliente.setText("Cliente");
         jBcliente.setBorder(null);
 
+        jLsucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sucursales.png"))); // NOI18N
+
         jBsucursal.setBackground(new java.awt.Color(33, 18, 18));
         jBsucursal.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBsucursal.setForeground(new java.awt.Color(255, 255, 255));
         jBsucursal.setText("Sucursal");
         jBsucursal.setBorder(null);
+
+        jLventaDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inventario Materia Prima.png"))); // NOI18N
 
         jBventaDetalle.setBackground(new java.awt.Color(33, 18, 18));
         jBventaDetalle.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -142,11 +150,15 @@ public class MenuV extends javax.swing.JFrame {
         jBventaDetalle.setText("Venta y Detalle");
         jBventaDetalle.setBorder(null);
 
+        jLproductoMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Producto y Materia Prima.png"))); // NOI18N
+
         jBproductoMateria.setBackground(new java.awt.Color(33, 18, 18));
         jBproductoMateria.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBproductoMateria.setForeground(new java.awt.Color(255, 255, 255));
         jBproductoMateria.setText("Producto y Materia");
         jBproductoMateria.setBorder(null);
+
+        jLinventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inventario Materia Prima.png"))); // NOI18N
 
         jBinventario.setBackground(new java.awt.Color(33, 18, 18));
         jBinventario.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -160,36 +172,43 @@ public class MenuV extends javax.swing.JFrame {
             jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPgestorLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBsucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBproductoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPgestorLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addGap(30, 30, 30)
                         .addGroup(jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLsucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLproductoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBsucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBproductoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPgestorLayout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jLsucursal))))
                     .addGroup(jPgestorLayout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(78, 78, 78)
+                        .addComponent(jLproductoMateria)))
+                .addGroup(jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPgestorLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPgestorLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jLventaDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jBventaDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPgestorLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPgestorLayout.createSequentialGroup()
+                                .addComponent(jLempleado)
+                                .addGap(129, 129, 129))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPgestorLayout.createSequentialGroup()
+                                .addComponent(jLventaDetalle)
+                                .addGap(112, 112, 112)))))
                 .addGroup(jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBinventario, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPgestorLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPgestorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLinventario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLcliente))
+                    .addGroup(jPgestorLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLinventario)))
                 .addGap(37, 37, 37))
         );
         jPgestorLayout.setVerticalGroup(

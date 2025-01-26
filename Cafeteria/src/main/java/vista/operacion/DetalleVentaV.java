@@ -29,6 +29,23 @@ public class DetalleVentaV extends javax.swing.JFrame {
         jLmenu1 = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
+        jLmenu2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableProductosAgregados = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextCantidad = new javax.swing.JTextField();
+        jTextPrecioUnitario = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableProductos = new javax.swing.JTable();
+        jBTerminarFacTotal = new javax.swing.JButton();
+        jBVolverVenta = new javax.swing.JButton();
+        jBAgregar = new javax.swing.JButton();
+        jLbarraSelecc1 = new javax.swing.JLabel();
+        jLbarraSelecc2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,15 +59,16 @@ public class DetalleVentaV extends javax.swing.JFrame {
         jLbarraSelecc.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLbarraSelecc.setForeground(new java.awt.Color(255, 255, 255));
         jLbarraSelecc.setText("____________________");
-        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, 20));
+        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 180, 20));
 
         jLmenu1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
-        jLmenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jLmenu1.setText("Sucursal");
+        jLmenu1.setForeground(new java.awt.Color(204, 204, 204));
+        jLmenu1.setText("NUEVA VENTA");
         jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
 
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBmenu.setForeground(new java.awt.Color(255, 255, 255));
         jBmenu.setText("Menu");
         jBmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +79,7 @@ public class DetalleVentaV extends javax.swing.JFrame {
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setForeground(new java.awt.Color(255, 255, 255));
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +87,141 @@ public class DetalleVentaV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 160, 35));
+
+        jLmenu2.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLmenu2.setForeground(new java.awt.Color(255, 255, 255));
+        jLmenu2.setText("detALLE VENTA");
+        jPbackground.add(jLmenu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 170, 30));
+
+        jTableProductosAgregados.setBackground(new java.awt.Color(153, 153, 153));
+        jTableProductosAgregados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID PRODUCTO", "NOMBRE", "DESCRIPCIÓN", "PRECIO BASE", "CATEGORÍA"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableProductosAgregados);
+
+        jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 450, 250));
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("CANTIDAD");
+
+        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("PRECIO UNITARIO");
+
+        jTextCantidad.setBackground(new java.awt.Color(255, 255, 255));
+        jTextCantidad.setForeground(new java.awt.Color(0, 0, 0));
+
+        jTextPrecioUnitario.setBackground(new java.awt.Color(255, 255, 255));
+        jTextPrecioUnitario.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextPrecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(178, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextPrecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
+        );
+
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 450, 100));
+
+        jTableProductos.setBackground(new java.awt.Color(153, 153, 153));
+        jTableProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID PRODUCTO", "NOMBRE", "DESCRIPCIÓN", "PRECIO BASE", "CATEGORÍA"
+            }
+        ));
+        jScrollPane3.setViewportView(jTableProductos);
+
+        jPbackground.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 450, 250));
+
+        jBTerminarFacTotal.setBackground(new java.awt.Color(255, 102, 102));
+        jBTerminarFacTotal.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBTerminarFacTotal.setForeground(new java.awt.Color(255, 255, 255));
+        jBTerminarFacTotal.setText("TERMINAR FACTURA TOTAL");
+        jBTerminarFacTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTerminarFacTotalActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBTerminarFacTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, -1, -1));
+
+        jBVolverVenta.setBackground(new java.awt.Color(255, 102, 102));
+        jBVolverVenta.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBVolverVenta.setForeground(new java.awt.Color(255, 255, 255));
+        jBVolverVenta.setText("VOLVER A VENTA");
+        jBVolverVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVolverVentaActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBVolverVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 510, -1, -1));
+
+        jBAgregar.setBackground(new java.awt.Color(255, 102, 102));
+        jBAgregar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        jBAgregar.setText("AGREGAR");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 550, -1, -1));
+
+        jLbarraSelecc1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLbarraSelecc1.setForeground(new java.awt.Color(255, 255, 255));
+        jLbarraSelecc1.setText("__________________________________________________________________");
+        jPbackground.add(jLbarraSelecc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, 400, 20));
+
+        jLbarraSelecc2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLbarraSelecc2.setForeground(new java.awt.Color(255, 255, 255));
+        jLbarraSelecc2.setText("__________________________________________________________________");
+        jPbackground.add(jLbarraSelecc2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, 400, 20));
+
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("LISTA DE PRODUCTOS");
+        jPbackground.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 450, -1));
+
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setText("LISTA DE PRODUCTOS AGREGADOS A LA VENTA");
+        jPbackground.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, 450, -1));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -95,6 +249,18 @@ public class DetalleVentaV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jBTerminarFacTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTerminarFacTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBTerminarFacTotalActionPerformed
+
+    private void jBVolverVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVolverVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBVolverVentaActionPerformed
+
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -109,12 +275,29 @@ public class DetalleVentaV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAgregar;
+    private javax.swing.JButton jBTerminarFacTotal;
+    private javax.swing.JButton jBVolverVenta;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
+    private javax.swing.JLabel jLbarraSelecc1;
+    private javax.swing.JLabel jLbarraSelecc2;
     private javax.swing.JLabel jLlogo;
     private javax.swing.JLabel jLmenu1;
+    private javax.swing.JLabel jLmenu2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPbackground;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTableProductos;
+    private javax.swing.JTable jTableProductosAgregados;
+    private javax.swing.JTextField jTextCantidad;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextPrecioUnitario;
     // End of variables declaration//GEN-END:variables
 }
