@@ -20,9 +20,9 @@ public class DAOClienteImpl extends DataBase {
     
     // Metodos
     public void registrar(ClienteM ob) throws Exception {
+        // Cliente info
         this.establecerConexion(ip, db);
         
-        // Cliente info
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Cliente_Informacion(id_cliente, nombre, correo, telefono) VALUES(?,?,?,?);");
         st.setInt(1, ob.getId_cliente());
         st.setString(2, ob.getNombre());
@@ -30,7 +30,11 @@ public class DAOClienteImpl extends DataBase {
         st.setString(4, ob.getTelefono());
         st.executeUpdate();
         
+        this.cerrarConexion();
+        
         // Cliente datos sensibles
+        this.establecerConexion("192.168.1.1", "ElPuyoDB");
+        
         st = this.conexion.prepareStatement("INSERT INTO ClienteDatosSensibles(id_cliente, fecha_registro) VALUES(?,?);");
         st.setInt(1, ob.getId_cliente());
         st.setDate(2, java.sql.Date.valueOf(ob.getFecha_registro()));
@@ -55,14 +59,18 @@ public class DAOClienteImpl extends DataBase {
     }
     
     public void eliminar(int id) throws Exception {
+        // Cliente info
         this.establecerConexion(ip, db);
         
-        // Cliente info
         PreparedStatement st = this.conexion.prepareStatement("DELETE FROM Cliente_Informacion WHERE id_cliente = ?;");
         st.setInt(1, id);
         st.executeUpdate();
         
+        this.cerrarConexion();
+        
         //Cliente datos sensibles
+        this.establecerConexion("192.168.1.1", "ElPuyoDB");
+        
         st = this.conexion.prepareStatement("DELETE FROM ClienteDatosSensibles WHERE id_cliente = ?;");
         st.setInt(1, id);
         st.close();
@@ -95,7 +103,7 @@ public class DAOClienteImpl extends DataBase {
     
     public List<ClienteM> leerDatosSensibles() throws Exception {
         List<ClienteM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion("192.168.1.1", "ElPuyoDB");
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM ClienteDatosSensibles;");
 

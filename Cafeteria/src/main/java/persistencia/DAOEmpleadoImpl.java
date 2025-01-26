@@ -20,9 +20,9 @@ public class DAOEmpleadoImpl extends DataBase {
     
     // Metodos
     public void registrar(EmpleadoM ob) throws Exception {
+        // Empleado info
         this.establecerConexion(ip, db);
         
-        // Empleado info
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Empleado(id_empleado, nombre, cedula, telefono, id_sucursal, cargo) VALUES(?,?,?,?,?,?);");
         st.setInt(1, ob.getId_empleado());
         st.setString(2, ob.getNombre());
@@ -31,8 +31,13 @@ public class DAOEmpleadoImpl extends DataBase {
         st.setInt(5, ob.getId_sucursal());
         st.setString(6, ob.getCargo());
         st.executeUpdate();
+        st.close();
+        
+        this.cerrarConexion();
         
         // Empleado datos sensibles
+        this.establecerConexion("192.168.1.1", "ElPuyoDB");
+        
         st = this.conexion.prepareStatement("INSERT INTO Empleado_Datos_Sensibles(id_empleado, fecha_contrato) VALUES(?, ?);");
         st.setInt(1, ob.getId_empleado());
         st.setDate(2, java.sql.Date.valueOf(ob.getFecha_contrato()));
@@ -46,13 +51,13 @@ public class DAOEmpleadoImpl extends DataBase {
         this.establecerConexion(ip, db);
         
         // Empleado info
-        PreparedStatement st = this.conexion.prepareStatement("UPDATE Empleado SET nombre = ?, cedula = ?, telefono = ?, id_sucursal = ?, cargo = ? WHERE id_empleado = ?");
+        PreparedStatement st = this.conexion.prepareStatement("UPDATE Empleado SET nombre = ?, cedula = ?, telefono = ?, cargo = ? WHERE id_empleado = ? AND id_sucursal = ?");
         st.setString(1, ob.getNombre());
         st.setString(2, ob.getCedula());
         st.setString(3, ob.getTelefono());
-        st.setInt(4, ob.getId_sucursal());
-        st.setString(5, ob.getCargo());
-        st.setInt(6, ob.getId_empleado());
+        st.setString(4, ob.getCargo());
+        st.setInt(5, ob.getId_empleado());
+        st.setInt(6, ob.getId_sucursal());
         st.executeUpdate();
         st.close();
         
@@ -60,14 +65,18 @@ public class DAOEmpleadoImpl extends DataBase {
     }
     
     public void eliminar(int id) throws Exception {
+        // Empleado info
         this.establecerConexion(ip, db);
         
-        // Empleado info
-        PreparedStatement st = this.conexion.prepareStatement("DELETE FROM Empleado WHERE id_empleado = ?;");
+        PreparedStatement st = this.conexion.prepareStatement("DELETE FROM Empleado WHERE id_empleado = ? AND id_sucursal = ?;");
         st.setInt(1, id);
         st.executeUpdate();
+        st.close();
+        
+        this.cerrarConexion();
         
         // Empleado datos sensibles
+        this.establecerConexion("192.168.1.1", "ElPuyoDB");
         st = this.conexion.prepareStatement("DELETE FROM Empleado_Datos_Sensibles WHERE id_empleado = ?;");
         st.setInt(1, id);
         st.executeUpdate();
@@ -103,7 +112,7 @@ public class DAOEmpleadoImpl extends DataBase {
     
     public List<EmpleadoM> leerDatosSensibles() throws Exception {
         List<EmpleadoM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion("192.168.1.1", "ElPuyoDB");
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM Empleado_Datos_Sensibles;");
 
