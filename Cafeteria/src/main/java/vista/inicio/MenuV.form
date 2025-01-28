@@ -106,45 +106,56 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPtitulo" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jBsucursal" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
-                          <Component id="jBproductoMateria" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLsucursal" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="jLproductoMateria" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="jBsucursal" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
+                                  <Component id="jBproductoMateria" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                      <Component id="jLsucursal" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="jLproductoMateria" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                              <Component id="jLempleado" min="-2" pref="170" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                      <Component id="jLventaDetalle" min="-2" pref="170" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="jBventaDetalle" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
                                   <Component id="jBempleado" min="-2" pref="193" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLempleado" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLventaDetalle" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jBcliente" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
                           <Component id="jBinventario" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLcliente" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="jLinventario" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="jLcliente" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="jLinventario" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -254,7 +265,7 @@
                       <Font name="Perpetua Titling MT" size="14" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Salir"/>
                   </Properties>
@@ -271,7 +282,7 @@
                       <Font name="Perpetua Titling MT" size="14" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
                   </Properties>
@@ -282,6 +293,11 @@
               </SubComponents>
             </Container>
             <Component class="javax.swing.JLabel" name="jLempleado">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Empleados.png"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jBempleado">
               <Properties>
@@ -301,6 +317,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLcliente">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Clientes.png"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jBcliente">
               <Properties>
@@ -320,6 +341,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLsucursal">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Sucursales.png"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jBsucursal">
               <Properties>
@@ -339,6 +365,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLventaDetalle">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Inventario Materia Prima.png"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jBventaDetalle">
               <Properties>
@@ -358,6 +389,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLproductoMateria">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Producto y Materia Prima.png"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jBproductoMateria">
               <Properties>
@@ -377,6 +413,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLinventario">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Inventario Materia Prima.png"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jBinventario">
               <Properties>

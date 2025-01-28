@@ -29,6 +29,28 @@ public class EmpleadoV extends javax.swing.JFrame {
         jLmenu1 = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextID = new javax.swing.JTextField();
+        jTextNombre = new javax.swing.JTextField();
+        jTextCedula = new javax.swing.JTextField();
+        jTextTelefono = new javax.swing.JTextField();
+        jTextFechaCon = new javax.swing.JTextField();
+        jTextSucursal = new javax.swing.JTextField();
+        jTextCargo = new javax.swing.JTextField();
+        jBAñadir = new javax.swing.JButton();
+        jBModificar = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
+        jLbarraSelecc1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,11 +68,12 @@ public class EmpleadoV extends javax.swing.JFrame {
 
         jLmenu1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLmenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jLmenu1.setText("Sucursal");
+        jLmenu1.setText("EMPLEADO");
         jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
 
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBmenu.setForeground(new java.awt.Color(255, 255, 255));
         jBmenu.setText("Menu");
         jBmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +84,7 @@ public class EmpleadoV extends javax.swing.JFrame {
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setForeground(new java.awt.Color(255, 255, 255));
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +92,218 @@ public class EmpleadoV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 160, 35));
+
+        jTable.setBackground(new java.awt.Color(153, 153, 153));
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID ", "NOMBRE", "CEDULA", "TELEFONO", "FECHA CONTRATO", "ID SUCURSAL", "CARGO"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable);
+
+        jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 760, 270));
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("ID");
+
+        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("NOMBRE");
+
+        jLabel3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("cédula");
+
+        jLabel5.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("telefono");
+
+        jLabel6.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("fecha contrato");
+
+        jLabel7.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Sucursal");
+
+        jLabel8.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("cargo");
+
+        jTextID.setBackground(new java.awt.Color(255, 255, 255));
+        jTextID.setForeground(new java.awt.Color(0, 0, 0));
+        jTextID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextIDActionPerformed(evt);
+            }
+        });
+
+        jTextNombre.setBackground(new java.awt.Color(255, 255, 255));
+        jTextNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jTextNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextNombreActionPerformed(evt);
+            }
+        });
+
+        jTextCedula.setBackground(new java.awt.Color(255, 255, 255));
+        jTextCedula.setForeground(new java.awt.Color(0, 0, 0));
+        jTextCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextCedulaActionPerformed(evt);
+            }
+        });
+
+        jTextTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        jTextTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        jTextTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextTelefonoActionPerformed(evt);
+            }
+        });
+
+        jTextFechaCon.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFechaCon.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFechaCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFechaConActionPerformed(evt);
+            }
+        });
+
+        jTextSucursal.setBackground(new java.awt.Color(255, 255, 255));
+        jTextSucursal.setForeground(new java.awt.Color(0, 0, 0));
+        jTextSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextSucursalActionPerformed(evt);
+            }
+        });
+
+        jTextCargo.setBackground(new java.awt.Color(255, 255, 255));
+        jTextCargo.setForeground(new java.awt.Color(0, 0, 0));
+        jTextCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextCargoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFechaCon))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel3))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(158, 158, 158))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(21, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFechaCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 530, 200));
+
+        jBAñadir.setBackground(new java.awt.Color(255, 102, 102));
+        jBAñadir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBAñadir.setForeground(new java.awt.Color(255, 255, 255));
+        jBAñadir.setText("AÑADIR");
+        jBAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAñadirActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 440, 100, 30));
+
+        jBModificar.setBackground(new java.awt.Color(255, 102, 102));
+        jBModificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
+        jBModificar.setText("MODIFICAR");
+        jPbackground.add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, -1, -1));
+
+        jBEliminar.setBackground(new java.awt.Color(255, 102, 102));
+        jBEliminar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        jBEliminar.setText("ELIMINAR");
+        jPbackground.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 520, -1, -1));
+
+        jLbarraSelecc1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLbarraSelecc1.setForeground(new java.awt.Color(255, 255, 255));
+        jLbarraSelecc1.setText("_______________________________________________________________");
+        jPbackground.add(jLbarraSelecc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, 400, 20));
+
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("LISTA DE EMPLEADOS");
+        jPbackground.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 760, -1));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -95,6 +331,38 @@ public class EmpleadoV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAñadirActionPerformed
+
+    private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextIDActionPerformed
+
+    private void jTextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNombreActionPerformed
+
+    private void jTextCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCedulaActionPerformed
+
+    private void jTextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextTelefonoActionPerformed
+
+    private void jTextFechaConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFechaConActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFechaConActionPerformed
+
+    private void jTextSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSucursalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextSucursalActionPerformed
+
+    private void jTextCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCargoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCargoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -109,12 +377,34 @@ public class EmpleadoV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAñadir;
+    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
+    private javax.swing.JLabel jLbarraSelecc1;
     private javax.swing.JLabel jLlogo;
     private javax.swing.JLabel jLmenu1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPbackground;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable;
+    private javax.swing.JTextField jTextCargo;
+    private javax.swing.JTextField jTextCedula;
+    private javax.swing.JTextField jTextFechaCon;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextID;
+    private javax.swing.JTextField jTextNombre;
+    private javax.swing.JTextField jTextSucursal;
+    private javax.swing.JTextField jTextTelefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,6 +29,24 @@ public class ClienteV extends javax.swing.JFrame {
         jLmenu1 = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableCliente = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextID = new javax.swing.JTextField();
+        jTextNombre = new javax.swing.JTextField();
+        jTextCorreo = new javax.swing.JTextField();
+        jTextTelefono = new javax.swing.JTextField();
+        jTextFechaR = new javax.swing.JTextField();
+        jBAñadir = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
+        jBModificar = new javax.swing.JButton();
+        jLbarraSelecc1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,16 +59,17 @@ public class ClienteV extends javax.swing.JFrame {
 
         jLbarraSelecc.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLbarraSelecc.setForeground(new java.awt.Color(255, 255, 255));
-        jLbarraSelecc.setText("____________________");
-        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, 20));
+        jLbarraSelecc.setText("__________________________________________________________________");
+        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 400, 20));
 
         jLmenu1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLmenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jLmenu1.setText("Sucursal");
+        jLmenu1.setText("cliente");
         jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
 
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBmenu.setForeground(new java.awt.Color(255, 255, 255));
         jBmenu.setText("Menu");
         jBmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +80,7 @@ public class ClienteV extends javax.swing.JFrame {
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setForeground(new java.awt.Color(255, 255, 255));
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +88,176 @@ public class ClienteV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 160, 35));
+
+        jTableCliente.setBackground(new java.awt.Color(153, 153, 153));
+        jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "NOMBRE", "CORREO", "TELÉFONO", "FECHA REGISTRO"
+            }
+        ));
+        jTableCliente.setName(""); // NOI18N
+        jScrollPane2.setViewportView(jTableCliente);
+
+        jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 500, -1));
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("ID ");
+
+        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("CORREO");
+
+        jLabel3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("NOMBRE");
+
+        jLabel4.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("FECHA REGISTRO");
+
+        jLabel5.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("TELÉFONO");
+
+        jTextID.setBackground(new java.awt.Color(255, 255, 255));
+        jTextID.setForeground(new java.awt.Color(0, 0, 0));
+        jTextID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextIDActionPerformed(evt);
+            }
+        });
+
+        jTextNombre.setBackground(new java.awt.Color(255, 255, 255));
+        jTextNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jTextNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextNombreActionPerformed(evt);
+            }
+        });
+
+        jTextCorreo.setBackground(new java.awt.Color(255, 255, 255));
+        jTextCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        jTextCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextCorreoActionPerformed(evt);
+            }
+        });
+
+        jTextTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        jTextTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        jTextTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextTelefonoActionPerformed(evt);
+            }
+        });
+
+        jTextFechaR.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFechaR.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFechaR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFechaRActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                    .addComponent(jTextID)
+                    .addComponent(jTextCorreo))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFechaR, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                    .addComponent(jTextTelefono))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFechaR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
+        );
+
+        jLabel4.getAccessibleContext().setAccessibleName("FECHA \nREGISTRO");
+
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 410, 190));
+
+        jBAñadir.setBackground(new java.awt.Color(255, 102, 102));
+        jBAñadir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBAñadir.setForeground(new java.awt.Color(255, 255, 255));
+        jBAñadir.setText("AÑADIR");
+        jBAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAñadirActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 370, 100, 30));
+        jBAñadir.getAccessibleContext().setAccessibleName("jButton1");
+
+        jBEliminar.setBackground(new java.awt.Color(255, 102, 102));
+        jBEliminar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        jBEliminar.setText("ELIMINAR");
+        jPbackground.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 460, -1, -1));
+
+        jBModificar.setBackground(new java.awt.Color(255, 102, 102));
+        jBModificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
+        jBModificar.setText("MODIFICAR");
+        jPbackground.add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, -1, -1));
+
+        jLbarraSelecc1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLbarraSelecc1.setForeground(new java.awt.Color(255, 255, 255));
+        jLbarraSelecc1.setText("____________________");
+        jPbackground.add(jLbarraSelecc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, 20));
+
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("LISTA DE CLIENTES");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 500, -1));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -95,6 +285,34 @@ public class ClienteV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBAñadirActionPerformed
+
+    private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextIDActionPerformed
+
+    private void jTextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNombreActionPerformed
+
+    private void jTextCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCorreoActionPerformed
+
+    private void jTextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextTelefonoActionPerformed
+
+    private void jTextFechaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFechaRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFechaRActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -109,12 +327,30 @@ public class ClienteV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAñadir;
+    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
+    private javax.swing.JLabel jLbarraSelecc1;
     private javax.swing.JLabel jLlogo;
     private javax.swing.JLabel jLmenu1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPbackground;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableCliente;
+    private javax.swing.JTextField jTextCorreo;
+    private javax.swing.JTextField jTextFechaR;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextID;
+    private javax.swing.JTextField jTextNombre;
+    private javax.swing.JTextField jTextTelefono;
     // End of variables declaration//GEN-END:variables
 }

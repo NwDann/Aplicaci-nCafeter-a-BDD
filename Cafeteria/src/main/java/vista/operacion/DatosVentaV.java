@@ -25,10 +25,17 @@ public class DatosVentaV extends javax.swing.JFrame {
 
         jPbackground = new javax.swing.JPanel();
         jLlogo = new javax.swing.JLabel();
-        jLbarraSelecc = new javax.swing.JLabel();
-        jLmenu1 = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
+        jLmenu3 = new javax.swing.JLabel();
+        jLbarraSelecc1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableDetalle = new javax.swing.JTable();
+        jBRegresar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableVenta = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,18 +46,9 @@ public class DatosVentaV extends javax.swing.JFrame {
         jLlogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.jpg"))); // NOI18N
         jPbackground.add(jLlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 96, 50));
 
-        jLbarraSelecc.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLbarraSelecc.setForeground(new java.awt.Color(255, 255, 255));
-        jLbarraSelecc.setText("____________________");
-        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, 20));
-
-        jLmenu1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
-        jLmenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jLmenu1.setText("Sucursal");
-        jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
-
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBmenu.setForeground(new java.awt.Color(255, 255, 255));
         jBmenu.setText("Menu");
         jBmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +59,7 @@ public class DatosVentaV extends javax.swing.JFrame {
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setForeground(new java.awt.Color(255, 255, 255));
         jBsalir.setText("Salir");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +67,67 @@ public class DatosVentaV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 160, 35));
+
+        jLmenu3.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLmenu3.setForeground(new java.awt.Color(255, 255, 255));
+        jLmenu3.setText("datos");
+        jPbackground.add(jLmenu3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 170, 30));
+
+        jLbarraSelecc1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLbarraSelecc1.setForeground(new java.awt.Color(255, 255, 255));
+        jLbarraSelecc1.setText("____________________");
+        jPbackground.add(jLbarraSelecc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 130, 20));
+
+        jTableDetalle.setBackground(new java.awt.Color(153, 153, 153));
+        jTableDetalle.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID DETALLE", "ID VENTA", "ID PRODUCTO", "CANTIDAD", "PRECIO UNITARIO"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableDetalle);
+
+        jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 520, 230));
+
+        jBRegresar.setBackground(new java.awt.Color(255, 102, 102));
+        jBRegresar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        jBRegresar.setText("REGRESAR");
+        jBRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRegresarActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 480, -1, -1));
+
+        jTableVenta.setBackground(new java.awt.Color(153, 153, 153));
+        jTableVenta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID VENTA", "ID SUCURSAL", "FECHA", "MONTO TOTAL", "ID EMPLEADO", "ID CLIENTE"
+            }
+        ));
+        jScrollPane2.setViewportView(jTableVenta);
+
+        jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 540, 230));
+
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("LISTA DE VENTAS");
+        jPbackground.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 540, -1));
+
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setText("LISTA DE DETALLES DE VENTA");
+        jPbackground.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 520, -1));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -95,6 +155,10 @@ public class DatosVentaV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBRegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -109,12 +173,19 @@ public class DatosVentaV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBRegresar;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
     private javax.swing.JLabel jLbackground;
-    private javax.swing.JLabel jLbarraSelecc;
+    private javax.swing.JLabel jLbarraSelecc1;
     private javax.swing.JLabel jLlogo;
-    private javax.swing.JLabel jLmenu1;
+    private javax.swing.JLabel jLmenu3;
     private javax.swing.JPanel jPbackground;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableDetalle;
+    private javax.swing.JTable jTableVenta;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
