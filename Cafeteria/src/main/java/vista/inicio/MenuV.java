@@ -1,6 +1,7 @@
 package vista.inicio;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import vista.operacion.SucursalV;
 
 public class MenuV extends javax.swing.JFrame {
 
@@ -142,6 +143,11 @@ public class MenuV extends javax.swing.JFrame {
         jBsucursal.setForeground(new java.awt.Color(255, 255, 255));
         jBsucursal.setText("Sucursal");
         jBsucursal.setBorder(null);
+        jBsucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsucursalActionPerformed(evt);
+            }
+        });
 
         jLventaDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VentaYDetalle.jpg"))); // NOI18N
 
@@ -275,8 +281,14 @@ public class MenuV extends javax.swing.JFrame {
     private void jBcerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcerrarSesionActionPerformed
         IniciarSesionV inc = new IniciarSesionV();
         inc.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jBcerrarSesionActionPerformed
+
+    private void jBsucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsucursalActionPerformed
+        SucursalV suc = new SucursalV();
+        suc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBsucursalActionPerformed
 
     /**
      * @param args the command line arguments
