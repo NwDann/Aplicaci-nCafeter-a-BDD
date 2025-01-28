@@ -48,6 +48,7 @@ public class SucursalV extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jBmodificar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
+        jBsalir = new javax.swing.JButton();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,7 +77,7 @@ public class SucursalV extends javax.swing.JFrame {
                 jBmenuActionPerformed(evt);
             }
         });
-        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 160, 35));
+        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 160, 35));
 
         jLlistasucursales.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -198,6 +199,16 @@ public class SucursalV extends javax.swing.JFrame {
         jBeliminar.setText("Eliminar");
         jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 430, -1, -1));
 
+        jBsalir.setBackground(new java.awt.Color(255, 102, 102));
+        jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setText("SALIR");
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 40, 160, 35));
+
         jLbackground.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -225,6 +236,10 @@ public class SucursalV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBañadirActionPerformed
 
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBsalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,6 +258,7 @@ public class SucursalV extends javax.swing.JFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
