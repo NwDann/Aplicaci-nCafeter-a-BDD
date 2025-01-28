@@ -1,6 +1,7 @@
 package vista.inicio;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import javax.swing.JOptionPane;
 
 public class IniciarSesionV extends javax.swing.JFrame {
 
@@ -98,7 +99,20 @@ public class IniciarSesionV extends javax.swing.JFrame {
         servidor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         servidor.setText("Servidor:");
 
-        jPFcontrasenia.setText("jPasswordField1");
+        jPFcontrasenia.setText("**********");
+        jPFcontrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPFcontraseniaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPFcontraseniaFocusLost(evt);
+            }
+        });
+        jPFcontrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPFcontraseniaActionPerformed(evt);
+            }
+        });
 
         jBiniciarSesion.setBackground(new java.awt.Color(33, 18, 18));
         jBiniciarSesion.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -114,6 +128,11 @@ public class IniciarSesionV extends javax.swing.JFrame {
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBsalir.setForeground(new java.awt.Color(255, 255, 255));
         jBsalir.setText("Salir");
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout interfazLayout = new javax.swing.GroupLayout(interfaz);
         interfaz.setLayout(interfazLayout);
@@ -184,8 +203,35 @@ public class IniciarSesionV extends javax.swing.JFrame {
     }//GEN-LAST:event_jCBservidoresActionPerformed
 
     private void jBiniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBiniciarSesionActionPerformed
-        // TODO add your handling code here:
+        if (new String(this.jPFcontrasenia.getPassword()).equals("P@ssw0rd")){
+            db.DataBase.servidorGlobal = this.jCBservidores.getSelectedIndex();
+            JOptionPane.showMessageDialog(this, "¡Credenciales correctas!", "Inicio de Sesion", JOptionPane.INFORMATION_MESSAGE);
+            vista.inicio.MenuV menu = new MenuV();
+            menu.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "¡Credenciales incorrectas!", "Inicio de Sesion", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jBiniciarSesionActionPerformed
+
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jPFcontraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPFcontraseniaFocusLost
+        if (new String(this.jPFcontrasenia.getPassword()).isEmpty()) {
+            this.jPFcontrasenia.setText("**********");
+        }
+    }//GEN-LAST:event_jPFcontraseniaFocusLost
+
+    private void jPFcontraseniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPFcontraseniaFocusGained
+        if (new String(this.jPFcontrasenia.getPassword()).equals("**********"))
+        this.jPFcontrasenia.setText("");
+    }//GEN-LAST:event_jPFcontraseniaFocusGained
+
+    private void jPFcontraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPFcontraseniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPFcontraseniaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -221,9 +221,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jBcerrarSesion" min="-2" pref="160" max="-2" attributes="0"/>
-                          <EmptySpace pref="28" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLtitulo" min="-2" pref="362" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace pref="32" max="32767" attributes="0"/>
                           <Component id="jBsalir" min="-2" pref="160" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
@@ -234,9 +234,11 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="15" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jBcerrarSesion" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jBcerrarSesion" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="jLtitulo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jBsalir" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="jLtitulo" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
@@ -295,7 +297,7 @@
             <Component class="javax.swing.JLabel" name="jLempleado">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Empleados.png"/>
+                  <Image iconType="3" name="/Empleados.jpg"/>
                 </Property>
               </Properties>
             </Component>
@@ -319,7 +321,7 @@
             <Component class="javax.swing.JLabel" name="jLcliente">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Clientes.png"/>
+                  <Image iconType="3" name="/Clientes.jpg"/>
                 </Property>
               </Properties>
             </Component>
@@ -343,7 +345,7 @@
             <Component class="javax.swing.JLabel" name="jLsucursal">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Sucursales.png"/>
+                  <Image iconType="3" name="/Sucursal.jpg"/>
                 </Property>
               </Properties>
             </Component>
@@ -367,7 +369,7 @@
             <Component class="javax.swing.JLabel" name="jLventaDetalle">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Inventario Materia Prima.png"/>
+                  <Image iconType="3" name="/VentaYDetalle.jpg"/>
                 </Property>
               </Properties>
             </Component>
@@ -391,7 +393,7 @@
             <Component class="javax.swing.JLabel" name="jLproductoMateria">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Producto y Materia Prima.png"/>
+                  <Image iconType="3" name="/ProductoYMateriaPrima.jpg"/>
                 </Property>
               </Properties>
             </Component>
@@ -415,7 +417,7 @@
             <Component class="javax.swing.JLabel" name="jLinventario">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Inventario Materia Prima.png"/>
+                  <Image iconType="3" name="/InventarioMateriaPrima.jpg"/>
                 </Property>
               </Properties>
             </Component>

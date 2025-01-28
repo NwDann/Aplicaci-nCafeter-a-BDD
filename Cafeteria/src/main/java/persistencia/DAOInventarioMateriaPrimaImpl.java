@@ -8,19 +8,9 @@ import java.util.List;
 import models.InventarioMateriaPrimaM;
 
 public class DAOInventarioMateriaPrimaImpl extends DataBase{
-    // Atributos
-    private String ip;
-    private String db;
-    
-    // Constructores
-    public DAOInventarioMateriaPrimaImpl(String ip, String db) {
-        this.ip = ip;
-        this.db = db;
-    }
-    
     // Metodos
     public void registrar(InventarioMateriaPrimaM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO InventarioMateriaPrima(id_inventario, id_sucursal, id_materia_prima, cantidad_disponible) VALUES(?,?,?,?);");
         st.setInt(1, ob.getId_inventario());
@@ -34,7 +24,7 @@ public class DAOInventarioMateriaPrimaImpl extends DataBase{
     }
     
     public void modificar(InventarioMateriaPrimaM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("UPDATE InventarioMateriaPrima SET cantidad_disponible = ? WHERE id_inventario = ? AND id_sucursal = ?;");
         st.setBigDecimal(1, ob.getCantidad_disponible());
@@ -47,7 +37,7 @@ public class DAOInventarioMateriaPrimaImpl extends DataBase{
     }
     
     public void eliminar(int id_inventario, int id_sucursal) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("DELETE FROM InventarioMateriaPrima WHERE id_inventario = ? AND id_sucursal = ?;");
         st.setInt(1, id_inventario);
@@ -60,7 +50,7 @@ public class DAOInventarioMateriaPrimaImpl extends DataBase{
     
     public List<InventarioMateriaPrimaM> leer() throws Exception {
         List<InventarioMateriaPrimaM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM InventarioMateriaPrima;");
 

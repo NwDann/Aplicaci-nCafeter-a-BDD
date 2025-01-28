@@ -8,19 +8,9 @@ import java.util.List;
 import models.MateriaPrimaM;
 
 public class DAOMateriaPrimaImpl extends DataBase {
-    // Atributos
-    private String ip;
-    private String db;
-    
-    // Constructores
-    public DAOMateriaPrimaImpl(String ip, String db) {
-        this.ip = ip;
-        this.db = db;
-    }
-    
     // Metodos
     public void registrar(MateriaPrimaM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO MateriaPrima(id_materia_prima, nombre, unidad, descripcion) VALUES(?,?,?,?);");
         st.setInt(1, ob.getId_materia_prima());
@@ -34,7 +24,7 @@ public class DAOMateriaPrimaImpl extends DataBase {
     }
     
     public void modificar(MateriaPrimaM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("UPDATE MateriaPrima SET nombre = ?, unidad = ?, descripcion = ? WHERE id_materia_prima = ?");
         st.setString(1, ob.getNombre());
@@ -48,7 +38,7 @@ public class DAOMateriaPrimaImpl extends DataBase {
     }
     
     public void eliminar(int id) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("DELETE FROM MateriaPrima WHERE id_materia_prima = ?;");
         st.setInt(1, id);
@@ -60,7 +50,7 @@ public class DAOMateriaPrimaImpl extends DataBase {
     
     public List<MateriaPrimaM> leer() throws Exception {
         List<MateriaPrimaM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM MateriaPrima;");
 

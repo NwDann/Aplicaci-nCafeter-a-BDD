@@ -8,19 +8,9 @@ import java.util.List;
 import models.ProductoM;
 
 public class DAOProductoImpl extends DataBase {
-    // Atributos
-    private String ip;
-    private String db;
-    
-    // Constructores
-    public DAOProductoImpl(String ip, String db) {
-        this.ip = ip;
-        this.db = db;
-    }
-    
     // Métodos
     public void registrar(ProductoM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Producto(id_producto, nombre, descripcion, precio_base, categoria) VALUES(?,?,?,?,?);");
         st.setInt(1, ob.getId_producto());
@@ -35,7 +25,7 @@ public class DAOProductoImpl extends DataBase {
     }
     
     public void modificar(ProductoM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("UPDATE Producto SET nombre = ?, descripcion = ?, precio_base = ?, categoria = ? WHERE id_producto = ?");
         st.setString(1, ob.getNombre());
@@ -50,7 +40,7 @@ public class DAOProductoImpl extends DataBase {
     }
     
     public void eliminar(int id) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("DELETE FROM Producto WHERE id_producto = ?;");
         st.setInt(1, id);
@@ -62,7 +52,7 @@ public class DAOProductoImpl extends DataBase {
     
     public List<ProductoM> leer() throws Exception {
         List<ProductoM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM Producto;");
 

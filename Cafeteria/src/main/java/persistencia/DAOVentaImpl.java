@@ -8,19 +8,9 @@ import java.util.List;
 import models.VentaM;
 
 public class DAOVentaImpl extends DataBase {
-    // Atributos
-    private String ip;
-    private String db;
-    
-    // Constructores
-    public DAOVentaImpl(String ip, String db) {
-        this.ip = ip;
-        this.db = db;
-    }
-    
     // Metodos
     public void registrar(VentaM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Venta(id_venta, id_sucursal, fecha, monto_total, id_empleado, id_cliente) VALUES(?,?,?,?,?,?);");
         st.setInt(1, ob.getId_venta());
@@ -41,7 +31,7 @@ public class DAOVentaImpl extends DataBase {
     
     public List<VentaM> leer() throws Exception {
         List<VentaM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM Venta;");
 

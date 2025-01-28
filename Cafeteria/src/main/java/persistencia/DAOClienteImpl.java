@@ -8,20 +8,10 @@ import java.util.List;
 import models.ClienteM;
 
 public class DAOClienteImpl extends DataBase {
-    // Atributos
-    private String ip;
-    private String db;
-    
-    // Constructores
-    public DAOClienteImpl(String ip, String db) {
-        this.ip = ip;
-        this.db = db;
-    }
-    
     // Metodos
     public void registrar(ClienteM ob) throws Exception {
         // Cliente info
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Cliente_Informacion(id_cliente, nombre, correo, telefono) VALUES(?,?,?,?);");
         st.setInt(1, ob.getId_cliente());
@@ -33,7 +23,7 @@ public class DAOClienteImpl extends DataBase {
         this.cerrarConexion();
         
         // Cliente datos sensibles
-        this.establecerConexion("192.168.1.1", "ElPuyoDB");
+        this.establecerConexion(0);
         
         st = this.conexion.prepareStatement("INSERT INTO ClienteDatosSensibles(id_cliente, fecha_registro) VALUES(?,?);");
         st.setInt(1, ob.getId_cliente());
@@ -45,7 +35,7 @@ public class DAOClienteImpl extends DataBase {
     }
     
     public void modificar(ClienteM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("UPDATE Cliente_Informacion SET nombre = ?, correo = ?, telefono = ? WHERE id_cliente = ?");
         st.setString(1, ob.getNombre());
@@ -60,7 +50,7 @@ public class DAOClienteImpl extends DataBase {
     
     public void eliminar(int id) throws Exception {
         // Cliente info
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("DELETE FROM Cliente_Informacion WHERE id_cliente = ?;");
         st.setInt(1, id);
@@ -69,7 +59,7 @@ public class DAOClienteImpl extends DataBase {
         this.cerrarConexion();
         
         //Cliente datos sensibles
-        this.establecerConexion("192.168.1.1", "ElPuyoDB");
+        this.establecerConexion(0);
         
         st = this.conexion.prepareStatement("DELETE FROM ClienteDatosSensibles WHERE id_cliente = ?;");
         st.setInt(1, id);
@@ -80,7 +70,7 @@ public class DAOClienteImpl extends DataBase {
     
     public List<ClienteM> leer() throws Exception {
         List<ClienteM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM Cliente_Informacion;");
 
@@ -103,7 +93,7 @@ public class DAOClienteImpl extends DataBase {
     
     public List<ClienteM> leerDatosSensibles() throws Exception {
         List<ClienteM> datos;
-        this.establecerConexion("192.168.1.1", "ElPuyoDB");
+        this.establecerConexion(0);
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM ClienteDatosSensibles;");
 

@@ -8,20 +8,10 @@ import java.util.ArrayList;
 import models.SucursalM;
 
 public class DAOSucursalImpl extends DataBase {
-    // Atributos
-    private String ip;
-    private String db;
-    
-    // Constructores
-    public DAOSucursalImpl(String ip, String db) {
-        this.ip = ip;
-        this.db = db;
-    }
-    
     // Métodos
     public List<SucursalM> listar() throws Exception {
         List<SucursalM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM Sucursal;");
 

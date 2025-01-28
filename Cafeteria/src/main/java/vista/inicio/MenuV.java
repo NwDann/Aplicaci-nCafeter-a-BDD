@@ -101,9 +101,9 @@ public class MenuV extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPtituloLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jBcerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(jLtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -112,13 +112,14 @@ public class MenuV extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPtituloLayout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPtituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBcerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPtituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBcerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLtitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
 
-        jLempleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Empleados.png"))); // NOI18N
+        jLempleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Empleados.jpg"))); // NOI18N
 
         jBempleado.setBackground(new java.awt.Color(33, 18, 18));
         jBempleado.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -126,7 +127,7 @@ public class MenuV extends javax.swing.JFrame {
         jBempleado.setText("Empleado");
         jBempleado.setBorder(null);
 
-        jLcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clientes.png"))); // NOI18N
+        jLcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clientes.jpg"))); // NOI18N
 
         jBcliente.setBackground(new java.awt.Color(33, 18, 18));
         jBcliente.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -134,7 +135,7 @@ public class MenuV extends javax.swing.JFrame {
         jBcliente.setText("Cliente");
         jBcliente.setBorder(null);
 
-        jLsucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sucursales.png"))); // NOI18N
+        jLsucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sucursal.jpg"))); // NOI18N
 
         jBsucursal.setBackground(new java.awt.Color(33, 18, 18));
         jBsucursal.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -142,7 +143,7 @@ public class MenuV extends javax.swing.JFrame {
         jBsucursal.setText("Sucursal");
         jBsucursal.setBorder(null);
 
-        jLventaDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inventario Materia Prima.png"))); // NOI18N
+        jLventaDetalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VentaYDetalle.jpg"))); // NOI18N
 
         jBventaDetalle.setBackground(new java.awt.Color(33, 18, 18));
         jBventaDetalle.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -150,7 +151,7 @@ public class MenuV extends javax.swing.JFrame {
         jBventaDetalle.setText("Venta y Detalle");
         jBventaDetalle.setBorder(null);
 
-        jLproductoMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Producto y Materia Prima.png"))); // NOI18N
+        jLproductoMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProductoYMateriaPrima.jpg"))); // NOI18N
 
         jBproductoMateria.setBackground(new java.awt.Color(33, 18, 18));
         jBproductoMateria.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -158,7 +159,7 @@ public class MenuV extends javax.swing.JFrame {
         jBproductoMateria.setText("Producto y Materia");
         jBproductoMateria.setBorder(null);
 
-        jLinventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Inventario Materia Prima.png"))); // NOI18N
+        jLinventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InventarioMateriaPrima.jpg"))); // NOI18N
 
         jBinventario.setBackground(new java.awt.Color(33, 18, 18));
         jBinventario.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -268,11 +269,13 @@ public class MenuV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBcerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcerrarSesionActionPerformed
-        // TODO add your handling code here:
+        IniciarSesionV inc = new IniciarSesionV();
+        inc.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jBcerrarSesionActionPerformed
 
     /**

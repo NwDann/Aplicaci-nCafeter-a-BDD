@@ -8,19 +8,9 @@ import java.util.List;
 import models.DetalleVentaM;
 
 public class DAODetalleVentaImpl extends DataBase {
-    // Atributos
-    private String ip;
-    private String db;
-    
-    // Constructores
-    public DAODetalleVentaImpl(String ip, String db) {
-        this.ip = ip;
-        this.db = db;
-    }
-    
     // Metodos
     public void registrar(DetalleVentaM ob) throws Exception {
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("INSERT INTO DetalleVenta(id_detalle, id_sucursal, id_venta, id_producto, cantidad, precio_unitario) VALUES(?,?,?,?,?,?);");
         st.setInt(1, ob.getId_detalle());
@@ -37,7 +27,7 @@ public class DAODetalleVentaImpl extends DataBase {
     
     public List<DetalleVentaM> leer(int id_sucursal, int id_venta) throws Exception {
         List<DetalleVentaM> datos;
-        this.establecerConexion(ip, db);
+        this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("SELECT id_producto, cantidad, precio_unitario FROM DetalleVenta WHERE id_sucursal = ? AND id_venta = ?;");
         st.setInt(1, id_sucursal);
