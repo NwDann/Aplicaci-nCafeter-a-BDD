@@ -46,7 +46,9 @@ public class VentaV extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jBsalir = new javax.swing.JButton();
         jLbackground = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +76,7 @@ public class VentaV extends javax.swing.JFrame {
                 jBmenuActionPerformed(evt);
             }
         });
-        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 160, 35));
+        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 160, 35));
 
         jLdetalleventa.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLdetalleventa.setForeground(new java.awt.Color(255, 255, 255));
@@ -214,8 +216,21 @@ public class VentaV extends javax.swing.JFrame {
 
         jPbackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 350, 40));
 
+        jBsalir.setBackground(new java.awt.Color(255, 102, 102));
+        jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setText("SALIR");
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, 160, 35));
+
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
+
+        jButton1.setText("jButton1");
+        jPbackground.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,6 +259,10 @@ public class VentaV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBverdatosActionPerformed
 
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBsalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -260,6 +279,8 @@ public class VentaV extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcontinuar;
     private javax.swing.JButton jBmenu;
+    private javax.swing.JButton jBsalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jBverdatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

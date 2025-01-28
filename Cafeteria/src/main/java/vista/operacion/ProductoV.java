@@ -51,6 +51,7 @@ public class ProductoV extends javax.swing.JFrame {
         jBmodificar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jBsalir = new javax.swing.JButton();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,7 +80,7 @@ public class ProductoV extends javax.swing.JFrame {
                 jBmenuActionPerformed(evt);
             }
         });
-        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 160, 35));
+        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 160, 35));
 
         jLproducto1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLproducto1.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,6 +219,16 @@ public class ProductoV extends javax.swing.JFrame {
         jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, -1, -1));
         jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 393, 300, 20));
 
+        jBsalir.setBackground(new java.awt.Color(255, 102, 102));
+        jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setText("SALIR");
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 160, 35));
+
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
 
@@ -240,6 +251,10 @@ public class ProductoV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBmenuActionPerformed
 
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBsalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -258,6 +273,7 @@ public class ProductoV extends javax.swing.JFrame {
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
