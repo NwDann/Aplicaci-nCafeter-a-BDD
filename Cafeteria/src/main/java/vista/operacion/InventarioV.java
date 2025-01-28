@@ -28,7 +28,21 @@ public class InventarioV extends javax.swing.JFrame {
         jLbarraSelecc = new javax.swing.JLabel();
         jLmenu1 = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
-        jBsalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jLlistainventario = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jTcantidaddisponible = new javax.swing.JTextField();
+        jBañadir = new javax.swing.JButton();
+        jBmodificar = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,13 +55,13 @@ public class InventarioV extends javax.swing.JFrame {
 
         jLbarraSelecc.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLbarraSelecc.setForeground(new java.awt.Color(255, 255, 255));
-        jLbarraSelecc.setText("____________________");
-        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, 20));
+        jLbarraSelecc.setText("__________________________________________________");
+        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, 20));
 
         jLmenu1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLmenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jLmenu1.setText("Sucursal");
-        jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
+        jLmenu1.setText("Inventario de Materia Prima");
+        jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 320, 30));
 
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -57,17 +71,111 @@ public class InventarioV extends javax.swing.JFrame {
                 jBmenuActionPerformed(evt);
             }
         });
-        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 35));
+        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 160, 35));
 
-        jBsalir.setBackground(new java.awt.Color(255, 102, 102));
-        jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jBsalir.setText("Salir");
-        jBsalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBsalirActionPerformed(evt);
-            }
+        jLlistainventario.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
-        jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 160, 35));
+        jScrollPane1.setViewportView(jLlistainventario);
+
+        jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 390, 340));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Lista de Inventario");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(93, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(90, 90, 90))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 390, 80));
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
+
+        jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 420, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel2.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Lista de Materia Prima");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(95, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(86, 86, 86))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel2)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 420, -1));
+
+        jLabel3.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel3.setText("Cantidad Disponible:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTcantidaddisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTcantidaddisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 420, 50));
+
+        jBañadir.setText("Añadir");
+        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 430, -1, -1));
+
+        jBmodificar.setText("Modificar");
+        jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 500, -1, -1));
+
+        jBeliminar.setText("Eliminar");
+        jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, -1, -1));
+        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 300, 10));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -91,10 +199,6 @@ public class InventarioV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBmenuActionPerformed
 
-    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBsalirActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -109,12 +213,26 @@ public class InventarioV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBañadir;
+    private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmenu;
-    private javax.swing.JButton jBsalir;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jLlistainventario;
     private javax.swing.JLabel jLlogo;
     private javax.swing.JLabel jLmenu1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPbackground;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTcantidaddisponible;
     // End of variables declaration//GEN-END:variables
 }

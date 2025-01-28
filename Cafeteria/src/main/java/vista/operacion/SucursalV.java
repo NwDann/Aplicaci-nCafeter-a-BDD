@@ -26,9 +26,28 @@ public class SucursalV extends javax.swing.JFrame {
         jPbackground = new javax.swing.JPanel();
         jLlogo = new javax.swing.JLabel();
         jLbarraSelecc = new javax.swing.JLabel();
-        jLmenu1 = new javax.swing.JLabel();
+        jLsucursal = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
-        jBsalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jLlistasucursales = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jTid = new javax.swing.JTextField();
+        jTnombre = new javax.swing.JTextField();
+        jTdireccion = new javax.swing.JTextField();
+        jTtelefono = new javax.swing.JTextField();
+        jTciudad = new javax.swing.JTextField();
+        jBañadir = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jBmodificar = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,10 +63,10 @@ public class SucursalV extends javax.swing.JFrame {
         jLbarraSelecc.setText("____________________");
         jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, 20));
 
-        jLmenu1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
-        jLmenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jLmenu1.setText("Sucursal");
-        jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
+        jLsucursal.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLsucursal.setForeground(new java.awt.Color(255, 255, 255));
+        jLsucursal.setText("Sucursal");
+        jPbackground.add(jLsucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
 
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -57,18 +76,129 @@ public class SucursalV extends javax.swing.JFrame {
                 jBmenuActionPerformed(evt);
             }
         });
-        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 35));
+        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 160, 35));
 
-        jBsalir.setBackground(new java.awt.Color(255, 102, 102));
-        jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jBsalir.setText("Salir");
-        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+        jLlistasucursales.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jLlistasucursales);
+
+        jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 186, 370, 350));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Lista de Sucursales");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(80, 80, 80))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 370, 50));
+
+        jLabel2.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel2.setText("ID:");
+
+        jLabel3.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel3.setText("Nombre:");
+
+        jLabel4.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel4.setText("Dirección:");
+
+        jLabel5.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel5.setText("Telefono:");
+
+        jLabel6.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel6.setText("Ciudad:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTid))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTdireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTnombre)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTciudad))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6)
+                    .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 440, 180));
+
+        jBañadir.setText("Añadir");
+        jBañadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBsalirActionPerformed(evt);
+                jBañadirActionPerformed(evt);
             }
         });
-        jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 160, 35));
+        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 350, -1, -1));
+        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, -1, -1));
+        jPbackground.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 393, 270, 10));
 
+        jBmodificar.setText("Modificar");
+        jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, -1, -1));
+
+        jBeliminar.setText("Eliminar");
+        jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 430, -1, -1));
+
+        jLbackground.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
 
@@ -91,9 +221,9 @@ public class SucursalV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBmenuActionPerformed
 
-    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+    private void jBañadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBañadirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBsalirActionPerformed
+    }//GEN-LAST:event_jBañadirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,12 +239,31 @@ public class SucursalV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBañadir;
+    private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmenu;
-    private javax.swing.JButton jBsalir;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
+    private javax.swing.JList<String> jLlistasucursales;
     private javax.swing.JLabel jLlogo;
-    private javax.swing.JLabel jLmenu1;
+    private javax.swing.JLabel jLsucursal;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPbackground;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTciudad;
+    private javax.swing.JTextField jTdireccion;
+    private javax.swing.JTextField jTid;
+    private javax.swing.JTextField jTnombre;
+    private javax.swing.JTextField jTtelefono;
     // End of variables declaration//GEN-END:variables
 }

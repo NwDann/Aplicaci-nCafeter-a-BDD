@@ -26,9 +26,31 @@ public class ProductoV extends javax.swing.JFrame {
         jPbackground = new javax.swing.JPanel();
         jLlogo = new javax.swing.JLabel();
         jLbarraSelecc = new javax.swing.JLabel();
-        jLmenu1 = new javax.swing.JLabel();
+        jLproducto = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
-        jBsalir = new javax.swing.JButton();
+        jLproducto1 = new javax.swing.JLabel();
+        jLproducto2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLproducto3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jLlistaproductos = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTnombre = new javax.swing.JTextField();
+        jTpreciobase = new javax.swing.JTextField();
+        jTdescripcion = new javax.swing.JTextField();
+        jTcategoria = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jBañadir = new javax.swing.JButton();
+        jBmodificar = new javax.swing.JButton();
+        jBeliminar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,10 +66,10 @@ public class ProductoV extends javax.swing.JFrame {
         jLbarraSelecc.setText("____________________");
         jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, 20));
 
-        jLmenu1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
-        jLmenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jLmenu1.setText("Sucursal");
-        jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
+        jLproducto.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLproducto.setForeground(new java.awt.Color(255, 255, 255));
+        jLproducto.setText("Producto");
+        jPbackground.add(jLproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
 
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -57,17 +79,144 @@ public class ProductoV extends javax.swing.JFrame {
                 jBmenuActionPerformed(evt);
             }
         });
-        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 35));
+        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 160, 35));
 
-        jBsalir.setBackground(new java.awt.Color(255, 102, 102));
-        jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jBsalir.setText("Salir");
-        jBsalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBsalirActionPerformed(evt);
-            }
+        jLproducto1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLproducto1.setForeground(new java.awt.Color(255, 255, 255));
+        jLproducto1.setText("Producto");
+        jPbackground.add(jLproducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
+
+        jLproducto2.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLproducto2.setForeground(new java.awt.Color(255, 255, 255));
+        jLproducto2.setText("Producto");
+        jPbackground.add(jLproducto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
+
+        jLabel1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Materia Prima");
+        jPbackground.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+
+        jLproducto3.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLproducto3.setForeground(new java.awt.Color(255, 255, 255));
+        jLproducto3.setText("Producto");
+        jPbackground.add(jLproducto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("________________________________");
+        jPbackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
+
+        jLlistaproductos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
-        jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 160, 35));
+        jScrollPane1.setViewportView(jLlistaproductos);
+
+        jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 380, 350));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel3.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Lista de Productos");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 380, 50));
+
+        jLabel4.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel4.setText("Nombre: ");
+
+        jLabel6.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel6.setText("Precio Base:");
+
+        jLabel7.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel7.setText("Categoria:");
+
+        jLabel8.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel8.setText("Descripción:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTnombre)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTpreciobase, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(124, 124, 124))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(21, Short.MAX_VALUE))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jTpreciobase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 460, 190));
+
+        jLabel5.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel5.setText("Nombre: ");
+        jPbackground.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jBañadir.setText("Añadir");
+        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, -1, -1));
+
+        jBmodificar.setText("Modificar");
+        jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, -1, -1));
+
+        jBeliminar.setText("Eliminar");
+        jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, -1, -1));
+        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 393, 300, 20));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -91,10 +240,6 @@ public class ProductoV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBmenuActionPerformed
 
-    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBsalirActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -109,12 +254,34 @@ public class ProductoV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBañadir;
+    private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBmenu;
-    private javax.swing.JButton jBsalir;
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
+    private javax.swing.JList<String> jLlistaproductos;
     private javax.swing.JLabel jLlogo;
-    private javax.swing.JLabel jLmenu1;
+    private javax.swing.JLabel jLproducto;
+    private javax.swing.JLabel jLproducto1;
+    private javax.swing.JLabel jLproducto2;
+    private javax.swing.JLabel jLproducto3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPbackground;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTcategoria;
+    private javax.swing.JTextField jTdescripcion;
+    private javax.swing.JTextField jTnombre;
+    private javax.swing.JTextField jTpreciobase;
     // End of variables declaration//GEN-END:variables
 }
