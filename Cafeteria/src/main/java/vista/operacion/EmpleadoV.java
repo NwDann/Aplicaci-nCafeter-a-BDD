@@ -1,17 +1,33 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import javax.swing.table.DefaultTableModel;
+import persistencia.DAOEmpleadoImpl;
+import vista.inicio.MenuV;
 
 public class EmpleadoV extends javax.swing.JFrame {
-
+    // Atributos
+    DAOEmpleadoImpl dao = new DAOEmpleadoImpl();
+    
     public EmpleadoV() {
         initComponents();
         initStyles();
+        loadTable();
     }
 
     private void initStyles() {
         this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
+    }
+    
+    private void loadTable() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+            dao.leer().forEach((emp) -> model.addRow(new Object[]{emp.getId_empleado(), emp.getNombre(), emp.getCedula(), emp.getTelefono(), emp.getId_sucursal(), emp.getCargo()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
     }
     
     /**
@@ -96,13 +112,13 @@ public class EmpleadoV extends javax.swing.JFrame {
         jTable.setBackground(new java.awt.Color(153, 153, 153));
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID ", "NOMBRE", "CEDULA", "TELEFONO", "FECHA CONTRATO", "ID SUCURSAL", "CARGO"
+                "ID ", "NOMBRE", "CEDULA", "TELEFONO", "ID SUCURSAL", "CARGO"
             }
         ));
         jScrollPane1.setViewportView(jTable);
@@ -324,11 +340,13 @@ public class EmpleadoV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
+        MenuV menu = new MenuV();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBmenuActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
