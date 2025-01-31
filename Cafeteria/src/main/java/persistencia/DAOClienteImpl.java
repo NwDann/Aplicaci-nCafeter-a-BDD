@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.ClienteM;
 
+
 public class DAOClienteImpl extends DataBase {
     // Metodos
     public void registrar(ClienteM ob) throws Exception {

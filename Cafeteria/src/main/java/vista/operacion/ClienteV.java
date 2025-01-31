@@ -1,11 +1,19 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 public class ClienteV extends javax.swing.JFrame {
 
     public ClienteV() {
         initComponents();
+        cargarClientesEnTabla();
         initStyles();
     }
 
@@ -111,59 +119,44 @@ public class ClienteV extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ID ");
 
         jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("CORREO");
 
         jLabel3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("NOMBRE");
 
         jLabel4.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("FECHA REGISTRO");
 
         jLabel5.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("TELÉFONO");
 
-        jTextID.setBackground(new java.awt.Color(255, 255, 255));
-        jTextID.setForeground(new java.awt.Color(0, 0, 0));
         jTextID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextIDActionPerformed(evt);
             }
         });
 
-        jTextNombre.setBackground(new java.awt.Color(255, 255, 255));
-        jTextNombre.setForeground(new java.awt.Color(0, 0, 0));
         jTextNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNombreActionPerformed(evt);
             }
         });
 
-        jTextCorreo.setBackground(new java.awt.Color(255, 255, 255));
-        jTextCorreo.setForeground(new java.awt.Color(0, 0, 0));
         jTextCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextCorreoActionPerformed(evt);
             }
         });
 
-        jTextTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        jTextTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jTextTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextTelefonoActionPerformed(evt);
             }
         });
 
-        jTextFechaR.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFechaR.setForeground(new java.awt.Color(0, 0, 0));
         jTextFechaR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFechaRActionPerformed(evt);
@@ -237,12 +230,22 @@ public class ClienteV extends javax.swing.JFrame {
         jBEliminar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jBEliminar.setText("ELIMINAR");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
         jPbackground.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 460, -1, -1));
 
         jBModificar.setBackground(new java.awt.Color(255, 102, 102));
         jBModificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBModificar.setForeground(new java.awt.Color(255, 255, 255));
         jBModificar.setText("MODIFICAR");
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
+            }
+        });
         jPbackground.add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, -1, -1));
 
         jLbarraSelecc1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -278,15 +281,32 @@ public class ClienteV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
+    vista.inicio.MenuV menu = new vista.inicio.MenuV();        
+    menu.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_jBmenuActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
-        // TODO add your handling code here:
+        models.ClienteM nuevoCliente = new models.ClienteM();
+        nuevoCliente.setCorreo(jTextCorreo.getText());
+        nuevoCliente.setFecha_registro(LocalDate.parse(jTextFechaR.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        nuevoCliente.setId_cliente(Integer.parseInt(jTextID.getText()));
+        nuevoCliente.setNombre(jTextNombre.getText());
+        nuevoCliente.setTelefono(jTextTelefono.getText());
+        
+        persistencia.DAOClienteImpl insertCliente = new persistencia.DAOClienteImpl();
+        try {
+            insertCliente.registrar(nuevoCliente);
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        
     }//GEN-LAST:event_jBAñadirActionPerformed
 
     private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
@@ -313,6 +333,54 @@ public class ClienteV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+        models.ClienteM modificarCliente = new models.ClienteM();
+        modificarCliente.setCorreo(jTextCorreo.getText());
+        modificarCliente.setFecha_registro(LocalDate.parse(jTextFechaR.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        modificarCliente.setId_cliente(Integer.parseInt(jTextID.getText()));
+        modificarCliente.setNombre(jTextNombre.getText());
+        modificarCliente.setTelefono(jTextTelefono.getText());
+        
+        persistencia.DAOClienteImpl modCliente = new persistencia.DAOClienteImpl();
+        try {
+            modCliente.modificar(modificarCliente);
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        persistencia.DAOClienteImpl eliminarCliente = new persistencia.DAOClienteImpl();
+        try {
+            eliminarCliente.eliminar(Integer.parseInt(jTextID.getText()));
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    public void cargarClientesEnTabla() {
+    try {
+        persistencia.DAOClienteImpl dao = new persistencia.DAOClienteImpl();
+        List<models.ClienteM> listaClientes = dao.leer(); // Obtener datos de la BD
+
+        // Modelo de la tabla
+        DefaultTableModel modelo = (DefaultTableModel) jTableCliente.getModel();
+        modelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
+
+        // Llenar la tabla con los datos obtenidos
+        for (models.ClienteM cliente : listaClientes) {
+            modelo.addRow(new Object[]{
+                cliente.getId_cliente(),
+                cliente.getNombre(),
+                cliente.getCorreo(),
+                cliente.getTelefono()
+            });
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar datos en la tabla.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
     /**
      * @param args the command line arguments
      */
