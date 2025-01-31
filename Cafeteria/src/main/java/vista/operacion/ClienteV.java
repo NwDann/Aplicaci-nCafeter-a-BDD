@@ -281,11 +281,13 @@ public class ClienteV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
+    vista.inicio.MenuV menu = new vista.inicio.MenuV();        
+    menu.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_jBmenuActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
