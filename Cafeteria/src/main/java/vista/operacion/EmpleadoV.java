@@ -66,7 +66,8 @@ public class EmpleadoV extends javax.swing.JFrame {
         jBModificar = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jLbarraSelecc1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -317,9 +318,31 @@ public class EmpleadoV extends javax.swing.JFrame {
         jLbarraSelecc1.setText("_______________________________________________________________");
         jPbackground.add(jLbarraSelecc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, 400, 20));
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("LISTA DE EMPLEADOS");
-        jPbackground.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 760, -1));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel9.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Lista de empleados");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 760, 30));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -407,19 +430,20 @@ public class EmpleadoV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
     private javax.swing.JLabel jLbarraSelecc1;
     private javax.swing.JLabel jLlogo;
     private javax.swing.JLabel jLmenu1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPbackground;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextCargo;
     private javax.swing.JTextField jTextCedula;
     private javax.swing.JTextField jTextFechaCon;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextID;
     private javax.swing.JTextField jTextNombre;
     private javax.swing.JTextField jTextSucursal;
