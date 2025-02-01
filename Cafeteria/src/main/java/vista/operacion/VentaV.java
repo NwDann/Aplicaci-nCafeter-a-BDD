@@ -1,6 +1,7 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import vista.inicio.MenuV;
 
 public class VentaV extends javax.swing.JFrame {
 
@@ -12,6 +13,8 @@ public class VentaV extends javax.swing.JFrame {
     private void initStyles() {
         this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
+        this.jBcontinuar.putClientProperty("JButton.buttonType", "roundRect");
+        this.jBverdatos.putClientProperty("JButton.buttonType", "roundRect");
     }
     
     /**
@@ -139,25 +142,29 @@ public class VentaV extends javax.swing.JFrame {
 
         jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 360, 140));
 
+        jBcontinuar.setBackground(new java.awt.Color(255, 102, 102));
+        jBcontinuar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBcontinuar.setText("Continuar");
         jBcontinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcontinuarActionPerformed(evt);
             }
         });
-        jPbackground.add(jBcontinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 100, -1));
+        jPbackground.add(jBcontinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 130, 30));
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 300, 10));
+        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 300, 10));
 
+        jBverdatos.setBackground(new java.awt.Color(255, 102, 102));
+        jBverdatos.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBverdatos.setText("Ver Datos");
         jBverdatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBverdatosActionPerformed(evt);
             }
         });
-        jPbackground.add(jBverdatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 100, -1));
+        jPbackground.add(jBverdatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 130, 30));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -307,19 +314,25 @@ public class VentaV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
+        MenuV menu = new MenuV();
+        menu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jBmenuActionPerformed
 
     private void jBcontinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcontinuarActionPerformed
-        // TODO add your handling code here:
+        DetalleVentaV detalleVenta = new DetalleVentaV();
+        detalleVenta.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jBcontinuarActionPerformed
 
     private void jBverdatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBverdatosActionPerformed
-        // TODO add your handling code here:
+        DatosVentaV datosVenta = new DatosVentaV();
+        datosVenta.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jBverdatosActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
     /**
