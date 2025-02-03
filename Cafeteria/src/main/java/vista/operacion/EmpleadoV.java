@@ -320,7 +320,7 @@ public class EmpleadoV extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel9.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Lista de empleados");

@@ -125,7 +125,7 @@ public class DatosVentaV extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel6.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Lista de ventas");
@@ -151,7 +151,7 @@ public class DatosVentaV extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel7.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Lista de detalles de venta");

@@ -28,12 +28,8 @@ public class InventarioV extends javax.swing.JFrame {
         jLbarraSelecc = new javax.swing.JLabel();
         jLmenu1 = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLlistainventario = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -44,6 +40,10 @@ public class InventarioV extends javax.swing.JFrame {
         jBeliminar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jBsalir = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +66,7 @@ public class InventarioV extends javax.swing.JFrame {
 
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBmenu.setForeground(new java.awt.Color(255, 255, 255));
         jBmenu.setText("Menu");
         jBmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,76 +75,66 @@ public class InventarioV extends javax.swing.JFrame {
         });
         jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 160, 35));
 
-        jLlistainventario.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jLlistainventario);
-
-        jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 390, 340));
-
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Lista de Inventario");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(90, 90, 90))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 390, 80));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
-
-        jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 420, -1));
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 390, 40));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel2.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Lista de Materia Prima");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(86, 86, 86))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel2)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 420, -1));
+        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 440, 40));
 
         jLabel3.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
         jLabel3.setText("Cantidad Disponible:");
+
+        jTcantidaddisponible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTcantidaddisponibleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -154,7 +145,7 @@ public class InventarioV extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTcantidaddisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,18 +159,28 @@ public class InventarioV extends javax.swing.JFrame {
 
         jPbackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 420, 50));
 
+        jBañadir.setBackground(new java.awt.Color(255, 102, 102));
+        jBañadir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBañadir.setForeground(new java.awt.Color(255, 255, 255));
         jBañadir.setText("Añadir");
-        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 430, -1, -1));
+        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 430, 100, -1));
 
+        jBmodificar.setBackground(new java.awt.Color(255, 102, 102));
+        jBmodificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBmodificar.setForeground(new java.awt.Color(255, 255, 255));
         jBmodificar.setText("Modificar");
         jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 500, -1, -1));
 
+        jBeliminar.setBackground(new java.awt.Color(255, 102, 102));
+        jBeliminar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBeliminar.setForeground(new java.awt.Color(255, 255, 255));
         jBeliminar.setText("Eliminar");
         jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, -1, -1));
         jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 300, 10));
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jBsalir.setForeground(new java.awt.Color(255, 255, 255));
         jBsalir.setText("SALIR");
         jBsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +188,64 @@ public class InventarioV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 30, 160, 35));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID MATERIA PRIMA", "NOMBRE", "UNIDAD", "DESCRIPCION"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jPbackground.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, 440, 150));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID INVENTARIO", "ID SUCURSAL", "ID MATERIA PRIMA", "CANTIDAD DISPONIBLE"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jTable4);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(0).setResizable(false);
+            jTable4.getColumnModel().getColumn(1).setResizable(false);
+            jTable4.getColumnModel().getColumn(2).setResizable(false);
+            jTable4.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jPbackground.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 390, 330));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -214,6 +273,10 @@ public class InventarioV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    private void jTcantidaddisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcantidaddisponibleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTcantidaddisponibleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,17 +301,17 @@ public class InventarioV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jLlistainventario;
     private javax.swing.JLabel jLlogo;
     private javax.swing.JLabel jLmenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPbackground;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTcantidaddisponible;
     // End of variables declaration//GEN-END:variables
 }
