@@ -1,7 +1,11 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import models.EmpleadoM;
 import persistencia.DAOEmpleadoImpl;
 import vista.inicio.MenuV;
 
@@ -121,8 +125,24 @@ public class EmpleadoV extends javax.swing.JFrame {
             new String [] {
                 "ID ", "NOMBRE", "CEDULA", "TELEFONO", "ID SUCURSAL", "CARGO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable);
+        if (jTable.getColumnModel().getColumnCount() > 0) {
+            jTable.getColumnModel().getColumn(0).setResizable(false);
+            jTable.getColumnModel().getColumn(1).setResizable(false);
+            jTable.getColumnModel().getColumn(2).setResizable(false);
+            jTable.getColumnModel().getColumn(3).setResizable(false);
+            jTable.getColumnModel().getColumn(4).setResizable(false);
+            jTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 760, 270));
 
@@ -305,12 +325,22 @@ public class EmpleadoV extends javax.swing.JFrame {
         jBModificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBModificar.setForeground(new java.awt.Color(255, 255, 255));
         jBModificar.setText("MODIFICAR");
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
+            }
+        });
         jPbackground.add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, -1, -1));
 
         jBEliminar.setBackground(new java.awt.Color(255, 102, 102));
         jBEliminar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jBEliminar.setText("ELIMINAR");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
         jPbackground.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 520, -1, -1));
 
         jLbarraSelecc1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -373,7 +403,29 @@ public class EmpleadoV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
-        // TODO add your handling code here:
+        int IdEmpleado = Integer.parseInt(jTextID.getText());
+        String nombre = jTextNombre.getText();
+        String cedula = jTextCedula.getText();
+        String telefono = jTextTelefono.getText();
+        int IdSucursal = Integer.parseInt(jTextSucursal.getText());
+        String cargo = jTextCargo.getText();
+        
+        models.EmpleadoM nuevoEmpleado = new models.EmpleadoM();
+        nuevoEmpleado.setId_empleado(IdEmpleado);
+        nuevoEmpleado.setNombre(nombre);
+        nuevoEmpleado.setCedula(cedula);
+        nuevoEmpleado.setTelefono(telefono);
+        nuevoEmpleado.setId_sucursal(IdEmpleado);
+        nuevoEmpleado.setCargo(cargo);
+        
+        //Validaciones para los datos
+        
+        persistencia.DAOEmpleadoImpl insertEmpleado = new persistencia.DAOEmpleadoImpl();
+        try{
+            insertEmpleado.registrar(nuevoEmpleado);
+        }catch(Exception ex){
+            Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBAñadirActionPerformed
 
     private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
@@ -403,6 +455,32 @@ public class EmpleadoV extends javax.swing.JFrame {
     private void jTextCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCargoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCargoActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+        models.EmpleadoM modificarEmpleado = new models.EmpleadoM();
+        modificarEmpleado.setId_empleado(Integer.parseInt(jTextID.getText()));
+        modificarEmpleado.setNombre(jTextNombre.getText());
+        modificarEmpleado.setCedula(jTextCedula.getText());
+        modificarEmpleado.setTelefono(jTextTelefono.getText());
+        modificarEmpleado.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
+        modificarEmpleado.setCargo(jTextCargo.getText());
+        
+        persistencia.DAOEmpleadoImpl modEmpleado = new persistencia.DAOEmpleadoImpl();
+        try{
+            modEmpleado.modificar(modificarEmpleado);
+        }catch(Exception ex){
+            Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        persistencia.DAOEmpleadoImpl eliminarEmpleado = new persistencia.DAOEmpleadoImpl();
+        try {
+            eliminarEmpleado.eliminar(Integer.parseInt(jTextID.getText()));
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
 
     /**
      * @param args the command line arguments
