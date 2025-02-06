@@ -5,22 +5,45 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import java.time.format.DateTimeParseException;
 
 public class ClienteV extends javax.swing.JFrame {
 
+    persistencia.DAOClienteImpl dao = new persistencia.DAOClienteImpl();
+    
     public ClienteV() {
         initComponents();
-        cargarClientesEnTabla();
+        loadTable();
         initStyles();
+        jBModificar.setEnabled(false);
+        jBEliminar.setEnabled(false);
     }
 
     private void initStyles() {
         this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
     }
+    
+     private void loadTable() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) this.jTableCliente.getModel();
+            dao.leer().forEach((cliente) -> model.addRow(new Object[]{cliente.getId_cliente(), cliente.getNombre(), cliente.getCorreo(), cliente.getTelefono(), cliente.getFecha_registro()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
+    }
+     
+      private void limpiarCampos() {
+    jTextID.setText("");
+    jTextNombre.setText("");
+    jTextCorreo.setText("");
+    jTextTelefono.setText("");
+    jTextFechaR.setText("");
+    // Agrega más JTextField si es necesario
+}   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,9 +134,29 @@ public class ClienteV extends javax.swing.JFrame {
             new String [] {
                 "ID", "NOMBRE", "CORREO", "TELÉFONO", "FECHA REGISTRO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableCliente.setName(""); // NOI18N
+        jTableCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClienteMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableCliente);
+        if (jTableCliente.getColumnModel().getColumnCount() > 0) {
+            jTableCliente.getColumnModel().getColumn(0).setResizable(false);
+            jTableCliente.getColumnModel().getColumn(1).setResizable(false);
+            jTableCliente.getColumnModel().getColumn(2).setResizable(false);
+            jTableCliente.getColumnModel().getColumn(3).setResizable(false);
+            jTableCliente.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 500, -1));
 
@@ -309,22 +352,57 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
-        models.ClienteM nuevoCliente = new models.ClienteM();
-        nuevoCliente.setCorreo(jTextCorreo.getText());
-        nuevoCliente.setFecha_registro(LocalDate.parse(jTextFechaR.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        nuevoCliente.setId_cliente(Integer.parseInt(jTextID.getText()));
-        nuevoCliente.setNombre(jTextNombre.getText());
-        nuevoCliente.setTelefono(jTextTelefono.getText());
-        
-        persistencia.DAOClienteImpl insertCliente = new persistencia.DAOClienteImpl();
         try {
-            insertCliente.registrar(nuevoCliente);
-        } catch (Exception ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+        // Verificar que ningún campo esté vacío
+        if (jTextID.getText().trim().isEmpty() ||
+            jTextNombre.getText().trim().isEmpty() ||
+            jTextCorreo.getText().trim().isEmpty() ||
+            jTextTelefono.getText().trim().isEmpty() ||
+            jTextFechaR.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
         
+        // Validar tipos de datos
+        int idCliente;
+        try {
+            idCliente = Integer.parseInt(jTextID.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID del Cliente debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
+         // Validación de la fecha
+         LocalDate fecha ;
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                fecha = LocalDate.parse(jTextFechaR.getText().trim(), formatter);
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(null, "El formato de fecha es incorrecto. Use yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        
+        // Crear el objeto ProductoM y asignar valores
+        models.ClienteM cliente = new models.ClienteM();
+        cliente.setId_cliente(idCliente);
+        cliente.setNombre(jTextNombre.getText().trim());
+        cliente.setCorreo(jTextCorreo.getText().trim());
+        cliente.setTelefono(jTextTelefono.getText().trim());
+        cliente.setFecha_registro(fecha);
+        
+        // Persistencia del producto
+        persistencia.DAOClienteImpl nuevoCliente = new persistencia.DAOClienteImpl();
+        nuevoCliente.registrar(cliente);
+        
+        JOptionPane.showMessageDialog(null, "Cliente registrado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        
+    } catch (Exception ex) {
+        Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al Cliente", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        limpiarCampos();
+   
     }//GEN-LAST:event_jBAñadirActionPerformed
 
     private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
@@ -348,53 +426,60 @@ public class ClienteV extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFechaRActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        models.ClienteM modificarCliente = new models.ClienteM();
-        modificarCliente.setCorreo(jTextCorreo.getText());
-        modificarCliente.setFecha_registro(LocalDate.parse(jTextFechaR.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        modificarCliente.setId_cliente(Integer.parseInt(jTextID.getText()));
-        modificarCliente.setNombre(jTextNombre.getText());
-        modificarCliente.setTelefono(jTextTelefono.getText());
+        models.ClienteM cliente = new models.ClienteM();
+        cliente.setId_cliente(Integer.parseInt(jTextID.getText()));
+        cliente.setNombre(jTextNombre.getText());
+        cliente.setCorreo(jTextCorreo.getText());
+        LocalDate fecha ;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        fecha = LocalDate.parse(jTextFechaR.getText().trim(), formatter);
+        cliente.setTelefono(jTextTelefono.getText());
+        cliente.setFecha_registro(fecha);
         
-        persistencia.DAOClienteImpl modCliente = new persistencia.DAOClienteImpl();
+        persistencia.DAOClienteImpl modificarCliente = new persistencia.DAOClienteImpl();
         try {
-            modCliente.modificar(modificarCliente);
+            modificarCliente.modificar(cliente);
         } catch (Exception ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
         }
+         jBModificar.setEnabled(false);
+         jBEliminar.setEnabled(false);
+         jBAñadir.setEnabled(true);
+         limpiarCampos();
         
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        persistencia.DAOClienteImpl eliminarCliente = new persistencia.DAOClienteImpl();
+        int filaEliminar = jTableCliente.getSelectedRow();
+        persistencia.DAOClienteImpl cliente = new persistencia.DAOClienteImpl();
         try {
-            eliminarCliente.eliminar(Integer.parseInt(jTextID.getText()));
+            cliente.eliminar(filaEliminar);
         } catch (Exception ex) {
-            Logger.getLogger(ClienteV.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
         }
+         jBModificar.setEnabled(false);
+         jBEliminar.setEnabled(false);
+         jBAñadir.setEnabled(true);
+         limpiarCampos();
     }//GEN-LAST:event_jBEliminarActionPerformed
 
-    public void cargarClientesEnTabla() {
-    try {
-        persistencia.DAOClienteImpl dao = new persistencia.DAOClienteImpl();
-        List<models.ClienteM> listaClientes = dao.leer(); // Obtener datos de la BD
-
-        // Modelo de la tabla
-        DefaultTableModel modelo = (DefaultTableModel) jTableCliente.getModel();
-        modelo.setRowCount(0); // Limpiar la tabla antes de cargar nuevos datos
-
-        // Llenar la tabla con los datos obtenidos
-        for (models.ClienteM cliente : listaClientes) {
-            modelo.addRow(new Object[]{
-                cliente.getId_cliente(),
-                cliente.getNombre(),
-                cliente.getCorreo(),
-                cliente.getTelefono()
-            });
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error al cargar datos en la tabla.", "Error", JOptionPane.ERROR_MESSAGE);
+    private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
+        int fila = jTableCliente.getSelectedRow();
+    
+    // Verificar que haya una fila seleccionada
+    if (fila >= 0) {
+        jTextID.setText(jTableCliente.getValueAt(fila, 0).toString());
+        jTextNombre.setText(jTableCliente.getValueAt(fila, 1).toString());
+        jTextCorreo.setText(jTableCliente.getValueAt(fila, 2).toString());
+        jTextTelefono.setText(jTableCliente.getValueAt(fila, 3).toString());
+        jTextFechaR.setText(jTableCliente.getValueAt(fila, 4).toString());
+        // Continúa con más JTextField según sea necesario
+        jBModificar.setEnabled(true);
+        jBEliminar.setEnabled(true);
+        jBAñadir.setEnabled(false);
     }
-}
+    }//GEN-LAST:event_jTableClienteMouseClicked
+
     /**
      * @param args the command line arguments
      */

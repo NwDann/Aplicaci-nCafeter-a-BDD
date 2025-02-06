@@ -1,12 +1,23 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ProductoV extends javax.swing.JFrame {
 
+    //Atributos
+    persistencia.DAOProductoImpl dao = new persistencia.DAOProductoImpl();
+    
     public ProductoV() {
         initComponents();
+        loadTable();
         initStyles();
+        jBmodificar.setEnabled(false);
+        jBeliminar.setEnabled(false);
     }
 
     private void initStyles() {
@@ -14,6 +25,24 @@ public class ProductoV extends javax.swing.JFrame {
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
     }
     
+     private void loadTable() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) this.jTlistaproducto.getModel();
+            dao.leer().forEach((produ) -> model.addRow(new Object[]{produ.getId_producto(), produ.getNombre(), produ.getDescripcion(), produ.getPrecio_base(), produ.getCategoria()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
+    }
+     
+      private void limpiarCampos() {
+    jTidproducto.setText("");
+    jTnombre.setText("");
+    jTpreciobase.setText("");
+    jTdescripcion.setText("");
+    jTcategoria.setText("");
+    // Agrega más JTextField si es necesario
+}   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,8 +62,6 @@ public class ProductoV extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLproducto3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLlistaproductos = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -46,12 +73,16 @@ public class ProductoV extends javax.swing.JFrame {
         jTpreciobase = new javax.swing.JTextField();
         jTdescripcion = new javax.swing.JTextField();
         jTcategoria = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTidproducto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jBañadir = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jBsalir = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTlistaproducto = new javax.swing.JTable();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,6 +126,11 @@ public class ProductoV extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Materia Prima");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         jPbackground.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
 
         jLproducto3.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
@@ -105,15 +141,6 @@ public class ProductoV extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("________________________________");
         jPbackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
-
-        jLlistaproductos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jLlistaproductos);
-
-        jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 380, 350));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -152,6 +179,21 @@ public class ProductoV extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
         jLabel8.setText("Descripción:");
 
+        jTnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTnombreActionPerformed(evt);
+            }
+        });
+
+        jTcategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTcategoriaActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel9.setText("ID:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -160,62 +202,82 @@ public class ProductoV extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTnombre)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTpreciobase, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(124, 124, 124))
+                        .addComponent(jTdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(21, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTpreciobase, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(21, Short.MAX_VALUE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7)
                     .addComponent(jTpreciobase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
                     .addComponent(jTcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
 
-        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 460, 190));
+        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 460, 220));
 
         jLabel5.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
         jLabel5.setText("Nombre: ");
         jPbackground.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jBañadir.setText("Añadir");
+        jBañadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBañadirActionPerformed(evt);
+            }
+        });
         jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, -1, -1));
 
         jBmodificar.setText("Modificar");
+        jBmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBmodificarActionPerformed(evt);
+            }
+        });
         jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, -1, -1));
 
         jBeliminar.setText("Eliminar");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
         jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 440, -1, -1));
         jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 393, 300, 20));
 
@@ -228,6 +290,41 @@ public class ProductoV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 160, 35));
+
+        jTlistaproducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Descripcion", "Precio Base", "Categoria"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTlistaproducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTlistaproductoMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTlistaproducto);
+        if (jTlistaproducto.getColumnModel().getColumnCount() > 0) {
+            jTlistaproducto.getColumnModel().getColumn(0).setResizable(false);
+            jTlistaproducto.getColumnModel().getColumn(1).setResizable(false);
+            jTlistaproducto.getColumnModel().getColumn(2).setResizable(false);
+            jTlistaproducto.getColumnModel().getColumn(3).setResizable(false);
+            jTlistaproducto.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 177, 380, 380));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -248,12 +345,135 @@ public class ProductoV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
+        vista.inicio.MenuV menu = new vista.inicio.MenuV();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBmenuActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jBañadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBañadirActionPerformed
+        
+         try {
+        // Verificar que ningún campo esté vacío
+        if (jTcategoria.getText().trim().isEmpty() ||
+            jTdescripcion.getText().trim().isEmpty() ||
+            jTidproducto.getText().trim().isEmpty() ||
+            jTnombre.getText().trim().isEmpty() ||
+            jTpreciobase.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validar tipos de datos
+        int idProducto;
+        try {
+            idProducto = Integer.parseInt(jTidproducto.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID del producto debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        BigDecimal precioBase;
+        try {
+            precioBase = BigDecimal.valueOf(Double.parseDouble(jTpreciobase.getText().trim()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El precio base debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Crear el objeto ProductoM y asignar valores
+        models.ProductoM producto = new models.ProductoM();
+        producto.setCategoria(jTcategoria.getText().trim());
+        producto.setDescripcion(jTdescripcion.getText().trim());
+        producto.setId_producto(idProducto);
+        producto.setNombre(jTnombre.getText().trim());
+        producto.setPrecio_base(precioBase);
+        
+        // Persistencia del producto
+        persistencia.DAOProductoImpl nuevoProducto = new persistencia.DAOProductoImpl();
+        nuevoProducto.registrar(producto);
+        
+        JOptionPane.showMessageDialog(null, "Producto registrado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        
+    } catch (Exception ex) {
+        Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar el producto", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        limpiarCampos();
+        
+    }//GEN-LAST:event_jBañadirActionPerformed
+
+    private void jTcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTcategoriaActionPerformed
+
+    private void jTnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTnombreActionPerformed
+
+    private void jTlistaproductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTlistaproductoMouseClicked
+        // Obtener la fila seleccionada
+    int fila = jTlistaproducto.getSelectedRow();
+    
+    // Verificar que haya una fila seleccionada
+    if (fila >= 0) {
+        jTidproducto.setText(jTlistaproducto.getValueAt(fila, 0).toString());
+        jTnombre.setText(jTlistaproducto.getValueAt(fila, 1).toString());
+        jTdescripcion.setText(jTlistaproducto.getValueAt(fila, 2).toString());
+        jTpreciobase.setText(jTlistaproducto.getValueAt(fila, 3).toString());
+        jTcategoria.setText(jTlistaproducto.getValueAt(fila, 4).toString());
+        // Continúa con más JTextField según sea necesario
+        jBmodificar.setEnabled(true);
+        jBeliminar.setEnabled(true);
+        jBañadir.setEnabled(false);
+    }
+
+    }//GEN-LAST:event_jTlistaproductoMouseClicked
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+        int filaEliminar = jTlistaproducto.getSelectedRow();
+        persistencia.DAOProductoImpl producto = new persistencia.DAOProductoImpl();
+        try {
+            producto.eliminar(filaEliminar);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         jBmodificar.setEnabled(false);
+         jBeliminar.setEnabled(false);
+         jBañadir.setEnabled(true);
+         limpiarCampos();
+         
+    }//GEN-LAST:event_jBeliminarActionPerformed
+
+    private void jBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmodificarActionPerformed
+        models.ProductoM producto = new models.ProductoM();
+        producto.setCategoria(jTcategoria.getText());
+        producto.setDescripcion(jTdescripcion.getText());
+        producto.setId_producto(Integer.parseInt(jTidproducto.getText()));
+        producto.setNombre(jTnombre.getText());
+        producto.setPrecio_base(BigDecimal.valueOf(Double.parseDouble(jTpreciobase.getText())));
+        
+        persistencia.DAOProductoImpl modificarProducto = new persistencia.DAOProductoImpl();
+        try {
+            modificarProducto.modificar(producto);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         jBmodificar.setEnabled(false);
+         jBeliminar.setEnabled(false);
+         jBañadir.setEnabled(true);
+         limpiarCampos();
+    }//GEN-LAST:event_jBmodificarActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        vista.operacion.MateriaPrimaV matPrim = new vista.operacion.MateriaPrimaV();
+        matPrim.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -282,9 +502,9 @@ public class ProductoV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
-    private javax.swing.JList<String> jLlistaproductos;
     private javax.swing.JLabel jLlogo;
     private javax.swing.JLabel jLproducto;
     private javax.swing.JLabel jLproducto1;
@@ -293,10 +513,12 @@ public class ProductoV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPbackground;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTcategoria;
     private javax.swing.JTextField jTdescripcion;
+    private javax.swing.JTextField jTidproducto;
+    private javax.swing.JTable jTlistaproducto;
     private javax.swing.JTextField jTnombre;
     private javax.swing.JTextField jTpreciobase;
     // End of variables declaration//GEN-END:variables

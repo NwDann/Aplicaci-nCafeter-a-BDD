@@ -8,7 +8,7 @@ public class DataBase {
     // Atributos
     //  ElPuyo -> 0, QuitoDB -> 1
     public static int servidorGlobal;
-    private final String[][] servidores = {{"26.124.137.180", "ElPuyoDB"}, {"192.168.1.1", "QuitoDB"}};
+    private final String[][] servidores = {{"26.124.137.180", "ElPuyoDB"}, {"26.118.209.253", "QuitoDB"}};
     protected Connection conexion = null;
     
     //Metodos

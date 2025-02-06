@@ -58,12 +58,10 @@ public class MenuV extends javax.swing.JFrame {
         jPbackground.add(jLlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 96, 50));
 
         jLlinea.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLlinea.setForeground(new java.awt.Color(0, 0, 0));
         jLlinea.setText("_____________");
         jPbackground.add(jLlinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, 20));
 
         jLmenu.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
-        jLmenu.setForeground(new java.awt.Color(0, 0, 0));
         jLmenu.setText("Menu");
         jPbackground.add(jLmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
 
@@ -141,6 +139,11 @@ public class MenuV extends javax.swing.JFrame {
         jBcliente.setForeground(new java.awt.Color(255, 255, 255));
         jBcliente.setText("Cliente");
         jBcliente.setBorder(null);
+        jBcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBclienteActionPerformed(evt);
+            }
+        });
 
         jLsucursal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sucursal.jpg"))); // NOI18N
 
@@ -170,6 +173,11 @@ public class MenuV extends javax.swing.JFrame {
         jBproductoMateria.setForeground(new java.awt.Color(255, 255, 255));
         jBproductoMateria.setText("Producto y Materia");
         jBproductoMateria.setBorder(null);
+        jBproductoMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBproductoMateriaActionPerformed(evt);
+            }
+        });
 
         jLinventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InventarioMateriaPrima.jpg"))); // NOI18N
 
@@ -296,11 +304,19 @@ public class MenuV extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBsucursalActionPerformed
 
+
+    private void jBproductoMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBproductoMateriaActionPerformed
+        
+    }//GEN-LAST:event_jBproductoMateriaActionPerformed
+
+    private void jBclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBclienteActionPerformed
+        
+    }//GEN-LAST:event_jBclienteActionPerformed
+
     private void jBempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBempleadoActionPerformed
-        EmpleadoV emp = new EmpleadoV();
-        emp.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jBempleadoActionPerformed
+
 
     /**
      * @param args the command line arguments

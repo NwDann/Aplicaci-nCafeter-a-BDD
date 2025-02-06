@@ -1,18 +1,44 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class MateriaPrimaV extends javax.swing.JFrame {
 
+    persistencia.DAOMateriaPrimaImpl dao = new persistencia.DAOMateriaPrimaImpl();
+    
     public MateriaPrimaV() {
         initComponents();
+        loadTable();
         initStyles();
+        jBmodificar.setEnabled(false);
+        jBeliminar.setEnabled(false);
     }
 
     private void initStyles() {
         this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
     }
+    
+      private void loadTable() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) this.jTlistamateriaprima.getModel();
+            dao.leer().forEach((mate) -> model.addRow(new Object[]{mate.getId_materia_prima(), mate.getNombre(), mate.getUnidad(), mate.getDescripcion()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
+    }
+     
+      private void limpiarCampos() {
+    jTidmateriaprima.setText("");
+    jTnombre.setText("");
+    jTunidad.setText("");
+    jTdescripcion.setText("");
+}   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,8 +56,6 @@ public class MateriaPrimaV extends javax.swing.JFrame {
         jBmenu = new javax.swing.JButton();
         jLmateriaprima = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLlistamateriaprima = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -41,11 +65,15 @@ public class MateriaPrimaV extends javax.swing.JFrame {
         jTnombre = new javax.swing.JTextField();
         jTunidad = new javax.swing.JTextField();
         jTdescripcion = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTidmateriaprima = new javax.swing.JTextField();
         jBañadir = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jBsalir = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTlistamateriaprima = new javax.swing.JTable();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,7 +92,12 @@ public class MateriaPrimaV extends javax.swing.JFrame {
         jLproducto.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLproducto.setForeground(new java.awt.Color(255, 255, 255));
         jLproducto.setText("Producto");
-        jPbackground.add(jLproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
+        jLproducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLproductoMouseClicked(evt);
+            }
+        });
+        jPbackground.add(jLproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 170, 30));
 
         jBmenu.setBackground(new java.awt.Color(255, 102, 102));
         jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -84,15 +117,6 @@ public class MateriaPrimaV extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("________________________________");
         jPbackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, -1, -1));
-
-        jLlistamateriaprima.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jLlistamateriaprima);
-
-        jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 400, 330));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -128,56 +152,88 @@ public class MateriaPrimaV extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
         jLabel5.setText("Descripción:");
 
+        jTnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTnombreActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel6.setText("ID");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTnombre)
-                            .addComponent(jTunidad, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
+                        .addComponent(jTunidad, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTdescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)))
+                        .addComponent(jTdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                            .addComponent(jTidmateriaprima))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTidmateriaprima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
-        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 390, 160));
+        jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, 390, 200));
 
         jBañadir.setText("Añadir");
-        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 340, -1, -1));
+        jBañadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBañadirActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, -1, -1));
 
         jBmodificar.setText("Modificar");
-        jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, -1, -1));
+        jBmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBmodificarActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, -1, -1));
 
         jBeliminar.setText("Eliminar");
-        jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 410, -1, -1));
-        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 280, 10));
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 510, -1, -1));
+        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 490, 280, 10));
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -188,6 +244,40 @@ public class MateriaPrimaV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 30, 160, 35));
+
+        jTlistamateriaprima.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Unidad", "Descripción"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTlistamateriaprima.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTlistamateriaprimaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTlistamateriaprima);
+        if (jTlistamateriaprima.getColumnModel().getColumnCount() > 0) {
+            jTlistamateriaprima.getColumnModel().getColumn(0).setResizable(false);
+            jTlistamateriaprima.getColumnModel().getColumn(1).setResizable(false);
+            jTlistamateriaprima.getColumnModel().getColumn(2).setResizable(false);
+            jTlistamateriaprima.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 400, 380));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -208,12 +298,116 @@ public class MateriaPrimaV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
+        vista.inicio.MenuV menu= new vista.inicio.MenuV();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBmenuActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jLproductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLproductoMouseClicked
+        vista.operacion.ProductoV producto = new vista.operacion.ProductoV();
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLproductoMouseClicked
+
+    private void jTnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTnombreActionPerformed
+
+    private void jBañadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBañadirActionPerformed
+        try {
+        // Verificar que ningún campo esté vacío
+        if (jTidmateriaprima.getText().trim().isEmpty() ||
+            jTnombre.getText().trim().isEmpty() ||
+            jTunidad.getText().trim().isEmpty() ||
+            jTdescripcion.getText().trim().isEmpty())
+        {  
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validar tipos de datos
+        int idMateriaPrima;
+        try {
+            idMateriaPrima = Integer.parseInt(jTidmateriaprima.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID de MateriaPrima debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Crear el objeto MateriaPrimaM y asignar valores
+        models.MateriaPrimaM materia = new models.MateriaPrimaM();
+        materia.setId_materia_prima(idMateriaPrima);
+        materia.setNombre(jTnombre.getText().trim());
+        materia.setUnidad(jTunidad.getText().trim());
+        materia.setDescripcion(jTdescripcion.getText().trim());
+        
+        // Persistencia de MateriaPrima
+        persistencia.DAOMateriaPrimaImpl nuevoMateriaPrima = new persistencia.DAOMateriaPrimaImpl();
+        nuevoMateriaPrima.registrar(materia);
+        
+        JOptionPane.showMessageDialog(null, "MateriaPrima registrado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        
+    } catch (Exception ex) {
+        Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar MateriaPrima", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+        limpiarCampos();        
+    }//GEN-LAST:event_jBañadirActionPerformed
+
+    private void jBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmodificarActionPerformed
+        models.MateriaPrimaM materia = new models.MateriaPrimaM();
+        materia.setId_materia_prima(Integer.parseInt(jTidmateriaprima.getText().trim()));
+        materia.setNombre(jTnombre.getText().trim());
+        materia.setUnidad(jTunidad.getText().trim());
+        materia.setDescripcion(jTdescripcion.getText().trim());
+        
+        // Persistencia de MateriaPrima
+        persistencia.DAOMateriaPrimaImpl modificarMateriaPrima = new persistencia.DAOMateriaPrimaImpl();
+        
+        try {
+            modificarMateriaPrima.modificar(materia);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         jBmodificar.setEnabled(false);
+         jBeliminar.setEnabled(false);
+         jBañadir.setEnabled(true);
+         limpiarCampos();
+    }//GEN-LAST:event_jBmodificarActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+        int filaEliminar = jTlistamateriaprima.getSelectedRow();
+        persistencia.DAOMateriaPrimaImpl materia = new persistencia.DAOMateriaPrimaImpl();
+        try {
+            materia.eliminar(filaEliminar);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         jBmodificar.setEnabled(false);
+         jBeliminar.setEnabled(false);
+         jBañadir.setEnabled(true);
+         limpiarCampos();
+    }//GEN-LAST:event_jBeliminarActionPerformed
+
+    private void jTlistamateriaprimaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTlistamateriaprimaMouseClicked
+        int fila = jTlistamateriaprima.getSelectedRow();
+    
+    // Verificar que haya una fila seleccionada
+    if (fila >= 0) {
+        jTidmateriaprima.setText(jTlistamateriaprima.getValueAt(fila, 0).toString());
+        jTnombre.setText(jTlistamateriaprima.getValueAt(fila, 1).toString());
+        jTunidad.setText(jTlistamateriaprima.getValueAt(fila, 2).toString());
+        jTdescripcion.setText(jTlistamateriaprima.getValueAt(fila, 3).toString());
+        // Continúa con más JTextField según sea necesario
+        jBmodificar.setEnabled(true);
+        jBeliminar.setEnabled(true);
+        jBañadir.setEnabled(false);
+    }
+    }//GEN-LAST:event_jTlistamateriaprimaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,18 +433,20 @@ public class MateriaPrimaV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
-    private javax.swing.JList<String> jLlistamateriaprima;
     private javax.swing.JLabel jLlogo;
     private javax.swing.JLabel jLmateriaprima;
     private javax.swing.JLabel jLproducto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPbackground;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTdescripcion;
+    private javax.swing.JTextField jTidmateriaprima;
+    private javax.swing.JTable jTlistamateriaprima;
     private javax.swing.JTextField jTnombre;
     private javax.swing.JTextField jTunidad;
     // End of variables declaration//GEN-END:variables
