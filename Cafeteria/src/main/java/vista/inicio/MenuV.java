@@ -1,6 +1,7 @@
 package vista.inicio;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import vista.operacion.EmpleadoV;
 import vista.operacion.SucursalV;
 
 public class MenuV extends javax.swing.JFrame {
@@ -125,6 +126,11 @@ public class MenuV extends javax.swing.JFrame {
         jBempleado.setForeground(new java.awt.Color(255, 255, 255));
         jBempleado.setText("Empleado");
         jBempleado.setBorder(null);
+        jBempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBempleadoActionPerformed(evt);
+            }
+        });
 
         jLcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Clientes.jpg"))); // NOI18N
 
@@ -298,17 +304,19 @@ public class MenuV extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBsucursalActionPerformed
 
+
     private void jBproductoMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBproductoMateriaActionPerformed
-        vista.operacion.ProductoV produ = new vista.operacion.ProductoV();
-        produ.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jBproductoMateriaActionPerformed
 
     private void jBclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBclienteActionPerformed
-        vista.operacion.ClienteV cliente = new vista.operacion.ClienteV();
-        cliente.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_jBclienteActionPerformed
+
+    private void jBempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBempleadoActionPerformed
+        
+    }//GEN-LAST:event_jBempleadoActionPerformed
+
 
     /**
      * @param args the command line arguments
