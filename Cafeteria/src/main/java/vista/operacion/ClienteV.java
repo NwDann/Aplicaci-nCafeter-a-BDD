@@ -79,6 +79,7 @@ public class ClienteV extends javax.swing.JFrame {
         jLbarraSelecc1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jBclientedatossensibles = new javax.swing.JButton();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -317,6 +318,17 @@ public class ClienteV extends javax.swing.JFrame {
 
         jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 500, 30));
 
+        jBclientedatossensibles.setBackground(new java.awt.Color(255, 102, 102));
+        jBclientedatossensibles.setFont(new java.awt.Font("Footlight MT Light", 1, 18)); // NOI18N
+        jBclientedatossensibles.setForeground(new java.awt.Color(255, 255, 255));
+        jBclientedatossensibles.setText("ClienteDatosSensibles");
+        jBclientedatossensibles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBclientedatossensiblesActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBclientedatossensibles, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 540, -1, -1));
+
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
 
@@ -460,6 +472,11 @@ public class ClienteV extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBAñadirActionPerformed
 
+    private void jBclientedatossensiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBclientedatossensiblesActionPerformed
+        vista.operacion.ClienteDatosSensiblesV clientSensible = new vista.operacion.ClienteDatosSensiblesV();
+        clientSensible.setVisible(true);
+    }//GEN-LAST:event_jBclientedatossensiblesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -477,6 +494,7 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.JButton jBAñadir;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBModificar;
+    private javax.swing.JButton jBclientedatossensibles;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
     private javax.swing.JLabel jLabel1;

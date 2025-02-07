@@ -5,44 +5,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import models.EmpleadoM;
-import persistencia.DAOEmpleadoImpl;
-import vista.inicio.MenuV;
 
 public class EmpleadoV extends javax.swing.JFrame {
-    // Atributos
 
+    persistencia.DAOEmpleadoImpl dao = new persistencia.DAOEmpleadoImpl();
             
     public EmpleadoV() {
         initComponents();
-        initStyles(null);
+        initStyles();
         loadTable();
-    }
-    
-    public EmpleadoV(EmpleadoM empleado) {
-        initComponents();
-        initStyles(empleado);
+        jBModificar.setEnabled(false);
+        jBEliminar.setEnabled(false);
     }
     
     
-    private void initStyles(EmpleadoM empleado) {
+    
+    private void initStyles() {
         this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
-        
-        if(empleado != null){
-            jTextNombre.setText(empleado.getNombre());
-            jTextCedula.setText(empleado.getCedula());
-            jTextTelefono.setText(empleado.getTelefono());
-            jTextSucursal.setText(String.valueOf(empleado.getId_sucursal()));
-            jTextCargo.setText(empleado.getCargo());
-        }
     }
     
     private void loadTable() {
         try {
-            DAOEmpleadoImpl dao = new DAOEmpleadoImpl();
             DefaultTableModel model = (DefaultTableModel) this.jTableEmpleados.getModel();
-            model.setRowCount(0);
             dao.leer().forEach((emp) -> model.addRow(new Object[]{emp.getId_empleado(), emp.getNombre(), emp.getCedula(), emp.getTelefono(), emp.getId_sucursal(), emp.getCargo()}));
             
         } catch (Exception e) {
@@ -166,6 +151,11 @@ public class EmpleadoV extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEmpleadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableEmpleados);
         if (jTableEmpleados.getColumnModel().getColumnCount() > 0) {
             jTableEmpleados.getColumnModel().getColumn(0).setResizable(false);
@@ -242,14 +232,11 @@ public class EmpleadoV extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3))
-                        .addGap(158, 274, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -270,8 +257,8 @@ public class EmpleadoV extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(21, Short.MAX_VALUE))))
+                                .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,7 +371,7 @@ public class EmpleadoV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        MenuV menu = new MenuV();
+        vista.inicio.MenuV menu = new vista.inicio.MenuV();
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBmenuActionPerformed
@@ -394,47 +381,58 @@ public class EmpleadoV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
-        if (jTextID.getText().trim().isEmpty() ||
-            jTextNombre.getText().trim().isEmpty() ||
-            jTextCedula.getText().trim().isEmpty() ||
-            jTextTelefono.getText().trim().isEmpty() ||
-            jTextSucursal.getText().trim().isEmpty() ||
-            jTextCargo.getText().trim().isEmpty()) {
+       try {
+            // Verificar que ningún campo esté vacío
+            if (jTextID.getText().trim().isEmpty() ||
+                jTextNombre.getText().trim().isEmpty() ||
+                jTextCedula.getText().trim().isEmpty() ||
+                jTextTelefono.getText().trim().isEmpty()||
+                jTextSucursal.getText().trim().isEmpty() ||
+                jTextCargo.getText().trim().isEmpty()) {
+
+                JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Validar tipos de datos
+            int idEmpleado;
+            try {
+                idEmpleado = Integer.parseInt(jTextID.getText().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El ID del Empleado debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             
-            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            // Validar tipos de datos
+            int idSucursal;
+            try {
+                idSucursal = Integer.parseInt(jTextSucursal.getText().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El ID de la sucursal debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Crear el objeto ProductoM y asignar valores
+            models.EmpleadoM empleado = new models.EmpleadoM();
+            empleado.setId_empleado(idEmpleado);
+            empleado.setNombre(jTextNombre.getText().trim());
+            empleado.setCedula(jTextCedula.getText().trim());
+            empleado.setTelefono(jTextTelefono.getText().trim());
+            empleado.setId_sucursal(idSucursal);
+            empleado.setCargo(jTextCargo.getText().trim());
+
+            // Persistencia del producto
+            persistencia.DAOEmpleadoImpl nuevoEmpleado = new persistencia.DAOEmpleadoImpl();
+            nuevoEmpleado.registrar(empleado);
+
+            JOptionPane.showMessageDialog(null, "Empleado registrado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al Empleado", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        // Validar tipos de datos
-        int idEmpleado;
-        try {
-            idEmpleado = Integer.parseInt(jTextID.getText().trim());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El ID del Empleado debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // Crear el objeto y asignar valores               
-        models.EmpleadoM nuevoEmpleado0 = new models.EmpleadoM();
-        nuevoEmpleado0.setId_empleado(Integer.parseInt(jTextID.getText()));
-        nuevoEmpleado0.setNombre(jTextNombre.getText());
-        nuevoEmpleado0.setCedula(jTextCedula.getText());
-        nuevoEmpleado0.setTelefono(jTextTelefono.getText());
-        nuevoEmpleado0.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
-        nuevoEmpleado0.setCargo(jTextCargo.getText());
-        nuevoEmpleado0.setFecha_contrato();
-        
-        //models.EmpleadoM nuevoEmpleado1 = new models.EmpleadoM();
-        
-        persistencia.DAOEmpleadoImpl insertEmpleado0 = new persistencia.DAOEmpleadoImpl();
-        try{
-            insertEmpleado0.registrar(nuevoEmpleado0);
-            JOptionPane.showMessageDialog(this, "Empleado registrado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            loadTable();
-        }catch(Exception ex){
-            Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al empleado", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        limpiarCampos();
+
     }//GEN-LAST:event_jBAñadirActionPerformed
 
     private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
@@ -463,38 +461,36 @@ public class EmpleadoV extends javax.swing.JFrame {
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
         models.EmpleadoM empleado = new models.EmpleadoM();
-        empleado.setId_empleado(Integer.parseInt(jTextID.getText()));
-        empleado.setNombre(jTextNombre.getText());
-        empleado.setCedula(jTextCedula.getText());
-        empleado.setTelefono(jTextTelefono.getText());
-        empleado.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
-        empleado.setCargo(jTextCargo.getText());
+            empleado.setId_empleado(Integer.parseInt(jTextID.getText().trim()));
+            empleado.setNombre(jTextNombre.getText().trim());
+            empleado.setCedula(jTextCedula.getText().trim());
+            empleado.setTelefono(jTextTelefono.getText().trim());
+            empleado.setId_sucursal(Integer.parseInt(jTextSucursal.getText().trim()));
+            empleado.setCargo(jTextCargo.getText().trim());
         
+
         persistencia.DAOEmpleadoImpl modificarEmpleado = new persistencia.DAOEmpleadoImpl();
         try {
             modificarEmpleado.modificar(empleado);
         } catch (Exception ex) {
             Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
         }
-         jBModificar.setEnabled(false);
-         jBEliminar.setEnabled(false);
-         jBAñadir.setEnabled(true);
-         limpiarCampos();
+        jBModificar.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBAñadir.setEnabled(true);
+        limpiarCampos();
         
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        DAOEmpleadoImpl eliminarEmpleado = new DAOEmpleadoImpl();
-        DefaultTableModel model = (DefaultTableModel) this.jTableEmpleados.getModel();
-        for(int i : jTableEmpleados.getSelectedRows()){
-            try {
-                int empID =  (int)jTableEmpleados.getValueAt(1, 0);
-                int empSuc = Integer.parseInt(jTextSucursal.getText());
-                eliminarEmpleado.eliminar(empID,empSuc);
-                model.removeRow(i);
-            } catch (Exception ex) {
-                Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        int filaEliminar = jTableEmpleados.getSelectedRow();
+        int idEliminarEmpleado = Integer.parseInt(jTableEmpleados.getValueAt(filaEliminar, 0).toString());
+        int idEliminarSucursal = Integer.parseInt(jTableEmpleados.getValueAt(filaEliminar, 4).toString());
+        persistencia.DAOEmpleadoImpl empleado = new persistencia.DAOEmpleadoImpl();
+        try {
+            empleado.eliminar(idEliminarEmpleado, idEliminarSucursal);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
         }
         jBModificar.setEnabled(false);
         jBEliminar.setEnabled(false);
@@ -506,6 +502,26 @@ public class EmpleadoV extends javax.swing.JFrame {
         EmpleadoDatosSensiblesV empd = new EmpleadoDatosSensiblesV();
         empd.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTableEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEmpleadosMouseClicked
+        int fila = jTableEmpleados.getSelectedRow();
+    
+    // Verificar que haya una fila seleccionada
+    if (fila >= 0) {
+        jTextID.setText(jTableEmpleados.getValueAt(fila, 0).toString());
+        jTextNombre.setText(jTableEmpleados.getValueAt(fila, 1).toString());
+        jTextCedula.setText(jTableEmpleados.getValueAt(fila, 2).toString());
+        jTextTelefono.setText(jTableEmpleados.getValueAt(fila, 3).toString());
+        jTextSucursal.setText(jTableEmpleados.getValueAt(fila, 4).toString());
+        jTextCargo.setText(jTableEmpleados.getValueAt(fila, 5).toString());
+        
+        // Continúa con más JTextField según sea necesario
+        jBModificar.setEnabled(true);
+        jBEliminar.setEnabled(true);
+        jBAñadir.setEnabled(false);
+        
+    }
+    }//GEN-LAST:event_jTableEmpleadosMouseClicked
 
     /**
      * @param args the command line arguments

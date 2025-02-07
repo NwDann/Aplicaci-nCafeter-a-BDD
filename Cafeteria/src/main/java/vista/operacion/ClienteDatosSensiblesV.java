@@ -6,7 +6,6 @@ package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import javax.swing.table.DefaultTableModel;
-import persistencia.DAOClienteImpl;
 
 /**
  *
@@ -14,17 +13,16 @@ import persistencia.DAOClienteImpl;
  */
 public class ClienteDatosSensiblesV extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ClienteDatosSensiblesV
-     */
+    persistencia.DAOClienteImpl dao = new persistencia.DAOClienteImpl();
+    
     public ClienteDatosSensiblesV() {
         initComponents();
+        loadTable();
     }
     
     private void loadTable() {
         try {
-            DAOClienteImpl dao = new DAOClienteImpl();
-            DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) jTcliensensible.getModel();
             dao.leerDatosSensibles().forEach((cli) -> model.addRow(new Object[]{cli.getId_cliente(), cli.getFecha_registro()}));
             
         } catch (Exception e) {
@@ -42,20 +40,32 @@ public class ClienteDatosSensiblesV extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTcliensensible = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTcliensensible.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "ID CLIENTE", "FECHA REGISTRO"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTcliensensible);
+        if (jTcliensensible.getColumnModel().getColumnCount() > 0) {
+            jTcliensensible.getColumnModel().getColumn(0).setResizable(false);
+            jTcliensensible.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jButton1.setText("Regresar");
@@ -107,6 +117,6 @@ public class ClienteDatosSensiblesV extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTcliensensible;
     // End of variables declaration//GEN-END:variables
 }
