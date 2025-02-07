@@ -120,5 +120,4 @@ public class DAOEmpleadoImpl extends DataBase {
         this.cerrarConexion();
         return datos;
     }
-    
 }
