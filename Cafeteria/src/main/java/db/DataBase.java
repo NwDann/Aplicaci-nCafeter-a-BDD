@@ -27,7 +27,7 @@ public class DataBase {
     }
     
     public void establecerConexion(int servidor) {
-        String cadena = "jdbc:sqlserver://" + servidores[servidor][0] + "1433"
+        String cadena = "jdbc:sqlserver://" + servidores[servidor][0] + ":1433"
             + ";database=" + servidores[servidor][1]
             + ";user=sa"
             + ";password=P@ssw0rd"

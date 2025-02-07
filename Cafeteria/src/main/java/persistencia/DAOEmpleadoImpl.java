@@ -28,9 +28,10 @@ public class DAOEmpleadoImpl extends DataBase {
         // Empleado datos sensibles
         this.establecerConexion(0);
         
-        st = this.conexion.prepareStatement("INSERT INTO Empleado_Datos_Sensibles(id_empleado, fecha_contrato) VALUES(?, ?);");
+        st = this.conexion.prepareStatement("INSERT INTO Empleado_Datos_Sensibles(id_empleado, id_sucursal, fecha_contrato) VALUES(?, ?, ?);");
         st.setInt(1, ob.getId_empleado());
-        st.setDate(2, java.sql.Date.valueOf(ob.getFecha_contrato()));
+        st.setInt(2, ob.getId_sucursal());
+        st.setDate(3, java.sql.Date.valueOf(ob.getFecha_contrato()));
         st.executeUpdate();
         st.close();
         

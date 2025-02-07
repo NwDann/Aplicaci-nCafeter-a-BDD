@@ -2,7 +2,6 @@ package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.logging.Level;
@@ -21,8 +20,6 @@ public class EmpleadoV extends javax.swing.JFrame {
         initComponents();
         initStyles(null);
         loadTable();
-        jBModificar.setEnabled(false);
-        jBEliminar.setEnabled(false);
     }
     
     public EmpleadoV(EmpleadoM empleado) {
@@ -87,14 +84,12 @@ public class EmpleadoV extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextID = new javax.swing.JTextField();
         jTextNombre = new javax.swing.JTextField();
         jTextCedula = new javax.swing.JTextField();
         jTextTelefono = new javax.swing.JTextField();
-        jTextFechaCon = new javax.swing.JTextField();
         jTextSucursal = new javax.swing.JTextField();
         jTextCargo = new javax.swing.JTextField();
         jBAñadir = new javax.swing.JButton();
@@ -177,83 +172,53 @@ public class EmpleadoV extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ID");
 
         jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("NOMBRE");
 
         jLabel3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("cédula");
 
         jLabel5.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("telefono");
 
-        jLabel6.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("fecha contrato");
-
         jLabel7.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Sucursal");
 
         jLabel8.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("cargo");
 
-        jTextID.setBackground(new java.awt.Color(255, 255, 255));
-        jTextID.setForeground(new java.awt.Color(0, 0, 0));
         jTextID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextIDActionPerformed(evt);
             }
         });
 
-        jTextNombre.setBackground(new java.awt.Color(255, 255, 255));
-        jTextNombre.setForeground(new java.awt.Color(0, 0, 0));
         jTextNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNombreActionPerformed(evt);
             }
         });
 
-        jTextCedula.setBackground(new java.awt.Color(255, 255, 255));
-        jTextCedula.setForeground(new java.awt.Color(0, 0, 0));
         jTextCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextCedulaActionPerformed(evt);
             }
         });
 
-        jTextTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        jTextTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jTextTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextTelefonoActionPerformed(evt);
             }
         });
 
-        jTextFechaCon.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFechaCon.setForeground(new java.awt.Color(0, 0, 0));
-        jTextFechaCon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFechaConActionPerformed(evt);
-            }
-        });
-
-        jTextSucursal.setBackground(new java.awt.Color(255, 255, 255));
-        jTextSucursal.setForeground(new java.awt.Color(0, 0, 0));
         jTextSucursal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextSucursalActionPerformed(evt);
             }
         });
 
-        jTextCargo.setBackground(new java.awt.Color(255, 255, 255));
-        jTextCargo.setForeground(new java.awt.Color(0, 0, 0));
         jTextCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextCargoActionPerformed(evt);
@@ -270,18 +235,11 @@ public class EmpleadoV extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFechaCon))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel3))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(158, 158, 158))
+                                .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))
+                        .addGap(158, 274, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -329,14 +287,10 @@ public class EmpleadoV extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextFechaCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 530, 200));
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 530, 170));
 
         jBAñadir.setBackground(new java.awt.Color(255, 102, 102));
         jBAñadir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -431,13 +385,12 @@ public class EmpleadoV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
-            if (jTextID.getText().trim().isEmpty() ||
+        if (jTextID.getText().trim().isEmpty() ||
             jTextNombre.getText().trim().isEmpty() ||
             jTextCedula.getText().trim().isEmpty() ||
             jTextTelefono.getText().trim().isEmpty() ||
             jTextSucursal.getText().trim().isEmpty() ||
-            jTextCargo.getText().trim().isEmpty() ||
-            jTextFechaCon.getText().trim().isEmpty()) {
+            jTextCargo.getText().trim().isEmpty()) {
             
             JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -452,16 +405,6 @@ public class EmpleadoV extends javax.swing.JFrame {
             return;
         }
         
-        // Validación de la fecha
-        LocalDate fecha ;
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            fecha = LocalDate.parse(jTextFechaCon.getText().trim(), formatter);
-        } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(null, "El formato de fecha es incorrecto. Use yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
         // Crear el objeto y asignar valores               
         models.EmpleadoM nuevoEmpleado0 = new models.EmpleadoM();
         nuevoEmpleado0.setId_empleado(Integer.parseInt(jTextID.getText()));
@@ -470,15 +413,13 @@ public class EmpleadoV extends javax.swing.JFrame {
         nuevoEmpleado0.setTelefono(jTextTelefono.getText());
         nuevoEmpleado0.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
         nuevoEmpleado0.setCargo(jTextCargo.getText());
-        nuevoEmpleado0.setFecha_contrato(LocalDate.parse(jTextFechaCon.getText()));
+        nuevoEmpleado0.setFecha_contrato();
         
         //models.EmpleadoM nuevoEmpleado1 = new models.EmpleadoM();
         
         persistencia.DAOEmpleadoImpl insertEmpleado0 = new persistencia.DAOEmpleadoImpl();
-        persistencia.DAOEmpleadoImpl insertEmpleado1 = new persistencia.DAOEmpleadoImpl();
         try{
             insertEmpleado0.registrar(nuevoEmpleado0);
-            //insertEmpleado1.registrar(nuevoEmpleado1);
         }catch(Exception ex){
             Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al Cliente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -501,10 +442,6 @@ public class EmpleadoV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextTelefonoActionPerformed
 
-    private void jTextFechaConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFechaConActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFechaConActionPerformed
-
     private void jTextSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSucursalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextSucursalActionPerformed
@@ -521,9 +458,6 @@ public class EmpleadoV extends javax.swing.JFrame {
         empleado.setTelefono(jTextTelefono.getText());
         empleado.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
         empleado.setCargo(jTextCargo.getText());
-        LocalDate fecha ;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        empleado.setFecha_contrato(LocalDate.parse(jTextFechaCon.getText().trim(), formatter));
         
         persistencia.DAOEmpleadoImpl modificarEmpleado = new persistencia.DAOEmpleadoImpl();
         try {
@@ -580,7 +514,6 @@ public class EmpleadoV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -596,7 +529,6 @@ public class EmpleadoV extends javax.swing.JFrame {
     private javax.swing.JTable jTableEmpleados;
     private javax.swing.JTextField jTextCargo;
     private javax.swing.JTextField jTextCedula;
-    private javax.swing.JTextField jTextFechaCon;
     private javax.swing.JTextField jTextID;
     private javax.swing.JTextField jTextNombre;
     private javax.swing.JTextField jTextSucursal;

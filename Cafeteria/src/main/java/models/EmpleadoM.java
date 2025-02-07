@@ -60,6 +60,10 @@ public class EmpleadoM {
     public void setFecha_contrato(LocalDate fecha_contrato) {
         this.fecha_contrato = fecha_contrato;
     }
+    
+    public void setFecha_contrato() {
+        this.fecha_contrato = LocalDate.now();
+    }
 
     public void setId_sucursal(int id_sucursal) {
         this.id_sucursal = id_sucursal;
