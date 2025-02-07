@@ -1,17 +1,41 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import persistencia.DAODetalleVentaImpl;
+import persistencia.DAOVentaImpl;
 
 public class DetalleVentaV extends javax.swing.JFrame {
-
+    models.VentaM venta;
+    
     public DetalleVentaV() {
         initComponents();
         initStyles();
     }
+    
+    public DetalleVentaV(models.VentaM venta) {
+        initComponents();
+        initStyles();
+        loadProductoTable();
+        this.venta = venta;
+    }
 
     private void initStyles() {
-        this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
+        this.jTextPrecioUnitario.putClientProperty("JTextField.placeholderText", "No es obligatorio");
+    }
+    
+    private void loadProductoTable() {
+        try {
+            persistencia.DAOProductoImpl daoProd = new persistencia.DAOProductoImpl();
+            DefaultTableModel model = (DefaultTableModel) this.jTableProductos.getModel();
+            daoProd.leer().forEach((prod) -> model.addRow(new Object[]{prod.getId_producto(), prod.getNombre(), prod.getPrecio_base()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
     }
     
     /**
@@ -27,7 +51,6 @@ public class DetalleVentaV extends javax.swing.JFrame {
         jLlogo = new javax.swing.JLabel();
         jLbarraSelecc = new javax.swing.JLabel();
         jLmenu1 = new javax.swing.JLabel();
-        jBmenu = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
         jLmenu2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -60,24 +83,13 @@ public class DetalleVentaV extends javax.swing.JFrame {
 
         jLbarraSelecc.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLbarraSelecc.setForeground(new java.awt.Color(255, 255, 255));
-        jLbarraSelecc.setText("____________________");
-        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 180, 20));
+        jLbarraSelecc.setText("____________________________________");
+        jPbackground.add(jLbarraSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 230, 20));
 
         jLmenu1.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLmenu1.setForeground(new java.awt.Color(204, 204, 204));
         jLmenu1.setText("NUEVA VENTA");
-        jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 170, 30));
-
-        jBmenu.setBackground(new java.awt.Color(255, 102, 102));
-        jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jBmenu.setForeground(new java.awt.Color(255, 255, 255));
-        jBmenu.setText("Menu");
-        jBmenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBmenuActionPerformed(evt);
-            }
-        });
-        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 35));
+        jPbackground.add(jLmenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 170, 30));
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -92,22 +104,31 @@ public class DetalleVentaV extends javax.swing.JFrame {
 
         jLmenu2.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         jLmenu2.setForeground(new java.awt.Color(255, 255, 255));
-        jLmenu2.setText("detALLE VENTA");
-        jPbackground.add(jLmenu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 170, 30));
+        jLmenu2.setText("Detalle de la Venta");
+        jPbackground.add(jLmenu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 210, 30));
 
         jTableProductosAgregados.setBackground(new java.awt.Color(153, 153, 153));
         jTableProductosAgregados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID PRODUCTO", "NOMBRE", "DESCRIPCIÓN", "PRECIO BASE", "CATEGORÍA"
+                "ID PRODUCTO", "NOMBRE", "PRECIO FINAL", "CANTIDAD"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTableProductosAgregados);
+        if (jTableProductosAgregados.getColumnModel().getColumnCount() > 0) {
+            jTableProductosAgregados.getColumnModel().getColumn(1).setResizable(false);
+            jTableProductosAgregados.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 450, 250));
 
@@ -137,15 +158,15 @@ public class DetalleVentaV extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextPrecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                    .addComponent(jTextPrecioUnitario))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,13 +182,10 @@ public class DetalleVentaV extends javax.swing.JFrame {
         jTableProductos.setBackground(new java.awt.Color(153, 153, 153));
         jTableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID PRODUCTO", "NOMBRE", "DESCRIPCIÓN", "PRECIO BASE", "CATEGORÍA"
+                "ID PRODUCTO", "NOMBRE", "PRECIO BASE"
             }
         ));
         jScrollPane3.setViewportView(jTableProductos);
@@ -287,24 +305,84 @@ public class DetalleVentaV extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBmenuActionPerformed
-
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBTerminarFacTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTerminarFacTotalActionPerformed
-        // TODO add your handling code here:
+        int numProd = this.jTableProductosAgregados.getRowCount();
+        if (numProd == 0) {
+            JOptionPane.showMessageDialog(this, "Debe haber al menos un producto", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        BigDecimal monto_total = BigDecimal.ZERO;
+        for (int i = 0; i < numProd; i++) {
+            try {
+                BigDecimal precio = new BigDecimal(this.jTableProductosAgregados.getValueAt(i, 2).toString());
+                BigDecimal cantidad = new BigDecimal(this.jTableProductosAgregados.getValueAt(i, 3).toString());
+
+                monto_total = monto_total.add(precio.multiply(cantidad));  
+            } catch (NumberFormatException | NullPointerException e) {
+                JOptionPane.showMessageDialog(this, "Error en los datos de la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        this.venta.setFecha();
+        this.venta.setMonto_total(monto_total);
+        try {
+            DAOVentaImpl daoVenta = new DAOVentaImpl();
+            daoVenta.registrar(venta);
+            DAODetalleVentaImpl daoDetVent = new DAODetalleVentaImpl();
+            
+            for (int i = 0; i < numProd; i++) {
+                models.DetalleVentaM detVenta = new models.DetalleVentaM();
+                detVenta.setId_detalle(Integer.parseInt(String.valueOf(this.venta.getId_venta()) 
+                        + String.valueOf(this.jTableProductosAgregados.getValueAt(i, 0).toString())));
+                detVenta.setId_sucursal(this.venta.getId_sucursal());
+                detVenta.setId_venta(this.venta.getId_venta());
+                detVenta.setId_producto(Integer.parseInt(this.jTableProductosAgregados.getValueAt(i, 0).toString()));
+                detVenta.setCantidad(Integer.parseInt(this.jTableProductosAgregados.getValueAt(i, 3).toString()));
+                detVenta.setPrecio_unitario(new BigDecimal(this.jTableProductosAgregados.getValueAt(i, 2).toString()));
+                
+                daoDetVent.registrar(detVenta);
+            }
+            JOptionPane.showMessageDialog(this, "Venta registrada exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            
+        }
     }//GEN-LAST:event_jBTerminarFacTotalActionPerformed
 
     private void jBVolverVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVolverVentaActionPerformed
-        // TODO add your handling code here:
+        VentaV venta = new VentaV();
+        venta.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBVolverVentaActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        // TODO add your handling code here:
+        int locProd = this.jTableProductos.getSelectedRow();
+        if (locProd == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String cantidad = this.jTextCantidad.getText();
+        if (cantidad.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Rellene el campo de cantidad", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String precio_u = this.jTextPrecioUnitario.getText();
+        float precio_f;
+        if (precio_u.isEmpty()) {
+            precio_f = (float) this.jTableProductos.getValueAt(locProd, 2);
+        } else {
+            precio_f = Float.parseFloat(precio_u);
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) this.jTableProductosAgregados.getModel();
+        model.addRow(new Object[]{this.jTableProductos.getValueAt(locProd, 0), 
+            this.jTableProductos.getValueAt(locProd, 1), precio_f, cantidad});
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     /**
@@ -324,7 +402,6 @@ public class DetalleVentaV extends javax.swing.JFrame {
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBTerminarFacTotal;
     private javax.swing.JButton jBVolverVenta;
-    private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

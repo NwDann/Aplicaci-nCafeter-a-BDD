@@ -1,13 +1,17 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import vista.inicio.MenuV;
 
 public class VentaV extends javax.swing.JFrame {
-
+    
     public VentaV() {
         initComponents();
         initStyles();
+        loadClienteTable();
+        loadEmpleadoTable();
     }
 
     private void initStyles() {
@@ -15,6 +19,28 @@ public class VentaV extends javax.swing.JFrame {
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
         this.jBcontinuar.putClientProperty("JButton.buttonType", "roundRect");
         this.jBverdatos.putClientProperty("JButton.buttonType", "roundRect");
+    }
+    
+    private void loadClienteTable() {
+        try {
+            persistencia.DAOClienteImpl daoCli = new persistencia.DAOClienteImpl();
+            DefaultTableModel model = (DefaultTableModel) this.jTableCliente.getModel();
+            daoCli.leer().forEach((cliente) -> model.addRow(new Object[]{cliente.getId_cliente(), cliente.getNombre(), cliente.getTelefono()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
+    }
+    
+    private void loadEmpleadoTable() {
+        try {
+            persistencia.DAOEmpleadoImpl daoEmp = new persistencia.DAOEmpleadoImpl();
+            DefaultTableModel model = (DefaultTableModel) this.jTableEmpleado.getModel();
+            daoEmp.leer().forEach((emp) -> model.addRow(new Object[]{emp.getId_empleado(), emp.getNombre(), emp.getTelefono(), emp.getId_sucursal()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
     }
     
     /**
@@ -32,14 +58,9 @@ public class VentaV extends javax.swing.JFrame {
         jLnuevaventa = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
         jLdetalleventa = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTfecha = new javax.swing.JTextField();
-        jTmontototal = new javax.swing.JTextField();
+        jTid = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTmontototal1 = new javax.swing.JTextField();
         jBcontinuar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jBverdatos = new javax.swing.JButton();
@@ -51,7 +72,7 @@ public class VentaV extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCliente = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        jTableEmpleado = new javax.swing.JTable();
         jLbackground = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -84,19 +105,9 @@ public class VentaV extends javax.swing.JFrame {
         jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, 160, 35));
 
         jLdetalleventa.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
-        jLdetalleventa.setForeground(new java.awt.Color(255, 255, 255));
+        jLdetalleventa.setForeground(new java.awt.Color(153, 153, 153));
         jLdetalleventa.setText("Detalle de la Venta");
-        jPbackground.add(jLdetalleventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("____________________________________________");
-        jPbackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
-        jLabel1.setText("Fecha:");
-
-        jLabel3.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
-        jLabel3.setText("Monto Total:");
+        jPbackground.add(jLdetalleventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 210, 30));
 
         jLabel6.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
         jLabel6.setText("ID:");
@@ -106,38 +117,20 @@ public class VentaV extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTmontototal1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTmontototal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(jTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 360, 140));
@@ -152,7 +145,7 @@ public class VentaV extends javax.swing.JFrame {
         });
         jPbackground.add(jBcontinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 130, 30));
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 300, 10));
 
@@ -188,7 +181,7 @@ public class VentaV extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPbackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 410, 40));
@@ -215,7 +208,7 @@ public class VentaV extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPbackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 500, 40));
@@ -233,11 +226,6 @@ public class VentaV extends javax.swing.JFrame {
         jTableCliente.setBackground(new java.awt.Color(153, 153, 153));
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null}
             },
             new String [] {
@@ -262,12 +250,9 @@ public class VentaV extends javax.swing.JFrame {
 
         jPbackground.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 410, 200));
 
-        jTable.setBackground(new java.awt.Color(153, 153, 153));
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEmpleado.setBackground(new java.awt.Color(153, 153, 153));
+        jTableEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -282,12 +267,12 @@ public class VentaV extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable);
-        if (jTable.getColumnModel().getColumnCount() > 0) {
-            jTable.getColumnModel().getColumn(0).setResizable(false);
-            jTable.getColumnModel().getColumn(1).setResizable(false);
-            jTable.getColumnModel().getColumn(2).setResizable(false);
-            jTable.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(jTableEmpleado);
+        if (jTableEmpleado.getColumnModel().getColumnCount() > 0) {
+            jTableEmpleado.getColumnModel().getColumn(0).setResizable(false);
+            jTableEmpleado.getColumnModel().getColumn(1).setResizable(false);
+            jTableEmpleado.getColumnModel().getColumn(2).setResizable(false);
+            jTableEmpleado.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 420, 500, 200));
@@ -320,7 +305,26 @@ public class VentaV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBmenuActionPerformed
 
     private void jBcontinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcontinuarActionPerformed
-        DetalleVentaV detalleVenta = new DetalleVentaV();
+        int locCliente = this.jTableCliente.getSelectedRow();
+        int locEmpleado = this.jTableEmpleado.getSelectedRow();
+        if (locCliente == -1 || locEmpleado == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un empleado y un cliente asociado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String id = this.jTid.getText();
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Rellene el campo de ID", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        models.VentaM venta = new models.VentaM();
+        venta.setId_venta(Integer.parseInt(id));
+        venta.setId_sucursal((int) this.jTableEmpleado.getValueAt(locEmpleado, 3));
+        venta.setId_empleado((int) this.jTableEmpleado.getValueAt(locEmpleado, 0));
+        venta.setId_cliente((int) this.jTableCliente.getValueAt(locCliente, 0));
+        
+        DetalleVentaV detalleVenta = new DetalleVentaV(venta);
         detalleVenta.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jBcontinuarActionPerformed
@@ -354,9 +358,6 @@ public class VentaV extends javax.swing.JFrame {
     private javax.swing.JButton jBsalir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jBverdatos;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -372,10 +373,8 @@ public class VentaV extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable;
     private javax.swing.JTable jTableCliente;
-    private javax.swing.JTextField jTfecha;
-    private javax.swing.JTextField jTmontototal;
-    private javax.swing.JTextField jTmontototal1;
+    private javax.swing.JTable jTableEmpleado;
+    private javax.swing.JTextField jTid;
     // End of variables declaration//GEN-END:variables
 }

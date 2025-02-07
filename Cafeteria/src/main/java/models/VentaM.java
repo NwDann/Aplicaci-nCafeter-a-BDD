@@ -48,6 +48,10 @@ public class VentaM {
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
+    
+    public void setFecha() {
+        this.fecha = LocalDateTime.now();
+    }
 
     public void setMonto_total(BigDecimal monto_total) {
         this.monto_total = monto_total;

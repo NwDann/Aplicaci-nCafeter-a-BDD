@@ -1,17 +1,44 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import db.DataBase;
+import javax.swing.table.DefaultTableModel;
 
 public class DatosVentaV extends javax.swing.JFrame {
-
+    int id_sucursal = DataBase.servidorGlobal;
+    int id_venta = 1;
+    
     public DatosVentaV() {
         initComponents();
         initStyles();
+        loadVentaTable();
+        loadDetalleVentaTable();
     }
 
     private void initStyles() {
-        this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
+    }
+    
+    private void loadVentaTable() {
+        try {
+            persistencia.DAOVentaImpl daoVent = new persistencia.DAOVentaImpl();
+            DefaultTableModel model = (DefaultTableModel) this.jTableVenta.getModel();
+            daoVent.leer().forEach((vent) -> model.addRow(new Object[]{vent.getId_venta(), vent.getId_sucursal(), vent.getFecha(), vent.getMonto_total(), vent.getId_empleado(), vent.getId_cliente()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
+    }
+    
+    private void loadDetalleVentaTable() {
+        try {
+            persistencia.DAODetalleVentaImpl daoDetVent = new persistencia.DAODetalleVentaImpl();
+            DefaultTableModel model = (DefaultTableModel) this.jTableDetalle.getModel();
+            daoDetVent.leer(this.id_sucursal, this.id_venta).forEach((detVent) -> model.addRow(new Object[]{detVent.getId_producto(), detVent.getCantidad(), detVent.getPrecio_unitario()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
     }
     
     /**
@@ -25,7 +52,6 @@ public class DatosVentaV extends javax.swing.JFrame {
 
         jPbackground = new javax.swing.JPanel();
         jLlogo = new javax.swing.JLabel();
-        jBmenu = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
         jLmenu3 = new javax.swing.JLabel();
         jLbarraSelecc1 = new javax.swing.JLabel();
@@ -47,17 +73,6 @@ public class DatosVentaV extends javax.swing.JFrame {
 
         jLlogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.jpg"))); // NOI18N
         jPbackground.add(jLlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 96, 50));
-
-        jBmenu.setBackground(new java.awt.Color(255, 102, 102));
-        jBmenu.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
-        jBmenu.setForeground(new java.awt.Color(255, 255, 255));
-        jBmenu.setText("Menu");
-        jBmenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBmenuActionPerformed(evt);
-            }
-        });
-        jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 35));
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -83,13 +98,10 @@ public class DatosVentaV extends javax.swing.JFrame {
         jTableDetalle.setBackground(new java.awt.Color(153, 153, 153));
         jTableDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID DETALLE", "ID VENTA", "ID PRODUCTO", "CANTIDAD", "PRECIO UNITARIO"
+                "ID PRODUCTO", "CANTIDAD", "PRECIO UNITARIO"
             }
         ));
         jScrollPane1.setViewportView(jTableDetalle);
@@ -110,15 +122,17 @@ public class DatosVentaV extends javax.swing.JFrame {
         jTableVenta.setBackground(new java.awt.Color(153, 153, 153));
         jTableVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID VENTA", "ID SUCURSAL", "FECHA", "MONTO TOTAL", "ID EMPLEADO", "ID CLIENTE"
             }
         ));
+        jTableVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableVentaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableVenta);
 
         jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 540, 220));
@@ -193,17 +207,24 @@ public class DatosVentaV extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBmenuActionPerformed
-
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
-        // TODO add your handling code here:
+        VentaV venta = new VentaV();
+        venta.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBRegresarActionPerformed
+
+    private void jTableVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVentaMouseClicked
+        int locVent = this.jTableVenta.getSelectedRow();
+        if (locVent != -1) {
+            this.id_sucursal = Integer.parseInt(this.jTableVenta.getValueAt(locVent, 1).toString());
+            this.id_venta = Integer.parseInt(this.jTableVenta.getValueAt(locVent, 0).toString());
+            loadDetalleVentaTable();
+        }
+    }//GEN-LAST:event_jTableVentaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -220,7 +241,6 @@ public class DatosVentaV extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBRegresar;
-    private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
