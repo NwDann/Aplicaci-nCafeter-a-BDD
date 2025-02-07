@@ -293,10 +293,7 @@ public class ProductoV extends javax.swing.JFrame {
 
         jTlistaproducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Descripcion", "Precio Base", "Categoria"
@@ -436,9 +433,10 @@ public class ProductoV extends javax.swing.JFrame {
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
         int filaEliminar = jTlistaproducto.getSelectedRow();
+        int idEliminar = Integer.parseInt(jTlistaproducto.getValueAt(filaEliminar, 0).toString());
         persistencia.DAOProductoImpl producto = new persistencia.DAOProductoImpl();
         try {
-            producto.eliminar(filaEliminar);
+            producto.eliminar(idEliminar);
         } catch (Exception ex) {
             Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
         }
