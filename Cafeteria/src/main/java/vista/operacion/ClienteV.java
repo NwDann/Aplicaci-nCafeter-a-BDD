@@ -59,6 +59,7 @@ public class ClienteV extends javax.swing.JFrame {
         jLbarraSelecc = new javax.swing.JLabel();
         jLmenu1 = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCliente = new javax.swing.JTable();
@@ -109,6 +110,17 @@ public class ClienteV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 35));
+
+        jButton1.setBackground(new java.awt.Color(255, 102, 102));
+        jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Datos sensibles");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 170, 30));
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -273,7 +285,7 @@ public class ClienteV extends javax.swing.JFrame {
                 jBEliminarActionPerformed(evt);
             }
         });
-        jPbackground.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 460, -1, -1));
+        jPbackground.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 460, 120, 30));
 
         jBModificar.setBackground(new java.awt.Color(255, 102, 102));
         jBModificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -284,7 +296,7 @@ public class ClienteV extends javax.swing.JFrame {
                 jBModificarActionPerformed(evt);
             }
         });
-        jPbackground.add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, -1, -1));
+        jPbackground.add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 460, 120, 30));
 
         jLbarraSelecc1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLbarraSelecc1.setForeground(new java.awt.Color(255, 255, 255));
@@ -460,6 +472,11 @@ public class ClienteV extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBAñadirActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ClienteDatosSensiblesV cli = new ClienteDatosSensiblesV();
+        cli.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -479,6 +496,7 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -19,6 +19,7 @@ public class ClienteDatosSensiblesV extends javax.swing.JFrame {
      */
     public ClienteDatosSensiblesV() {
         initComponents();
+        loadTable();
     }
     
     private void loadTable() {
@@ -57,6 +58,7 @@ public class ClienteDatosSensiblesV extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton1.setBackground(new java.awt.Color(255, 102, 102));
         jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +86,7 @@ public class ClienteDatosSensiblesV extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
