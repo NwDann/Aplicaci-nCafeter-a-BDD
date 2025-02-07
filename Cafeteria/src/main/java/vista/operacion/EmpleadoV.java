@@ -544,7 +544,8 @@ public class EmpleadoV extends javax.swing.JFrame {
         for(int i : jTableEmpleados.getSelectedRows()){
             try {
                 int empID =  (int)jTableEmpleados.getValueAt(1, 0);
-                eliminarEmpleado.eliminar(empID);
+                int empSuc = Integer.parseInt(jTextSucursal.getText());
+                eliminarEmpleado.eliminar(empID,empSuc);
                 model.removeRow(i);
             } catch (Exception ex) {
                 Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
