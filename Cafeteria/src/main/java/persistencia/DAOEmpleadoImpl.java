@@ -13,7 +13,7 @@ public class DAOEmpleadoImpl extends DataBase {
         // Empleado info
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Empleado(id_empleado, nombre, cedula, telefono, id_sucursal, cargo) VALUES(?,?,?,?,?,?);");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;INSERT INTO Empleado(id_empleado, nombre, cedula, telefono, id_sucursal, cargo) VALUES(?,?,?,?,?,?);");
         st.setInt(1, ob.getId_empleado());
         st.setString(2, ob.getNombre());
         st.setString(3, ob.getCedula());
@@ -41,7 +41,7 @@ public class DAOEmpleadoImpl extends DataBase {
         this.establecerConexion();
         
         // Empleado info
-        PreparedStatement st = this.conexion.prepareStatement("UPDATE Empleado SET nombre = ?, cedula = ?, telefono = ?, cargo = ? WHERE id_empleado = ? AND id_sucursal = ?");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;UPDATE Empleado SET nombre = ?, cedula = ?, telefono = ?, cargo = ? WHERE id_empleado = ? AND id_sucursal = ?");
         st.setString(1, ob.getNombre());
         st.setString(2, ob.getCedula());
         st.setString(3, ob.getTelefono());
@@ -58,7 +58,7 @@ public class DAOEmpleadoImpl extends DataBase {
         // Empleado info
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("DELETE FROM Empleado WHERE id_empleado = ? AND id_sucursal = ?;");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;DELETE FROM Empleado WHERE id_empleado = ? AND id_sucursal = ?;");
         st.setInt(1, id_empleado);
         st.setInt(2, id_sucursal);
         st.executeUpdate();
@@ -81,7 +81,7 @@ public class DAOEmpleadoImpl extends DataBase {
         List<EmpleadoM> datos;
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM Empleado;");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;SELECT * FROM Empleado;");
 
         datos = new ArrayList();
         ResultSet rs = st.executeQuery();

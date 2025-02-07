@@ -12,7 +12,7 @@ public class DAOInventarioMateriaPrimaImpl extends DataBase{
     public void registrar(InventarioMateriaPrimaM ob) throws Exception {
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO InventarioMateriaPrima(id_inventario, id_sucursal, id_materia_prima, cantidad_disponible) VALUES(?,?,?,?);");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;INSERT INTO InventarioMateriaPrima(id_inventario, id_sucursal, id_materia_prima, cantidad_disponible) VALUES(?,?,?,?);");
         st.setInt(1, ob.getId_inventario());
         st.setInt(2, ob.getId_sucursal());
         st.setInt(3, ob.getId_materia_prima());
@@ -26,7 +26,7 @@ public class DAOInventarioMateriaPrimaImpl extends DataBase{
     public void modificar(InventarioMateriaPrimaM ob) throws Exception {
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("UPDATE InventarioMateriaPrima SET cantidad_disponible = ? WHERE id_inventario = ? AND id_sucursal = ?;");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;UPDATE InventarioMateriaPrima SET cantidad_disponible = ? WHERE id_inventario = ? AND id_sucursal = ?;");
         st.setBigDecimal(1, ob.getCantidad_disponible());
         st.setInt(2, ob.getId_inventario());
         st.setInt(3, ob.getId_sucursal());
@@ -39,7 +39,7 @@ public class DAOInventarioMateriaPrimaImpl extends DataBase{
     public void eliminar(int id_inventario, int id_sucursal) throws Exception {
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("DELETE FROM InventarioMateriaPrima WHERE id_inventario = ? AND id_sucursal = ?;");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;DELETE FROM InventarioMateriaPrima WHERE id_inventario = ? AND id_sucursal = ?;");
         st.setInt(1, id_inventario);
         st.setInt(2, id_sucursal);
         st.executeUpdate();
