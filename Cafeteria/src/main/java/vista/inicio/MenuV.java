@@ -190,6 +190,11 @@ public class MenuV extends javax.swing.JFrame {
         jBinventario.setForeground(new java.awt.Color(255, 255, 255));
         jBinventario.setText("Inventario");
         jBinventario.setBorder(null);
+        jBinventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBinventarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPgestorLayout = new javax.swing.GroupLayout(jPgestor);
         jPgestor.setLayout(jPgestorLayout);
@@ -309,15 +314,21 @@ public class MenuV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsucursalActionPerformed
 
     private void jBproductoMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBproductoMateriaActionPerformed
-        
+        ProductoV prod = new ProductoV();
+        prod.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBproductoMateriaActionPerformed
 
     private void jBclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBclienteActionPerformed
-        
+        ClienteV cli = new ClienteV();
+        cli.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBclienteActionPerformed
 
     private void jBempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBempleadoActionPerformed
-        
+        EmpleadoV emp = new EmpleadoV();
+        emp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBempleadoActionPerformed
 
     private void jBventaDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBventaDetalleActionPerformed
@@ -325,6 +336,12 @@ public class MenuV extends javax.swing.JFrame {
         venta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBventaDetalleActionPerformed
+
+    private void jBinventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinventarioActionPerformed
+        InventarioV inv = new InventarioV();
+        inv.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBinventarioActionPerformed
 
 
     /**
