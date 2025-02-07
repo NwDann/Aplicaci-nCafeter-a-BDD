@@ -1,13 +1,10 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import java.time.format.DateTimeParseException;
 
 public class ClienteV extends javax.swing.JFrame {
 
@@ -41,7 +38,6 @@ public class ClienteV extends javax.swing.JFrame {
     jTextNombre.setText("");
     jTextCorreo.setText("");
     jTextTelefono.setText("");
-    jTextFechaR.setText("");
     // Agrega más JTextField si es necesario
 }   
     
@@ -67,13 +63,11 @@ public class ClienteV extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextID = new javax.swing.JTextField();
         jTextNombre = new javax.swing.JTextField();
         jTextCorreo = new javax.swing.JTextField();
         jTextTelefono = new javax.swing.JTextField();
-        jTextFechaR = new javax.swing.JTextField();
         jBAñadir = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jBModificar = new javax.swing.JButton();
@@ -177,9 +171,6 @@ public class ClienteV extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
         jLabel3.setText("NOMBRE");
 
-        jLabel4.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
-        jLabel4.setText("FECHA REGISTRO");
-
         jLabel5.setFont(new java.awt.Font("Perpetua Titling MT", 1, 12)); // NOI18N
         jLabel5.setText("TELÉFONO");
 
@@ -207,12 +198,6 @@ public class ClienteV extends javax.swing.JFrame {
             }
         });
 
-        jTextFechaR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFechaRActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -229,13 +214,9 @@ public class ClienteV extends javax.swing.JFrame {
                     .addComponent(jTextID)
                     .addComponent(jTextCorreo))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFechaR, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                    .addComponent(jTextTelefono))
+                .addComponent(jLabel5)
+                .addGap(52, 52, 52)
+                .addComponent(jTextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -250,17 +231,13 @@ public class ClienteV extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFechaR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43))
         );
-
-        jLabel4.getAccessibleContext().setAccessibleName("FECHA \nREGISTRO");
 
         jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 410, 190));
 
@@ -373,10 +350,6 @@ public class ClienteV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextTelefonoActionPerformed
 
-    private void jTextFechaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFechaRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFechaRActionPerformed
-
     private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
         int fila = jTableCliente.getSelectedRow();
     
@@ -457,6 +430,7 @@ public class ClienteV extends javax.swing.JFrame {
             cliente.setNombre(jTextNombre.getText().trim());
             cliente.setCorreo(jTextCorreo.getText().trim());
             cliente.setTelefono(jTextTelefono.getText().trim());
+            cliente.setFecha_registro();
 
             // Persistencia del producto
             persistencia.DAOClienteImpl nuevoCliente = new persistencia.DAOClienteImpl();
@@ -500,7 +474,6 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLbackground;
@@ -514,7 +487,6 @@ public class ClienteV extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableCliente;
     private javax.swing.JTextField jTextCorreo;
-    private javax.swing.JTextField jTextFechaR;
     private javax.swing.JTextField jTextID;
     private javax.swing.JTextField jTextNombre;
     private javax.swing.JTextField jTextTelefono;

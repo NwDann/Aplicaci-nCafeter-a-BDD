@@ -421,7 +421,7 @@ public class EmpleadoV extends javax.swing.JFrame {
             empleado.setTelefono(jTextTelefono.getText().trim());
             empleado.setId_sucursal(idSucursal);
             empleado.setCargo(jTextCargo.getText().trim());
-            empleado.setFecha_contrato(LocalDate.EPOCH);
+            empleado.setFecha_contrato();
 
             // Persistencia del producto
             persistencia.DAOEmpleadoImpl nuevoEmpleado = new persistencia.DAOEmpleadoImpl();
