@@ -124,19 +124,14 @@ public class ClienteV extends javax.swing.JFrame {
         jTableCliente.setBackground(new java.awt.Color(153, 153, 153));
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "ID", "NOMBRE", "CORREO", "TELÉFONO", "FECHA REGISTRO"
+                "ID", "NOMBRE", "CORREO", "TELÉFONO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -155,7 +150,6 @@ public class ClienteV extends javax.swing.JFrame {
             jTableCliente.getColumnModel().getColumn(1).setResizable(false);
             jTableCliente.getColumnModel().getColumn(2).setResizable(false);
             jTableCliente.getColumnModel().getColumn(3).setResizable(false);
-            jTableCliente.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jPbackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 500, -1));
@@ -351,60 +345,6 @@ public class ClienteV extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
-    private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
-        try {
-        // Verificar que ningún campo esté vacío
-        if (jTextID.getText().trim().isEmpty() ||
-            jTextNombre.getText().trim().isEmpty() ||
-            jTextCorreo.getText().trim().isEmpty() ||
-            jTextTelefono.getText().trim().isEmpty() ||
-            jTextFechaR.getText().trim().isEmpty()) {
-            
-            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // Validar tipos de datos
-        int idCliente;
-        try {
-            idCliente = Integer.parseInt(jTextID.getText().trim());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El ID del Cliente debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-         // Validación de la fecha
-         LocalDate fecha ;
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                fecha = LocalDate.parse(jTextFechaR.getText().trim(), formatter);
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(null, "El formato de fecha es incorrecto. Use yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        
-        // Crear el objeto ProductoM y asignar valores
-        models.ClienteM cliente = new models.ClienteM();
-        cliente.setId_cliente(idCliente);
-        cliente.setNombre(jTextNombre.getText().trim());
-        cliente.setCorreo(jTextCorreo.getText().trim());
-        cliente.setTelefono(jTextTelefono.getText().trim());
-        cliente.setFecha_registro(fecha);
-        
-        // Persistencia del producto
-        persistencia.DAOClienteImpl nuevoCliente = new persistencia.DAOClienteImpl();
-        nuevoCliente.registrar(cliente);
-        
-        JOptionPane.showMessageDialog(null, "Cliente registrado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        
-    } catch (Exception ex) {
-        Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al Cliente", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-        limpiarCampos();
-   
-    }//GEN-LAST:event_jBAñadirActionPerformed
-
     private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextIDActionPerformed
@@ -425,44 +365,6 @@ public class ClienteV extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFechaRActionPerformed
 
-    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        models.ClienteM cliente = new models.ClienteM();
-        cliente.setId_cliente(Integer.parseInt(jTextID.getText()));
-        cliente.setNombre(jTextNombre.getText());
-        cliente.setCorreo(jTextCorreo.getText());
-        LocalDate fecha ;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        fecha = LocalDate.parse(jTextFechaR.getText().trim(), formatter);
-        cliente.setTelefono(jTextTelefono.getText());
-        cliente.setFecha_registro(fecha);
-        
-        persistencia.DAOClienteImpl modificarCliente = new persistencia.DAOClienteImpl();
-        try {
-            modificarCliente.modificar(cliente);
-        } catch (Exception ex) {
-            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         jBModificar.setEnabled(false);
-         jBEliminar.setEnabled(false);
-         jBAñadir.setEnabled(true);
-         limpiarCampos();
-        
-    }//GEN-LAST:event_jBModificarActionPerformed
-
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        int filaEliminar = jTableCliente.getSelectedRow();
-        persistencia.DAOClienteImpl cliente = new persistencia.DAOClienteImpl();
-        try {
-            cliente.eliminar(filaEliminar);
-        } catch (Exception ex) {
-            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         jBModificar.setEnabled(false);
-         jBEliminar.setEnabled(false);
-         jBAñadir.setEnabled(true);
-         limpiarCampos();
-    }//GEN-LAST:event_jBEliminarActionPerformed
-
     private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
         int fila = jTableCliente.getSelectedRow();
     
@@ -472,13 +374,91 @@ public class ClienteV extends javax.swing.JFrame {
         jTextNombre.setText(jTableCliente.getValueAt(fila, 1).toString());
         jTextCorreo.setText(jTableCliente.getValueAt(fila, 2).toString());
         jTextTelefono.setText(jTableCliente.getValueAt(fila, 3).toString());
-        jTextFechaR.setText(jTableCliente.getValueAt(fila, 4).toString());
         // Continúa con más JTextField según sea necesario
         jBModificar.setEnabled(true);
         jBEliminar.setEnabled(true);
         jBAñadir.setEnabled(false);
+        
     }
     }//GEN-LAST:event_jTableClienteMouseClicked
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        int filaEliminar = jTableCliente.getSelectedRow();
+        int idEliminar = Integer.parseInt(jTableCliente.getValueAt(filaEliminar, 0).toString());
+        persistencia.DAOClienteImpl cliente = new persistencia.DAOClienteImpl();
+        try {
+            cliente.eliminar(idEliminar);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jBModificar.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBAñadir.setEnabled(true);
+        limpiarCampos();
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+        models.ClienteM cliente = new models.ClienteM();
+        cliente.setId_cliente(Integer.parseInt(jTextID.getText()));
+        cliente.setNombre(jTextNombre.getText());
+        cliente.setCorreo(jTextCorreo.getText());
+        cliente.setTelefono(jTextTelefono.getText());
+        
+
+        persistencia.DAOClienteImpl modificarCliente = new persistencia.DAOClienteImpl();
+        try {
+            modificarCliente.modificar(cliente);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jBModificar.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBAñadir.setEnabled(true);
+        limpiarCampos();
+
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
+        try {
+            // Verificar que ningún campo esté vacío
+            if (jTextID.getText().trim().isEmpty() ||
+                jTextNombre.getText().trim().isEmpty() ||
+                jTextCorreo.getText().trim().isEmpty() ||
+                jTextTelefono.getText().trim().isEmpty()) {
+
+                JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Validar tipos de datos
+            int idCliente;
+            try {
+                idCliente = Integer.parseInt(jTextID.getText().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "El ID del Cliente debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Crear el objeto ProductoM y asignar valores
+            models.ClienteM cliente = new models.ClienteM();
+            cliente.setId_cliente(idCliente);
+            cliente.setNombre(jTextNombre.getText().trim());
+            cliente.setCorreo(jTextCorreo.getText().trim());
+            cliente.setTelefono(jTextTelefono.getText().trim());
+
+            // Persistencia del producto
+            persistencia.DAOClienteImpl nuevoCliente = new persistencia.DAOClienteImpl();
+            nuevoCliente.registrar(cliente);
+
+            JOptionPane.showMessageDialog(null, "Cliente registrado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al Cliente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        limpiarCampos();
+
+    }//GEN-LAST:event_jBAñadirActionPerformed
 
     /**
      * @param args the command line arguments

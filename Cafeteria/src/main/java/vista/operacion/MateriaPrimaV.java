@@ -378,9 +378,10 @@ public class MateriaPrimaV extends javax.swing.JFrame {
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
         int filaEliminar = jTlistamateriaprima.getSelectedRow();
+        int idEliminar = Integer.parseInt(jTlistamateriaprima.getValueAt(filaEliminar, 0).toString());
         persistencia.DAOMateriaPrimaImpl materia = new persistencia.DAOMateriaPrimaImpl();
         try {
-            materia.eliminar(filaEliminar);
+            materia.eliminar(idEliminar);
         } catch (Exception ex) {
             Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
         }
