@@ -1,7 +1,9 @@
 package vista.inicio;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import models.InventarioMateriaPrimaM;
 import vista.operacion.EmpleadoV;
+import vista.operacion.InventarioV;
 import vista.operacion.SucursalV;
 
 public class MenuV extends javax.swing.JFrame {
@@ -178,6 +180,11 @@ public class MenuV extends javax.swing.JFrame {
         jBinventario.setForeground(new java.awt.Color(255, 255, 255));
         jBinventario.setText("Inventario");
         jBinventario.setBorder(null);
+        jBinventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBinventarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPgestorLayout = new javax.swing.GroupLayout(jPgestor);
         jPgestor.setLayout(jPgestorLayout);
@@ -301,6 +308,12 @@ public class MenuV extends javax.swing.JFrame {
         emp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBempleadoActionPerformed
+
+    private void jBinventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinventarioActionPerformed
+        InventarioV inventario = new InventarioV();
+        inventario.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jBinventarioActionPerformed
 
     /**
      * @param args the command line arguments

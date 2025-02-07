@@ -13,7 +13,7 @@ public class DAOEmpleadoImpl extends DataBase {
         // Empleado info
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Empleado(id_empleado, nombre, cedula, telefono, id_sucursal, cargo) VALUES(?,?,?,?,?,?);");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;INSERT INTO Empleado(id_empleado, nombre, cedula, telefono, id_sucursal, cargo) VALUES(?,?,?,?,?,?);");
         st.setInt(1, ob.getId_empleado());
         st.setString(2, ob.getNombre());
         st.setString(3, ob.getCedula());

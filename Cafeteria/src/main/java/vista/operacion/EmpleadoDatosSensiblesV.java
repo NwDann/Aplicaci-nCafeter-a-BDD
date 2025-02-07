@@ -106,10 +106,7 @@ public class EmpleadoDatosSensiblesV extends javax.swing.JFrame {
         jTableEmpleadosDatosSensibles.setBackground(new java.awt.Color(153, 153, 153));
         jTableEmpleadosDatosSensibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "ID ", "FECHA CONTRATO"
