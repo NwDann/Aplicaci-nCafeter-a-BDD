@@ -1,6 +1,7 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -420,6 +421,7 @@ public class EmpleadoV extends javax.swing.JFrame {
             empleado.setTelefono(jTextTelefono.getText().trim());
             empleado.setId_sucursal(idSucursal);
             empleado.setCargo(jTextCargo.getText().trim());
+            empleado.setFecha_contrato(LocalDate.EPOCH);
 
             // Persistencia del producto
             persistencia.DAOEmpleadoImpl nuevoEmpleado = new persistencia.DAOEmpleadoImpl();
