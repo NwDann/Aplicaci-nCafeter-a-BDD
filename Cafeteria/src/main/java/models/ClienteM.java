@@ -58,5 +58,8 @@ public class ClienteM {
     public void setFecha_registro(LocalDate fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
+    public void setFecha_contrato() {
+        this.fecha_registro = LocalDate.now();
+    }
     
 }
