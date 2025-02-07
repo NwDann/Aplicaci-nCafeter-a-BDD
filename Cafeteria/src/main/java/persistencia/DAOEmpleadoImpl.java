@@ -54,12 +54,13 @@ public class DAOEmpleadoImpl extends DataBase {
         this.cerrarConexion();
     }
     
-    public void eliminar(int id) throws Exception {
+    public void eliminar(int id_empleado, int id_sucursal) throws Exception {
         // Empleado info
         this.establecerConexion();
         
         PreparedStatement st = this.conexion.prepareStatement("DELETE FROM Empleado WHERE id_empleado = ? AND id_sucursal = ?;");
-        st.setInt(1, id);
+        st.setInt(1, id_empleado);
+        st.setInt(2, id_sucursal);
         st.executeUpdate();
         st.close();
         
@@ -68,7 +69,8 @@ public class DAOEmpleadoImpl extends DataBase {
         // Empleado datos sensibles
         this.establecerConexion(0);
         st = this.conexion.prepareStatement("DELETE FROM Empleado_Datos_Sensibles WHERE id_empleado = ?;");
-        st.setInt(1, id);
+        st.setInt(1, id_empleado);
+        st.setInt(2, id_sucursal);
         st.executeUpdate();
         st.close();
         

@@ -12,7 +12,7 @@ public class DAOVentaImpl extends DataBase {
     public void registrar(VentaM ob) throws Exception {
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO Venta(id_venta, id_sucursal, fecha, monto_total, id_empleado, id_cliente) VALUES(?,?,?,?,?,?);");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;INSERT INTO Venta(id_venta, id_sucursal, fecha, monto_total, id_empleado, id_cliente) VALUES(?,?,?,?,?,?);");
         st.setInt(1, ob.getId_venta());
         st.setInt(2, ob.getId_sucursal());
         st.setTimestamp(3, java.sql.Timestamp.valueOf(ob.getFecha()));

@@ -226,7 +226,7 @@ public class VentaV extends javax.swing.JFrame {
         jTableCliente.setBackground(new java.awt.Color(153, 153, 153));
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
                 "ID", "NOMBRE", "TELEFONO"
@@ -253,7 +253,7 @@ public class VentaV extends javax.swing.JFrame {
         jTableEmpleado.setBackground(new java.awt.Color(153, 153, 153));
         jTableEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID ", "NOMBRE", "TELEFONO", "ID SUCURSAL"
@@ -326,13 +326,11 @@ public class VentaV extends javax.swing.JFrame {
         
         DetalleVentaV detalleVenta = new DetalleVentaV(venta);
         detalleVenta.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_jBcontinuarActionPerformed
 
     private void jBverdatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBverdatosActionPerformed
         DatosVentaV datosVenta = new DatosVentaV();
         datosVenta.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_jBverdatosActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed

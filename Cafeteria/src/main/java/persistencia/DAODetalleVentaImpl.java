@@ -12,7 +12,7 @@ public class DAODetalleVentaImpl extends DataBase {
     public void registrar(DetalleVentaM ob) throws Exception {
         this.establecerConexion();
         
-        PreparedStatement st = this.conexion.prepareStatement("INSERT INTO DetalleVenta(id_detalle, id_sucursal, id_venta, id_producto, cantidad, precio_unitario) VALUES(?,?,?,?,?,?);");
+        PreparedStatement st = this.conexion.prepareStatement("SET XACT_ABORT ON;INSERT INTO DetalleVenta(id_detalle, id_sucursal, id_venta, id_producto, cantidad, precio_unitario) VALUES(?,?,?,?,?,?);");
         st.setInt(1, ob.getId_detalle());
         st.setInt(2, ob.getId_sucursal());
         st.setInt(3, ob.getId_venta());

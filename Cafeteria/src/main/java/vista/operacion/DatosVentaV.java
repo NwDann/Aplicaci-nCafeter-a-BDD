@@ -212,8 +212,6 @@ public class DatosVentaV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
-        VentaV venta = new VentaV();
-        venta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBRegresarActionPerformed
 

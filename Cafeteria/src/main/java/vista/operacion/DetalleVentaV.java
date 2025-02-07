@@ -348,14 +348,13 @@ public class DetalleVentaV extends javax.swing.JFrame {
                 daoDetVent.registrar(detVenta);
             }
             JOptionPane.showMessageDialog(this, "Venta registrada exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } catch (Exception e) {
-            
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
         }
     }//GEN-LAST:event_jBTerminarFacTotalActionPerformed
 
     private void jBVolverVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVolverVentaActionPerformed
-        VentaV venta = new VentaV();
-        venta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jBVolverVentaActionPerformed
 
@@ -373,11 +372,11 @@ public class DetalleVentaV extends javax.swing.JFrame {
         }
         
         String precio_u = this.jTextPrecioUnitario.getText();
-        float precio_f;
+        BigDecimal precio_f = BigDecimal.ZERO;
         if (precio_u.isEmpty()) {
-            precio_f = (float) this.jTableProductos.getValueAt(locProd, 2);
+            precio_f = new BigDecimal(this.jTableProductos.getValueAt(locProd, 2).toString());
         } else {
-            precio_f = Float.parseFloat(precio_u);
+            precio_f = new BigDecimal(precio_u);
         }
         
         DefaultTableModel model = (DefaultTableModel) this.jTableProductosAgregados.getModel();

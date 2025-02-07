@@ -1,8 +1,7 @@
 package vista.inicio;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import vista.operacion.EmpleadoV;
-import vista.operacion.SucursalV;
+import vista.operacion.*;
 
 public class MenuV extends javax.swing.JFrame {
 
@@ -165,6 +164,11 @@ public class MenuV extends javax.swing.JFrame {
         jBventaDetalle.setForeground(new java.awt.Color(255, 255, 255));
         jBventaDetalle.setText("Venta y Detalle");
         jBventaDetalle.setBorder(null);
+        jBventaDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBventaDetalleActionPerformed(evt);
+            }
+        });
 
         jLproductoMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProductoYMateriaPrima.jpg"))); // NOI18N
 
@@ -304,7 +308,6 @@ public class MenuV extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBsucursalActionPerformed
 
-
     private void jBproductoMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBproductoMateriaActionPerformed
         
     }//GEN-LAST:event_jBproductoMateriaActionPerformed
@@ -316,6 +319,12 @@ public class MenuV extends javax.swing.JFrame {
     private void jBempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBempleadoActionPerformed
         
     }//GEN-LAST:event_jBempleadoActionPerformed
+
+    private void jBventaDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBventaDetalleActionPerformed
+        VentaV venta = new VentaV();
+        venta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBventaDetalleActionPerformed
 
 
     /**
