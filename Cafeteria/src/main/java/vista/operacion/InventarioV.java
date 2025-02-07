@@ -1,17 +1,48 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import persistencia.DAOInventarioMateriaPrimaImpl;
+import vista.inicio.MenuV;
+import models.InventarioMateriaPrimaM;
+import persistencia.DAOEmpleadoImpl;
 
 public class InventarioV extends javax.swing.JFrame {
 
     public InventarioV() {
         initComponents();
         initStyles();
+        jBmodificar.setEnabled(false);
+        jBeliminar.setEnabled(false);
     }
 
     private void initStyles() {
         this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
+    }
+    
+    private void loadTable() {
+        try {
+            DAOInventarioMateriaPrimaImpl dao = new DAOInventarioMateriaPrimaImpl();
+            DefaultTableModel model = (DefaultTableModel) this.jTableInventario.getModel();
+            dao.leer().forEach((emp) -> model.addRow(new Object[]{emp.getId_inventario(), emp.getId_sucursal(), emp.getId_materia_prima(), emp.getCantidad_disponible()}));
+            
+        } catch (Exception e) {
+            System.out.println("El siguiente error se ha suscitado: " + e.toString());
+        }
+    }
+    
+    private void limpiarCampos() {
+    jTextID.setText("");
+    jTextSucursal.setText("");
+    jTcantidaddisponible.setText("");
     }
     
     /**
@@ -35,15 +66,19 @@ public class InventarioV extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTcantidaddisponible = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextID = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextSucursal = new javax.swing.JTextField();
         jBañadir = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jBsalir = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableMateriaPrima = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jTableInventario = new javax.swing.JTable();
         jLbackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,7 +123,7 @@ public class InventarioV extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,7 +134,7 @@ public class InventarioV extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 390, 40));
+        jPbackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 430, 40));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -136,47 +171,101 @@ public class InventarioV extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel4.setText("ID Inventario:");
+
+        jTextID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextIDActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Footlight MT Light", 0, 18)); // NOI18N
+        jLabel5.setText("ID Sucursal:");
+
+        jTextSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextSucursalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTcantidaddisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTcantidaddisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTcantidaddisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jPbackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 420, 50));
+        jPbackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 440, 110));
 
         jBañadir.setBackground(new java.awt.Color(255, 102, 102));
         jBañadir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBañadir.setForeground(new java.awt.Color(255, 255, 255));
         jBañadir.setText("Añadir");
-        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 430, 100, -1));
+        jBañadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBañadirActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 470, 100, -1));
 
         jBmodificar.setBackground(new java.awt.Color(255, 102, 102));
         jBmodificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBmodificar.setForeground(new java.awt.Color(255, 255, 255));
         jBmodificar.setText("Modificar");
-        jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 500, -1, -1));
+        jBmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBmodificarActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, -1, -1));
 
         jBeliminar.setBackground(new java.awt.Color(255, 102, 102));
         jBeliminar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jBeliminar.setForeground(new java.awt.Color(255, 255, 255));
         jBeliminar.setText("Eliminar");
-        jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, -1, -1));
-        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 300, 10));
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 540, -1, -1));
+        jPbackground.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 520, 300, 10));
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -189,7 +278,7 @@ public class InventarioV extends javax.swing.JFrame {
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 30, 160, 35));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMateriaPrima.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -208,17 +297,17 @@ public class InventarioV extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane3.setViewportView(jTableMateriaPrima);
+        if (jTableMateriaPrima.getColumnModel().getColumnCount() > 0) {
+            jTableMateriaPrima.getColumnModel().getColumn(0).setResizable(false);
+            jTableMateriaPrima.getColumnModel().getColumn(1).setResizable(false);
+            jTableMateriaPrima.getColumnModel().getColumn(2).setResizable(false);
+            jTableMateriaPrima.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jPbackground.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, 440, 150));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -237,15 +326,15 @@ public class InventarioV extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(jTable4);
-        if (jTable4.getColumnModel().getColumnCount() > 0) {
-            jTable4.getColumnModel().getColumn(0).setResizable(false);
-            jTable4.getColumnModel().getColumn(1).setResizable(false);
-            jTable4.getColumnModel().getColumn(2).setResizable(false);
-            jTable4.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane6.setViewportView(jTableInventario);
+        if (jTableInventario.getColumnModel().getColumnCount() > 0) {
+            jTableInventario.getColumnModel().getColumn(0).setResizable(false);
+            jTableInventario.getColumnModel().getColumn(1).setResizable(false);
+            jTableInventario.getColumnModel().getColumn(2).setResizable(false);
+            jTableInventario.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jPbackground.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 390, 330));
+        jPbackground.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 430, 330));
 
         jLbackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo_Gestion.jpg"))); // NOI18N
         jPbackground.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
@@ -266,16 +355,104 @@ public class InventarioV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenuActionPerformed
-        // TODO add your handling code here:
+        MenuV menu = new MenuV();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBmenuActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jTcantidaddisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcantidaddisponibleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTcantidaddisponibleActionPerformed
+
+    private void jTextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextIDActionPerformed
+
+    private void jBañadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBañadirActionPerformed
+        if (jTextID.getText().trim().isEmpty() || 
+        jTextSucursal.getText().trim().isEmpty() ||
+        jTcantidaddisponible.getText().trim().isEmpty() ||
+        jTableMateriaPrima.getSelectedRow() == -1 || // Verificar si no se ha seleccionado una fila
+        jTableMateriaPrima.getValueAt(jTableMateriaPrima.getSelectedRow(), 0) == null || // Verificar si el valor es nulo
+        jTableMateriaPrima.getValueAt(jTableMateriaPrima.getSelectedRow(), 0).toString().trim().isEmpty()) { // Verificar si está vacío
+
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+        }
+
+        
+        // Validar tipos de datos
+        int idEmpleado;
+        try {
+            idEmpleado = Integer.parseInt(jTextID.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID del Empleado debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Crear el objeto y asignar valores               
+        models.InventarioMateriaPrimaM nuevoInventario = new models.InventarioMateriaPrimaM();
+        nuevoInventario.setId_inventario(Integer.parseInt(jTextID.getText()));
+        nuevoInventario.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
+        nuevoInventario.setCantidad_disponible(BigDecimal.valueOf(Double.parseDouble(jTcantidaddisponible.getText())));
+        int id_materiaPrima = (int) jTableMateriaPrima.getValueAt(jTableMateriaPrima.getSelectedRow(), 0);
+        nuevoInventario.setId_materia_prima(id_materiaPrima);
+        
+        
+        persistencia.DAOInventarioMateriaPrimaImpl insertInventario = new persistencia.DAOInventarioMateriaPrimaImpl();
+        try{
+            insertInventario.registrar(nuevoInventario);
+            //insertEmpleado1.registrar(nuevoEmpleado1);
+        }catch(Exception ex){
+            Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al Cliente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBañadirActionPerformed
+
+    private void jTextSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSucursalActionPerformed
+        
+    }//GEN-LAST:event_jTextSucursalActionPerformed
+
+    private void jBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmodificarActionPerformed
+        models.InventarioMateriaPrimaM modInventario = new models.InventarioMateriaPrimaM();
+        modInventario.setId_inventario(Integer.parseInt(jTextID.getText()));
+        modInventario.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
+        modInventario.setCantidad_disponible(BigDecimal.valueOf(Double.parseDouble(jTcantidaddisponible.getText())));
+        
+        persistencia.DAOInventarioMateriaPrimaImpl modificarInventario = new persistencia.DAOInventarioMateriaPrimaImpl();
+        try {
+            modificarInventario.modificar(modInventario);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         jBmodificar.setEnabled(false);
+         jBeliminar.setEnabled(false);
+         jBañadir.setEnabled(true);
+         limpiarCampos();
+    }//GEN-LAST:event_jBmodificarActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+        DAOInventarioMateriaPrimaImpl eliminarInventario = new DAOInventarioMateriaPrimaImpl();
+        DefaultTableModel model = (DefaultTableModel) this.jTableInventario.getModel();
+        for(int i : jTableInventario.getSelectedRows()){
+            try {
+                int empID =  (int)jTableInventario.getValueAt(1, 0);
+                int sucID =  (int)jTableInventario.getValueAt(1, 1);
+                eliminarInventario.eliminar(empID, sucID);
+                model.removeRow(i);
+            } catch (Exception ex) {
+                Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        jBmodificar.setEnabled(false);
+        jBeliminar.setEnabled(false);
+        jBañadir.setEnabled(true);
+        limpiarCampos();
+    }//GEN-LAST:event_jBeliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,6 +476,8 @@ public class InventarioV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbarraSelecc;
     private javax.swing.JLabel jLlogo;
@@ -310,8 +489,10 @@ public class InventarioV extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTableInventario;
+    private javax.swing.JTable jTableMateriaPrima;
     private javax.swing.JTextField jTcantidaddisponible;
+    private javax.swing.JTextField jTextID;
+    private javax.swing.JTextField jTextSucursal;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,8 +2,12 @@ package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.EmpleadoM;
 import persistencia.DAOEmpleadoImpl;
@@ -11,28 +15,55 @@ import vista.inicio.MenuV;
 
 public class EmpleadoV extends javax.swing.JFrame {
     // Atributos
-    DAOEmpleadoImpl dao = new DAOEmpleadoImpl();
-    
+
+            
     public EmpleadoV() {
         initComponents();
-        initStyles();
+        initStyles(null);
         loadTable();
+        jBModificar.setEnabled(false);
+        jBEliminar.setEnabled(false);
     }
-
-    private void initStyles() {
+    
+    public EmpleadoV(EmpleadoM empleado) {
+        initComponents();
+        initStyles(empleado);
+    }
+    
+    
+    private void initStyles(EmpleadoM empleado) {
         this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
+        
+        if(empleado != null){
+            jTextNombre.setText(empleado.getNombre());
+            jTextCedula.setText(empleado.getCedula());
+            jTextTelefono.setText(empleado.getTelefono());
+            jTextSucursal.setText(String.valueOf(empleado.getId_sucursal()));
+            jTextCargo.setText(empleado.getCargo());
+        }
     }
     
     private void loadTable() {
         try {
-            DefaultTableModel model = (DefaultTableModel) this.jTable.getModel();
+            DAOEmpleadoImpl dao = new DAOEmpleadoImpl();
+            DefaultTableModel model = (DefaultTableModel) this.jTableEmpleados.getModel();
             dao.leer().forEach((emp) -> model.addRow(new Object[]{emp.getId_empleado(), emp.getNombre(), emp.getCedula(), emp.getTelefono(), emp.getId_sucursal(), emp.getCargo()}));
             
         } catch (Exception e) {
             System.out.println("El siguiente error se ha suscitado: " + e.toString());
         }
     }
+    
+    private void limpiarCampos() {
+    jTextID.setText("");
+    jTextNombre.setText("");
+    jTextCedula.setText("");
+    jTextTelefono.setText("");
+    jTextSucursal.setText("");
+    jTextCargo.setText("");
+    // Agrega más JTextField si es necesario
+}   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +81,7 @@ public class EmpleadoV extends javax.swing.JFrame {
         jBmenu = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        jTableEmpleados = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -114,13 +145,10 @@ public class EmpleadoV extends javax.swing.JFrame {
         });
         jPbackground.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, 160, 35));
 
-        jTable.setBackground(new java.awt.Color(153, 153, 153));
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEmpleados.setBackground(new java.awt.Color(153, 153, 153));
+        jTableEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID ", "NOMBRE", "CEDULA", "TELEFONO", "ID SUCURSAL", "CARGO"
@@ -134,14 +162,14 @@ public class EmpleadoV extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable);
-        if (jTable.getColumnModel().getColumnCount() > 0) {
-            jTable.getColumnModel().getColumn(0).setResizable(false);
-            jTable.getColumnModel().getColumn(1).setResizable(false);
-            jTable.getColumnModel().getColumn(2).setResizable(false);
-            jTable.getColumnModel().getColumn(3).setResizable(false);
-            jTable.getColumnModel().getColumn(4).setResizable(false);
-            jTable.getColumnModel().getColumn(5).setResizable(false);
+        jScrollPane1.setViewportView(jTableEmpleados);
+        if (jTableEmpleados.getColumnModel().getColumnCount() > 0) {
+            jTableEmpleados.getColumnModel().getColumn(0).setResizable(false);
+            jTableEmpleados.getColumnModel().getColumn(1).setResizable(false);
+            jTableEmpleados.getColumnModel().getColumn(2).setResizable(false);
+            jTableEmpleados.getColumnModel().getColumn(3).setResizable(false);
+            jTableEmpleados.getColumnModel().getColumn(4).setResizable(false);
+            jTableEmpleados.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 760, 270));
@@ -403,28 +431,57 @@ public class EmpleadoV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAñadirActionPerformed
-        int IdEmpleado = Integer.parseInt(jTextID.getText());
-        String nombre = jTextNombre.getText();
-        String cedula = jTextCedula.getText();
-        String telefono = jTextTelefono.getText();
-        int IdSucursal = Integer.parseInt(jTextSucursal.getText());
-        String cargo = jTextCargo.getText();
+            if (jTextID.getText().trim().isEmpty() ||
+            jTextNombre.getText().trim().isEmpty() ||
+            jTextCedula.getText().trim().isEmpty() ||
+            jTextTelefono.getText().trim().isEmpty() ||
+            jTextSucursal.getText().trim().isEmpty() ||
+            jTextCargo.getText().trim().isEmpty() ||
+            jTextFechaCon.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
-        models.EmpleadoM nuevoEmpleado = new models.EmpleadoM();
-        nuevoEmpleado.setId_empleado(IdEmpleado);
-        nuevoEmpleado.setNombre(nombre);
-        nuevoEmpleado.setCedula(cedula);
-        nuevoEmpleado.setTelefono(telefono);
-        nuevoEmpleado.setId_sucursal(IdEmpleado);
-        nuevoEmpleado.setCargo(cargo);
+        // Validar tipos de datos
+        int idEmpleado;
+        try {
+            idEmpleado = Integer.parseInt(jTextID.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El ID del Empleado debe ser un número entero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
-        //Validaciones para los datos
+        // Validación de la fecha
+        LocalDate fecha ;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            fecha = LocalDate.parse(jTextFechaCon.getText().trim(), formatter);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "El formato de fecha es incorrecto. Use yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
-        persistencia.DAOEmpleadoImpl insertEmpleado = new persistencia.DAOEmpleadoImpl();
+        // Crear el objeto y asignar valores               
+        models.EmpleadoM nuevoEmpleado0 = new models.EmpleadoM();
+        nuevoEmpleado0.setId_empleado(Integer.parseInt(jTextID.getText()));
+        nuevoEmpleado0.setNombre(jTextNombre.getText());
+        nuevoEmpleado0.setCedula(jTextCedula.getText());
+        nuevoEmpleado0.setTelefono(jTextTelefono.getText());
+        nuevoEmpleado0.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
+        nuevoEmpleado0.setCargo(jTextCargo.getText());
+        nuevoEmpleado0.setFecha_contrato(LocalDate.parse(jTextFechaCon.getText()));
+        
+        //models.EmpleadoM nuevoEmpleado1 = new models.EmpleadoM();
+        
+        persistencia.DAOEmpleadoImpl insertEmpleado0 = new persistencia.DAOEmpleadoImpl();
+        persistencia.DAOEmpleadoImpl insertEmpleado1 = new persistencia.DAOEmpleadoImpl();
         try{
-            insertEmpleado.registrar(nuevoEmpleado);
+            insertEmpleado0.registrar(nuevoEmpleado0);
+            //insertEmpleado1.registrar(nuevoEmpleado1);
         }catch(Exception ex){
             Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al Cliente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBAñadirActionPerformed
 
@@ -457,29 +514,46 @@ public class EmpleadoV extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextCargoActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        models.EmpleadoM modificarEmpleado = new models.EmpleadoM();
-        modificarEmpleado.setId_empleado(Integer.parseInt(jTextID.getText()));
-        modificarEmpleado.setNombre(jTextNombre.getText());
-        modificarEmpleado.setCedula(jTextCedula.getText());
-        modificarEmpleado.setTelefono(jTextTelefono.getText());
-        modificarEmpleado.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
-        modificarEmpleado.setCargo(jTextCargo.getText());
+        models.EmpleadoM empleado = new models.EmpleadoM();
+        empleado.setId_empleado(Integer.parseInt(jTextID.getText()));
+        empleado.setNombre(jTextNombre.getText());
+        empleado.setCedula(jTextCedula.getText());
+        empleado.setTelefono(jTextTelefono.getText());
+        empleado.setId_sucursal(Integer.parseInt(jTextSucursal.getText()));
+        empleado.setCargo(jTextCargo.getText());
+        LocalDate fecha ;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        empleado.setFecha_contrato(LocalDate.parse(jTextFechaCon.getText().trim(), formatter));
         
-        persistencia.DAOEmpleadoImpl modEmpleado = new persistencia.DAOEmpleadoImpl();
-        try{
-            modEmpleado.modificar(modificarEmpleado);
-        }catch(Exception ex){
-            Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+        persistencia.DAOEmpleadoImpl modificarEmpleado = new persistencia.DAOEmpleadoImpl();
+        try {
+            modificarEmpleado.modificar(empleado);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductoV.class.getName()).log(Level.SEVERE, null, ex);
         }
+         jBModificar.setEnabled(false);
+         jBEliminar.setEnabled(false);
+         jBAñadir.setEnabled(true);
+         limpiarCampos();
+        
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        persistencia.DAOEmpleadoImpl eliminarEmpleado = new persistencia.DAOEmpleadoImpl();
-        try {
-            eliminarEmpleado.eliminar(Integer.parseInt(jTextID.getText()));
-        } catch (Exception ex) {
-            Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+        DAOEmpleadoImpl eliminarEmpleado = new DAOEmpleadoImpl();
+        DefaultTableModel model = (DefaultTableModel) this.jTableEmpleados.getModel();
+        for(int i : jTableEmpleados.getSelectedRows()){
+            try {
+                int empID =  (int)jTableEmpleados.getValueAt(1, 0);
+                eliminarEmpleado.eliminar(empID);
+                model.removeRow(i);
+            } catch (Exception ex) {
+                Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        jBModificar.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBAñadir.setEnabled(true);
+        limpiarCampos();
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     /**
@@ -518,7 +592,7 @@ public class EmpleadoV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPbackground;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable;
+    private javax.swing.JTable jTableEmpleados;
     private javax.swing.JTextField jTextCargo;
     private javax.swing.JTextField jTextCedula;
     private javax.swing.JTextField jTextFechaCon;
