@@ -1,9 +1,6 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import models.EmpleadoM;
 import persistencia.DAOEmpleadoImpl;
@@ -15,17 +12,12 @@ public class EmpleadoDatosSensiblesV extends javax.swing.JFrame {
             
     public EmpleadoDatosSensiblesV() {
         initComponents();
-        initStyles(null);
+        initStyles();
         loadTable();
     }
     
-    public EmpleadoDatosSensiblesV(EmpleadoM empleado) {
-        initComponents();
-        initStyles(empleado);
-    }
     
-    
-    private void initStyles(EmpleadoM empleado) {
+    private void initStyles() {
         this.jBmenu.putClientProperty("JButton.buttonType", "roundRect");
         this.jBsalir.putClientProperty("JButton.buttonType", "roundRect");
     }
@@ -34,7 +26,7 @@ public class EmpleadoDatosSensiblesV extends javax.swing.JFrame {
         try {
             DAOEmpleadoImpl dao = new DAOEmpleadoImpl();
             DefaultTableModel model = (DefaultTableModel) this.jTableEmpleadosDatosSensibles.getModel();
-            dao.leer().forEach((emp) -> model.addRow(new Object[]{emp.getId_empleado(), emp.getFecha_contrato()}));
+            dao.leerDatosSensibles().forEach((emp) -> model.addRow(new Object[]{emp.getId_empleado(), emp.getId_sucursal(), emp.getFecha_contrato()}));
             
         } catch (Exception e) {
             System.out.println("El siguiente error se ha suscitado: " + e.toString());
@@ -106,17 +98,14 @@ public class EmpleadoDatosSensiblesV extends javax.swing.JFrame {
         jTableEmpleadosDatosSensibles.setBackground(new java.awt.Color(153, 153, 153));
         jTableEmpleadosDatosSensibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "ID ", "FECHA CONTRATO"
+                "ID EMPLEADO", "ID SUCURSAL", "FECHA CONTRATO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -126,7 +115,7 @@ public class EmpleadoDatosSensiblesV extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableEmpleadosDatosSensibles);
         if (jTableEmpleadosDatosSensibles.getColumnModel().getColumnCount() > 0) {
             jTableEmpleadosDatosSensibles.getColumnModel().getColumn(0).setResizable(false);
-            jTableEmpleadosDatosSensibles.getColumnModel().getColumn(1).setResizable(false);
+            jTableEmpleadosDatosSensibles.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jPbackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 390, 370));
@@ -197,9 +186,7 @@ public class EmpleadoDatosSensiblesV extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
-        EmpleadoV regresar = new EmpleadoV();
-        regresar.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jBRegresarActionPerformed
 
     /**

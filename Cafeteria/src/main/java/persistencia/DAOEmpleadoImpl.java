@@ -114,6 +114,7 @@ public class DAOEmpleadoImpl extends DataBase {
         while (rs.next()) {
             EmpleadoM ob = new EmpleadoM();
             ob.setId_empleado(rs.getInt("id_empleado"));
+            ob.setId_sucursal(rs.getInt("id_sucursal"));
             ob.setFecha_contrato(rs.getDate("fecha_contrato").toLocalDate());
             datos.add(ob);
         }

@@ -1,9 +1,6 @@
 package vista.operacion;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -45,6 +42,7 @@ public class EmpleadoV extends javax.swing.JFrame {
         try {
             DAOEmpleadoImpl dao = new DAOEmpleadoImpl();
             DefaultTableModel model = (DefaultTableModel) this.jTableEmpleados.getModel();
+            model.setRowCount(0);
             dao.leer().forEach((emp) -> model.addRow(new Object[]{emp.getId_empleado(), emp.getNombre(), emp.getCedula(), emp.getTelefono(), emp.getId_sucursal(), emp.getCargo()}));
             
         } catch (Exception e) {
@@ -76,6 +74,7 @@ public class EmpleadoV extends javax.swing.JFrame {
         jLbarraSelecc = new javax.swing.JLabel();
         jLmenu1 = new javax.swing.JLabel();
         jBmenu = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableEmpleados = new javax.swing.JTable();
@@ -128,6 +127,16 @@ public class EmpleadoV extends javax.swing.JFrame {
             }
         });
         jPbackground.add(jBmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 160, 35));
+
+        jButton1.setBackground(new java.awt.Color(255, 102, 102));
+        jButton1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
+        jButton1.setText("Datos Sensibles");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPbackground.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 580, 200, 30));
 
         jBsalir.setBackground(new java.awt.Color(255, 102, 102));
         jBsalir.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -301,7 +310,7 @@ public class EmpleadoV extends javax.swing.JFrame {
                 jBAñadirActionPerformed(evt);
             }
         });
-        jPbackground.add(jBAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 440, 100, 30));
+        jPbackground.add(jBAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 440, 100, 30));
 
         jBModificar.setBackground(new java.awt.Color(255, 102, 102));
         jBModificar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -312,7 +321,7 @@ public class EmpleadoV extends javax.swing.JFrame {
                 jBModificarActionPerformed(evt);
             }
         });
-        jPbackground.add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, -1, -1));
+        jPbackground.add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, 120, 30));
 
         jBEliminar.setBackground(new java.awt.Color(255, 102, 102));
         jBEliminar.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -323,7 +332,7 @@ public class EmpleadoV extends javax.swing.JFrame {
                 jBEliminarActionPerformed(evt);
             }
         });
-        jPbackground.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 520, -1, -1));
+        jPbackground.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 520, 120, 30));
 
         jLbarraSelecc1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLbarraSelecc1.setForeground(new java.awt.Color(255, 255, 255));
@@ -420,9 +429,11 @@ public class EmpleadoV extends javax.swing.JFrame {
         persistencia.DAOEmpleadoImpl insertEmpleado0 = new persistencia.DAOEmpleadoImpl();
         try{
             insertEmpleado0.registrar(nuevoEmpleado0);
+            JOptionPane.showMessageDialog(this, "Empleado registrado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            loadTable();
         }catch(Exception ex){
             Logger.getLogger(EmpleadoV.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al Cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al registrar al empleado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBAñadirActionPerformed
 
@@ -491,6 +502,11 @@ public class EmpleadoV extends javax.swing.JFrame {
         limpiarCampos();
     }//GEN-LAST:event_jBEliminarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        EmpleadoDatosSensiblesV empd = new EmpleadoDatosSensiblesV();
+        empd.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -510,6 +526,7 @@ public class EmpleadoV extends javax.swing.JFrame {
     private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBmenu;
     private javax.swing.JButton jBsalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

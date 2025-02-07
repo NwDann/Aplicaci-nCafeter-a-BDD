@@ -23,6 +23,7 @@ public class DatosVentaV extends javax.swing.JFrame {
         try {
             persistencia.DAOVentaImpl daoVent = new persistencia.DAOVentaImpl();
             DefaultTableModel model = (DefaultTableModel) this.jTableVenta.getModel();
+            model.setRowCount(0);
             daoVent.leer().forEach((vent) -> model.addRow(new Object[]{vent.getId_venta(), vent.getId_sucursal(), vent.getFecha(), vent.getMonto_total(), vent.getId_empleado(), vent.getId_cliente()}));
             
         } catch (Exception e) {
@@ -34,6 +35,7 @@ public class DatosVentaV extends javax.swing.JFrame {
         try {
             persistencia.DAODetalleVentaImpl daoDetVent = new persistencia.DAODetalleVentaImpl();
             DefaultTableModel model = (DefaultTableModel) this.jTableDetalle.getModel();
+            model.setRowCount(0);
             daoDetVent.leer(this.id_sucursal, this.id_venta).forEach((detVent) -> model.addRow(new Object[]{detVent.getId_producto(), detVent.getCantidad(), detVent.getPrecio_unitario()}));
             
         } catch (Exception e) {
